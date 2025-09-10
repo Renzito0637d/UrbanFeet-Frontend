@@ -1,5 +1,5 @@
 <header
-  class="transition duration-300 ease-in-out sticky top-0 z-50 backdrop-blur supports-[backdrop-filter]:bg-neutral-950/60 dark:supports-[backdrop-filter]:bg-neutral-900/40 border-b border-neutral-300/40 dark:border-neutral-800/60">
+  class="transition duration-300 ease-in-out sticky top-0 z-50 backdrop-blur supports-[backdrop-filter]:bg-neutral-300/60 dark:supports-[backdrop-filter]:bg-neutral-900/40 border-b border-neutral-300/40 dark:border-neutral-800/60">
   <div class="max-w-7xl mx-auto px-6">
     <!-- Grid de 3 columnas -->
     <div class="grid grid-cols-[1fr_auto_1fr] items-center h-16">
@@ -16,41 +16,41 @@
         <a routerLink="/"
           routerLinkActive="bg-sky-300/85 shadow-sm dark:bg-sky-900/100 dark:border-sky-700 text-sky-950 dark:text-sky-200"
           [routerLinkActiveOptions]="{ exact: true }"
-          class="inline-flex items-center rounded-xl bg-sky-200 dark:bg-sky-900/50 border border-sky-300 dark:border-sky-600 px-3 py-1.5 text-sm font-medium hover:bg-sky-200/95 hover:dark:bg-sky-900/60">
+          class="inline-flex items-center rounded-xl bg-sky-200 dark:bg-sky-900/50 border border-sky-300 dark:border-sky-600 px-3 py-1.5 text-sm font-medium hover:bg-cyan-200/95 hover:dark:bg-sky-900/60">
           Inicio
         </a>
 
         <!-- CATALOGO -->
         <a routerLink="/catalogo"
           routerLinkActive="bg-sky-300/85 shadow-sm dark:bg-sky-900/100 dark:border-sky-700 text-sky-950 dark:text-sky-200"
-          class="inline-flex items-center rounded-xl bg-sky-200 dark:bg-sky-900/50 border border-sky-300 dark:border-sky-600 px-3 py-1.5 text-sm font-medium hover:bg-sky-200/95 hover:dark:bg-sky-900/60">
+          class="inline-flex items-center rounded-xl bg-sky-200 dark:bg-sky-900/50 border border-sky-300 dark:border-sky-600 px-3 py-1.5 text-sm font-medium hover:bg-cyan-200/95 hover:dark:bg-sky-900/60">
           Catalogo
         </a>
 
         <a routerLink="/nosotros"
           routerLinkActive="bg-sky-300/85 shadow-sm dark:bg-sky-900/100 dark:border-sky-700 text-sky-950 dark:text-sky-200"
-          class="inline-flex items-center rounded-xl bg-sky-200 dark:bg-sky-900/50 border border-sky-300 dark:border-sky-600 px-3 py-1.5 text-sm font-medium hover:bg-sky-200/95 hover:dark:bg-sky-900/60">
+          class="inline-flex items-center rounded-xl bg-sky-200 dark:bg-sky-900/50 border border-sky-300 dark:border-sky-600 px-3 py-1.5 text-sm font-medium hover:bg-cyan-200/95 hover:dark:bg-sky-900/60">
           Nosotros
         </a>
 
         <!-- CONTACTANOS -->
         <a routerLink="/contactanos"
           routerLinkActive="bg-sky-300/85 shadow-sm dark:bg-sky-900/100 dark:border-sky-700 text-sky-950 dark:text-sky-200"
-          class="inline-flex items-center rounded-xl bg-sky-200 dark:bg-sky-900/50 border border-sky-300 dark:border-sky-600 px-3 py-1.5 text-sm font-medium hover:bg-sky-200/95 hover:dark:bg-sky-900/60">
+          class="inline-flex items-center rounded-xl bg-sky-200 dark:bg-sky-900/50 border border-sky-300 dark:border-sky-600 px-3 py-1.5 text-sm font-medium hover:bg-cyan-200/95 hover:dark:bg-sky-900/60">
           Contactanos
         </a>
 
         <!-- REDES -->
         <a routerLink="/redes"
           routerLinkActive="bg-sky-300/85 shadow-sm dark:bg-sky-900/100 dark:border-sky-700 text-sky-950 dark:text-sky-200"
-          class="inline-flex items-center rounded-xl bg-sky-200 dark:bg-sky-900/50 border border-sky-300 dark:border-sky-600 px-3 py-1.5 text-sm font-medium hover:bg-sky-200/95 hover:dark:bg-sky-900/60">
+          class="inline-flex items-center rounded-xl bg-sky-200 dark:bg-sky-900/50 border border-sky-300 dark:border-sky-600 px-3 py-1.5 text-sm font-medium hover:bg-cyan-200/95 hover:dark:bg-sky-900/60">
           Redes
         </a>
 
         <!-- MIS PEDIDOS -->
         <a routerLink="/pedidos"
           routerLinkActive="bg-sky-300/85 shadow-sm dark:bg-sky-900/100 dark:border-sky-700 text-sky-950 dark:text-sky-200"
-          class="inline-flex items-center rounded-xl bg-sky-200 dark:bg-sky-900/50 border border-sky-300 dark:border-sky-600 px-3 py-1.5 text-sm font-medium hover:bg-sky-200/95 hover:dark:bg-sky-900/60">
+          class="inline-flex items-center rounded-xl bg-sky-200 dark:bg-sky-900/50 border border-sky-300 dark:border-sky-600 px-3 py-1.5 text-sm font-medium hover:bg-cyan-200/95 hover:dark:bg-sky-900/60">
           Mis pedidos
         </a>
       </nav>
@@ -59,10 +59,10 @@
       <div class="flex justify-end items-center h-16 gap-4">
         <app-themetoggle class="h-8 flex items-center" />
 
-        <a routerLink="/login"
+        <button (click)="openDialog('300ms', '300ms')"
           class="px-4 py-2 bg-sky-500 hover:bg-sky-600 rounded-lg text-sm font-medium text-white transition">
           Iniciar Sesión
-        </a>
+        </button>
       </div>
 
 

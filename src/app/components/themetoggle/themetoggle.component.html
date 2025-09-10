@@ -1,4 +1,4 @@
-<button type="button" role="switch" [attr.aria-checked]="theme === 'dark'" (click)="toggleTheme()"
+<button type="button" role="switch" [attr.aria-checked]="isDark" (click)="toggleTheme()"
   class="relative inline-flex items-center select-none">
 
   <span class="relative w-14 h-8 rounded-full transition-colors duration-300
@@ -14,7 +14,7 @@
 
     <span class="absolute top-1 left-1 h-6 w-6 rounded-full bg-white shadow
              transition-transform duration-300 will-change-transform"
-      [ngClass]="theme === 'dark' ? 'translate-x-6' : 'translate-x-0'"></span>
+      [ngClass]="mode === 'dark' ? 'translate-x-6' : 'translate-x-0'"></span>
   </span>
 
 </button>
