@@ -6,6 +6,7 @@ import { RedesComponent } from './pages/redes/redes.component';
 import { ContactanosComponent } from './pages/contactanos/contactanos.component';
 import { ReclamosComponent } from './pages/reclamos/reclamos.component';
 import { MispedidosComponent } from './pages/mispedidos/mispedidos.component';
+import { CarritoComponent } from './pages/carrito/carrito.component';
 
 export const routes: Routes = [
   { path: '', component: InicioComponent, pathMatch: 'full' },
@@ -15,5 +16,6 @@ export const routes: Routes = [
   { path: 'contactanos', component: ContactanosComponent },
   { path: 'reclamos', component: ReclamosComponent },
   { path: 'pedidos', component: MispedidosComponent },
+  { path: 'carrito', component: CarritoComponent },
   { path: '**', redirectTo: '' }
 ];
