@@ -1,0 +1,138 @@
+<!-- Contenido para un MatDialog (Angular Material) -->
+<button (click)="onCancel()"
+    class="absolute top-4 right-4 text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 focus:outline-none">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-lg"
+        viewBox="0 0 16 16">
+        <path
+            d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z" />
+    </svg>
+</button>
+<div class="w-full h-full max-w-5xl mx-auto scroll-auto">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 p-4">
+
+        <!-- GALERÍA -->
+        <div class="space-y-4">
+            <!-- Imagen principal -->
+            <div class="relative rounded-2xl overflow-hidden bg-white dark:bg-white">
+                <img src="https://www.nike.com.pe/dw/image/v2/BJKZ_PRD/on/demandware.static/-/Sites-catalog-equinox/default/dw59540ed6/images/hi-res/198486695879_1_20250724-mrtPeru.jpeg?sw=800&sh=800"
+                    alt="Zapatilla" class="w-full h-[340px] md:h-[420px] object-contain"
+                    style="mix-blend-mode: multiply;" id="mainImage" />
+            </div>
+
+            <!-- Miniaturas -->
+            <div class="flex flex-wrap items-center justify-center gap-2" id="miniaturasWrapper">
+                <!-- Ejemplos; duplica/cambia src y data-* para integrarlo con tu TS -->
+                <button
+                    class="size-16 rounded-xl ring-1 ring-neutral-300 dark:ring-neutral-700 overflow-hidden bg-white dark:bg-neutral-900 hover:ring-cyan-400 dark:hover:ring-cyan-300 transition"
+                    type="button">
+                    <img src="https://www.nike.com.pe/dw/image/v2/BJKZ_PRD/on/demandware.static/-/Sites-catalog-equinox/default/dw59540ed6/images/hi-res/198486695879_1_20250724-mrtPeru.jpeg?sw=800&sh=800"
+                        alt="Color Negro" class="w-full h-full object-contain">
+                </button>
+
+                <button
+                    class="size-16 rounded-xl ring-1 ring-neutral-300 dark:ring-neutral-700 overflow-hidden bg-white dark:bg-neutral-900 hover:ring-cyan-400 dark:hover:ring-cyan-300 transition"
+                    type="button">
+                    <img src="https://www.nike.com.pe/dw/image/v2/BJKZ_PRD/on/demandware.static/-/Sites-catalog-equinox/default/dw59540ed6/images/hi-res/198486695879_1_20250724-mrtPeru.jpeg?sw=800&sh=800"
+                        alt="Color Negro" class="w-full h-full object-contain">
+                </button>
+
+                <button
+                    class="size-16 rounded-xl ring-1 ring-neutral-300 dark:ring-neutral-700 overflow-hidden bg-white dark:bg-neutral-900 hover:ring-cyan-400 dark:hover:ring-cyan-300 transition"
+                    type="button">
+                    <img src="https://www.nike.com.pe/dw/image/v2/BJKZ_PRD/on/demandware.static/-/Sites-catalog-equinox/default/dw59540ed6/images/hi-res/198486695879_1_20250724-mrtPeru.jpeg?sw=800&sh=800"
+                        alt="Color Negro" class="w-full h-full object-contain">
+                </button>
+
+                <button
+                    class="size-16 rounded-xl ring-1 ring-neutral-300 dark:ring-neutral-700 overflow-hidden bg-white dark:bg-neutral-900 hover:ring-cyan-400 dark:hover:ring-cyan-300 transition"
+                    type="button">
+                    <img src="https://www.nike.com.pe/dw/image/v2/BJKZ_PRD/on/demandware.static/-/Sites-catalog-equinox/default/dw59540ed6/images/hi-res/198486695879_1_20250724-mrtPeru.jpeg?sw=800&sh=800"
+                        alt="Color Negro" class="w-full h-full object-contain">
+                </button>
+            </div>
+        </div>
+
+        <!-- INFO / COMPRA -->
+        <div
+            class="p-4 md:p-6 rounded-2xl bg-white dark:bg-neutral-900 ring-1 ring-neutral-300/50 dark:ring-neutral-800">
+            <!-- Nombre / descripción -->
+            <h2 class="text-2xl font-bold text-neutral-900 dark:text-neutral-100">Nike Revolution 7</h2>
+            <p class="mt-2 text-sm leading-relaxed text-neutral-700 dark:text-neutral-300">
+                Zapatillas de running diseñadas para ofrecer comodidad en el asfalto, con una mediasuela de espuma suave
+                que mejora la amortiguación, mayor espacio en el antepié para un ajuste más cómodo, y detalles como
+                cojines en el talón que suavizan el contacto con el tendón de Aquiles.
+
+            <!-- Meta -->
+            <ul class="mt-4 text-sm space-y-1">
+                <li><strong>Marca:</strong> Nike</li>
+                <li><strong>Tipo:</strong> Running</li>
+                <li><strong>Género:</strong> Unisex</li>
+            </ul>
+
+            <!-- Precio / Color actual -->
+            <div class="mt-4 space-y-1">
+                <p class="text-lg">
+                    <strong>Precio: </strong>
+                    <span id="precioVar" class="font-semibold text-cyan-600 dark:text-cyan-300">S/ 259.00</span>
+                </p>
+                <p class="text-sm">
+                    <strong>Color:</strong>
+                    <span id="colorVar"
+                        class="ml-1 inline-flex items-center rounded-full px-2 py-0.5 text-xs ring-1 ring-neutral-300 dark:ring-neutral-700">
+                        Negro
+                    </span>
+                </p>
+            </div>
+
+            <!-- Guía de tallas (en modal ya estamos: muestra imagen en un contenedor desplegable o link externo) -->
+            <details class="mt-4 group">
+                <summary class="cursor-pointer text-sm font-semibold text-cyan-600 dark:text-cyan-300 hover:underline">
+                    Guía de tallas
+                </summary>
+                <div class="mt-3 rounded-xl overflow-hidden ring-1 ring-neutral-200 dark:ring-neutral-800">
+                    <img src="/IMG/guia-tallas.png" alt="Guía de tallas"
+                        class="w-full h-auto object-contain bg-neutral-50 dark:bg-neutral-800">
+                </div>
+            </details>
+
+            <!-- Tallas -->
+            <h5 class="mt-6 font-semibold">Selecciona una talla</h5>
+            <div id="tallasWrapper" class="mt-3 grid grid-cols-5 sm:grid-cols-6 gap-2">
+                <!-- Ejemplos; agrega data-* para integrarlo con tu TS -->
+                <button type="button"
+                    class="px-3 py-2 rounded-lg text-sm ring-1 ring-neutral-300 dark:ring-neutral-700 bg-white dark:bg-neutral-900 hover:ring-cyan-400 dark:hover:ring-cyan-300"
+                    data-talla="38" data-stock="true">38</button>
+                <button type="button"
+                    class="px-3 py-2 rounded-lg text-sm ring-1 ring-neutral-300 dark:ring-neutral-700 bg-white dark:bg-neutral-900 hover:ring-cyan-400 dark:hover:ring-cyan-300"
+                    data-talla="39" data-stock="true">39</button>
+                <button type="button"
+                    class="px-3 py-2 rounded-lg text-sm ring-1 ring-neutral-300 dark:ring-neutral-700 bg-white dark:bg-neutral-900 hover:ring-cyan-400 dark:hover:ring-cyan-300"
+                    data-talla="40" data-stock="true">40</button>
+                <button type="button"
+                    class="px-3 py-2 rounded-lg text-sm ring-1 ring-neutral-300 dark:ring-neutral-700 bg-white dark:bg-neutral-900 hover:ring-cyan-400 dark:hover:ring-cyan-300"
+                    data-talla="41" data-stock="true">41</button>
+                <button type="button"
+                    class="px-3 py-2 rounded-lg text-sm ring-1 ring-neutral-300 dark:ring-neutral-700 bg-white dark:bg-neutral-900 hover:ring-cyan-400 dark:hover:ring-cyan-300"
+                    data-talla="42" data-stock="false" disabled>42</button>
+                <button type="button"
+                    class="px-3 py-2 rounded-lg text-sm ring-1 ring-neutral-300 dark:ring-neutral-700 bg-white dark:bg-neutral-900 hover:ring-cyan-400 dark:hover:ring-cyan-300"
+                    data-talla="43" data-stock="true">43</button>
+            </div>
+
+            <!-- Acciones -->
+            <div class="mt-6">
+                <button type="button" class="w-full inline-flex items-center justify-center gap-2 rounded-xl px-5 py-3 font-semibold
+                 bg-cyan-400 dark:bg-cyan-300 text-neutral-900 hover:opacity-90 transition"
+                    aria-label="Agregar al carrito">
+                    <!-- icono carrito -->
+                    <svg class="size-5" viewBox="0 0 24 24" fill="currentColor">
+                        <path
+                            d="M7 18a2 2 0 100 4 2 2 0 000-4zm10 0a2 2 0 100 4 2 2 0 000-4zM3 2h2l.4 2M7 13h10l3.6-7.59A1 1 0 0019.7 4H6.1l-.5-2H3">
+                        </path>
+                    </svg>
+                    Agregar al carrito
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
