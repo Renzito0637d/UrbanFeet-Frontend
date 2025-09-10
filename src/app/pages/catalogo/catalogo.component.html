@@ -7,9 +7,26 @@
         <div class="sticky top-16 space-y-3">
 
           <!-- Título -->
-          <div class="rounded-2xl bg-white dark:bg-neutral-900 ring-1 ring-neutral-300/50 dark:ring-neutral-800 p-5">
+          <div
+            class="rounded-2xl bg-white dark:bg-neutral-900 ring-1 ring-neutral-300/50 dark:ring-neutral-800 p-5 space-y-4">
             <h2 class="text-xl font-bold text-cyan-400 dark:text-cyan-300">Filtrar por</h2>
+
+            <!-- Switch de descuento -->
+            <div class="flex items-center justify-between">
+              <span class="text-sm font-medium text-neutral-700 dark:text-neutral-300">Buscar descuentos</span>
+
+              <label class="relative inline-flex items-center cursor-pointer">
+                <input type="checkbox" class="sr-only peer">
+                <div
+                  class="w-11 h-6 bg-neutral-300 dark:bg-neutral-700 rounded-full peer peer-checked:bg-cyan-400 dark:peer-checked:bg-cyan-300 transition-colors">
+                </div>
+                <div
+                  class="absolute left-0.5 top-0.5 w-5 h-5 bg-white dark:bg-neutral-900 rounded-full shadow transform peer-checked:translate-x-5 transition">
+                </div>
+              </label>
+            </div>
           </div>
+
 
           <!-- Marcas -->
           <div class="rounded-2xl bg-white dark:bg-neutral-900 ring-1 ring-neutral-300/50 dark:ring-neutral-800 p-5">
@@ -17,27 +34,33 @@
             <div class="grid grid-cols-2 gap-2">
               <!-- las 6 marcas principales -->
               <label class="inline-flex items-center gap-2">
-                <input type="checkbox" class="size-4 rounded border-neutral-300 dark:border-neutral-700 bg-white dark:bg-neutral-900" />
+                <input type="checkbox"
+                  class="size-4 rounded border-neutral-300 dark:border-neutral-700 bg-white dark:bg-neutral-900" />
                 <span>Nike</span>
               </label>
               <label class="inline-flex items-center gap-2">
-                <input type="checkbox" class="size-4 rounded border-neutral-300 dark:border-neutral-700 bg-white dark:bg-neutral-900" />
+                <input type="checkbox"
+                  class="size-4 rounded border-neutral-300 dark:border-neutral-700 bg-white dark:bg-neutral-900" />
                 <span>Adidas</span>
               </label>
               <label class="inline-flex items-center gap-2">
-                <input type="checkbox" class="size-4 rounded border-neutral-300 dark:border-neutral-700 bg-white dark:bg-neutral-900" />
+                <input type="checkbox"
+                  class="size-4 rounded border-neutral-300 dark:border-neutral-700 bg-white dark:bg-neutral-900" />
                 <span>Puma</span>
               </label>
               <label class="inline-flex items-center gap-2">
-                <input type="checkbox" class="size-4 rounded border-neutral-300 dark:border-neutral-700 bg-white dark:bg-neutral-900" />
+                <input type="checkbox"
+                  class="size-4 rounded border-neutral-300 dark:border-neutral-700 bg-white dark:bg-neutral-900" />
                 <span>Converse</span>
               </label>
               <label class="inline-flex items-center gap-2">
-                <input type="checkbox" class="size-4 rounded border-neutral-300 dark:border-neutral-700 bg-white dark:bg-neutral-900" />
+                <input type="checkbox"
+                  class="size-4 rounded border-neutral-300 dark:border-neutral-700 bg-white dark:bg-neutral-900" />
                 <span>Reebok</span>
               </label>
               <label class="inline-flex items-center gap-2">
-                <input type="checkbox" class="size-4 rounded border-neutral-300 dark:border-neutral-700 bg-white dark:bg-neutral-900" />
+                <input type="checkbox"
+                  class="size-4 rounded border-neutral-300 dark:border-neutral-700 bg-white dark:bg-neutral-900" />
                 <span>New Balance</span>
               </label>
             </div>
@@ -70,12 +93,18 @@
           <div class="rounded-2xl bg-white dark:bg-neutral-900 ring-1 ring-neutral-300/50 dark:ring-neutral-800 p-5">
             <label class="block text-sm font-semibold mb-3">Tipo</label>
             <div class="flex flex-wrap gap-2">
-              <button class="px-3 py-1 rounded-full bg-neutral-100 dark:bg-neutral-800 text-sm hover:ring-2 ring-cyan-400/60 dark:ring-cyan-300/60">Running</button>
-              <button class="px-3 py-1 rounded-full bg-neutral-100 dark:bg-neutral-800 text-sm hover:ring-2 ring-cyan-400/60 dark:ring-cyan-300/60">Fútbol</button>
-              <button class="px-3 py-1 rounded-full bg-neutral-100 dark:bg-neutral-800 text-sm hover:ring-2 ring-cyan-400/60 dark:ring-cyan-300/60">Training</button>
-              <button class="px-3 py-1 rounded-full bg-neutral-100 dark:bg-neutral-800 text-sm hover:ring-2 ring-cyan-400/60 dark:ring-cyan-300/60">Outdoor</button>
-              <button class="px-3 py-1 rounded-full bg-neutral-100 dark:bg-neutral-800 text-sm hover:ring-2 ring-cyan-400/60 dark:ring-cyan-300/60">Sneakers</button>
-              <button class="px-3 py-1 rounded-full bg-neutral-100 dark:bg-neutral-800 text-sm hover:ring-2 ring-cyan-400/60 dark:ring-cyan-300/60">Lifestyle</button>
+              <button
+                class="px-3 py-1 rounded-full bg-neutral-100 dark:bg-neutral-800 text-sm hover:ring-2 ring-cyan-400/60 dark:ring-cyan-300/60">Running</button>
+              <button
+                class="px-3 py-1 rounded-full bg-neutral-100 dark:bg-neutral-800 text-sm hover:ring-2 ring-cyan-400/60 dark:ring-cyan-300/60">Fútbol</button>
+              <button
+                class="px-3 py-1 rounded-full bg-neutral-100 dark:bg-neutral-800 text-sm hover:ring-2 ring-cyan-400/60 dark:ring-cyan-300/60">Training</button>
+              <button
+                class="px-3 py-1 rounded-full bg-neutral-100 dark:bg-neutral-800 text-sm hover:ring-2 ring-cyan-400/60 dark:ring-cyan-300/60">Outdoor</button>
+              <button
+                class="px-3 py-1 rounded-full bg-neutral-100 dark:bg-neutral-800 text-sm hover:ring-2 ring-cyan-400/60 dark:ring-cyan-300/60">Sneakers</button>
+              <button
+                class="px-3 py-1 rounded-full bg-neutral-100 dark:bg-neutral-800 text-sm hover:ring-2 ring-cyan-400/60 dark:ring-cyan-300/60">Lifestyle</button>
             </div>
           </div>
 
@@ -84,12 +113,18 @@
             <label class="block text-sm font-semibold mb-3">Tallas (PE)</label>
             <div class="grid grid-cols-6 gap-2">
               <!-- ejemplos -->
-              <button class="text-sm rounded-lg px-2 py-1 bg-neutral-100 dark:bg-neutral-800 hover:ring-2 ring-cyan-400/60 dark:ring-cyan-300/60">38</button>
-              <button class="text-sm rounded-lg px-2 py-1 bg-neutral-100 dark:bg-neutral-800 hover:ring-2 ring-cyan-400/60 dark:ring-cyan-300/60">39</button>
-              <button class="text-sm rounded-lg px-2 py-1 bg-neutral-100 dark:bg-neutral-800 hover:ring-2 ring-cyan-400/60 dark:ring-cyan-300/60">40</button>
-              <button class="text-sm rounded-lg px-2 py-1 bg-neutral-100 dark:bg-neutral-800 hover:ring-2 ring-cyan-400/60 dark:ring-cyan-300/60">41</button>
-              <button class="text-sm rounded-lg px-2 py-1 bg-neutral-100 dark:bg-neutral-800 hover:ring-2 ring-cyan-400/60 dark:ring-cyan-300/60">42</button>
-              <button class="text-sm rounded-lg px-2 py-1 bg-neutral-100 dark:bg-neutral-800 hover:ring-2 ring-cyan-400/60 dark:ring-cyan-300/60">43</button>
+              <button
+                class="text-sm rounded-lg px-2 py-1 bg-neutral-100 dark:bg-neutral-800 hover:ring-2 ring-cyan-400/60 dark:ring-cyan-300/60">38</button>
+              <button
+                class="text-sm rounded-lg px-2 py-1 bg-neutral-100 dark:bg-neutral-800 hover:ring-2 ring-cyan-400/60 dark:ring-cyan-300/60">39</button>
+              <button
+                class="text-sm rounded-lg px-2 py-1 bg-neutral-100 dark:bg-neutral-800 hover:ring-2 ring-cyan-400/60 dark:ring-cyan-300/60">40</button>
+              <button
+                class="text-sm rounded-lg px-2 py-1 bg-neutral-100 dark:bg-neutral-800 hover:ring-2 ring-cyan-400/60 dark:ring-cyan-300/60">41</button>
+              <button
+                class="text-sm rounded-lg px-2 py-1 bg-neutral-100 dark:bg-neutral-800 hover:ring-2 ring-cyan-400/60 dark:ring-cyan-300/60">42</button>
+              <button
+                class="text-sm rounded-lg px-2 py-1 bg-neutral-100 dark:bg-neutral-800 hover:ring-2 ring-cyan-400/60 dark:ring-cyan-300/60">43</button>
             </div>
           </div>
 
@@ -110,17 +145,21 @@
           <div class="rounded-2xl bg-white dark:bg-neutral-900 ring-1 ring-neutral-300/50 dark:ring-neutral-800 p-5">
             <label class="block text-sm font-semibold mb-3">Precio (S/)</label>
             <div class="flex items-center gap-3">
-              <input type="number" placeholder="Mín" class="w-1/2 rounded-lg bg-white dark:bg-neutral-900 border border-neutral-300 dark:border-neutral-700 px-3 py-2 text-sm" />
-              <input type="number" placeholder="Máx" class="w-1/2 rounded-lg bg-white dark:bg-neutral-900 border border-neutral-300 dark:border-neutral-700 px-3 py-2 text-sm" />
+              <input type="number" placeholder="Mín"
+                class="w-1/2 rounded-lg bg-white dark:bg-neutral-900 border border-neutral-300 dark:border-neutral-700 px-3 py-2 text-sm" />
+              <input type="number" placeholder="Máx"
+                class="w-1/2 rounded-lg bg-white dark:bg-neutral-900 border border-neutral-300 dark:border-neutral-700 px-3 py-2 text-sm" />
             </div>
           </div>
 
           <!-- Botones -->
           <div class="flex gap-3">
-            <button class="flex-1 rounded-xl bg-cyan-400 dark:bg-cyan-300 text-neutral-900 font-semibold px-4 py-2 hover:opacity-90">
+            <button
+              class="flex-1 rounded-xl bg-cyan-400 dark:bg-cyan-300 text-neutral-900 font-semibold px-4 py-2 hover:opacity-90">
               Buscar
             </button>
-            <a href="/catalogo" class="flex-1 rounded-xl ring-1 ring-neutral-300 dark:ring-neutral-700 px-4 py-2 text-center hover:bg-neutral-100 dark:hover:bg-neutral-800">
+            <a href="/catalogo"
+              class="flex-1 rounded-xl ring-1 ring-neutral-300 dark:ring-neutral-700 px-4 py-2 text-center hover:bg-neutral-100 dark:hover:bg-neutral-800">
               Limpiar
             </a>
           </div>
@@ -138,12 +177,13 @@
         <!-- Grid de cards -->
         <div class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-6">
           <!-- Card de producto (ejemplo) -->
-          <article class="group rounded-2xl bg-white dark:bg-neutral-900 ring-1 ring-neutral-300/50 dark:ring-neutral-800 overflow-hidden hover:shadow-lg transition">
+          <article
+            class="group rounded-2xl bg-white dark:bg-neutral-900 ring-1 ring-neutral-300/50 dark:ring-neutral-800 overflow-hidden hover:shadow-lg transition">
             <div class="relative">
               <div class="aspect-[4/3] bg-neutral-100 dark:bg-neutral-100">
-                <img src="https://www.nike.com.pe/dw/image/v2/BJKZ_PRD/on/demandware.static/-/Sites-catalog-equinox/default/dw59540ed6/images/hi-res/198486695879_1_20250724-mrtPeru.jpeg?sw=800&sh=800" 
-                alt="Nike Revolution 7" class="w-full h-full object-contain p-4"
-                style="mix-blend-mode: multiply;">
+                <img
+                  src="https://www.nike.com.pe/dw/image/v2/BJKZ_PRD/on/demandware.static/-/Sites-catalog-equinox/default/dw59540ed6/images/hi-res/198486695879_1_20250724-mrtPeru.jpeg?sw=800&sh=800"
+                  alt="Nike Revolution 7" class="w-full h-full object-contain p-4" style="mix-blend-mode: multiply;">
               </div>
             </div>
             <div class="p-4 space-y-2">
@@ -153,23 +193,31 @@
                 <span class="text-base font-bold">S/ 259.00</span>
                 <div class="flex gap-1">
                   <!-- miniaturas -->
-                  <img src="https://www.nike.com.pe/dw/image/v2/BJKZ_PRD/on/demandware.static/-/Sites-catalog-equinox/default/dw59540ed6/images/hi-res/198486695879_1_20250724-mrtPeru.jpeg?sw=800&sh=800" class="size-10 rounded border border-neutral-200 dark:border-neutral-700 object-contain" alt="">
-                  <img src="https://www.nike.com.pe/dw/image/v2/BJKZ_PRD/on/demandware.static/-/Sites-catalog-equinox/default/dw59540ed6/images/hi-res/198486695879_1_20250724-mrtPeru.jpeg?sw=800&sh=800" class="size-10 rounded border border-neutral-200 dark:border-neutral-700 object-contain" alt="">
-                  <img src="https://www.nike.com.pe/dw/image/v2/BJKZ_PRD/on/demandware.static/-/Sites-catalog-equinox/default/dw59540ed6/images/hi-res/198486695879_1_20250724-mrtPeru.jpeg?sw=800&sh=800" class="size-10 rounded border border-neutral-200 dark:border-neutral-700 object-contain" alt="">
+                  <img
+                    src="https://www.nike.com.pe/dw/image/v2/BJKZ_PRD/on/demandware.static/-/Sites-catalog-equinox/default/dw59540ed6/images/hi-res/198486695879_1_20250724-mrtPeru.jpeg?sw=800&sh=800"
+                    class="size-10 rounded border border-neutral-200 dark:border-neutral-700 object-contain" alt="">
+                  <img
+                    src="https://www.nike.com.pe/dw/image/v2/BJKZ_PRD/on/demandware.static/-/Sites-catalog-equinox/default/dw59540ed6/images/hi-res/198486695879_1_20250724-mrtPeru.jpeg?sw=800&sh=800"
+                    class="size-10 rounded border border-neutral-200 dark:border-neutral-700 object-contain" alt="">
+                  <img
+                    src="https://www.nike.com.pe/dw/image/v2/BJKZ_PRD/on/demandware.static/-/Sites-catalog-equinox/default/dw59540ed6/images/hi-res/198486695879_1_20250724-mrtPeru.jpeg?sw=800&sh=800"
+                    class="size-10 rounded border border-neutral-200 dark:border-neutral-700 object-contain" alt="">
                 </div>
               </div>
-              <a href="/producto/1" class="mt-2 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-neutral-900 dark:bg-neutral-200 text-white dark:text-neutral-900 px-4 py-2 text-sm font-semibold hover:opacity-90">
+              <a href="/producto/1"
+                class="mt-2 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-neutral-900 dark:bg-neutral-200 text-white dark:text-neutral-900 px-4 py-2 text-sm font-semibold hover:opacity-90">
                 Ver más
               </a>
             </div>
           </article>
 
-          <article class="group rounded-2xl bg-white dark:bg-neutral-900 ring-1 ring-neutral-300/50 dark:ring-neutral-800 overflow-hidden hover:shadow-lg transition">
+          <article
+            class="group rounded-2xl bg-white dark:bg-neutral-900 ring-1 ring-neutral-300/50 dark:ring-neutral-800 overflow-hidden hover:shadow-lg transition">
             <div class="relative">
               <div class="aspect-[4/3] bg-neutral-100 dark:bg-neutral-100">
-                <img src="https://www.nike.com.pe/dw/image/v2/BJKZ_PRD/on/demandware.static/-/Sites-catalog-equinox/default/dw59540ed6/images/hi-res/198486695879_1_20250724-mrtPeru.jpeg?sw=800&sh=800" 
-                alt="Nike Revolution 7" class="w-full h-full object-contain p-4"
-                style="mix-blend-mode: multiply;">
+                <img
+                  src="https://www.nike.com.pe/dw/image/v2/BJKZ_PRD/on/demandware.static/-/Sites-catalog-equinox/default/dw59540ed6/images/hi-res/198486695879_1_20250724-mrtPeru.jpeg?sw=800&sh=800"
+                  alt="Nike Revolution 7" class="w-full h-full object-contain p-4" style="mix-blend-mode: multiply;">
               </div>
             </div>
             <div class="p-4 space-y-2">
@@ -179,23 +227,31 @@
                 <span class="text-base font-bold">S/ 259.00</span>
                 <div class="flex gap-1">
                   <!-- miniaturas -->
-                  <img src="https://www.nike.com.pe/dw/image/v2/BJKZ_PRD/on/demandware.static/-/Sites-catalog-equinox/default/dw59540ed6/images/hi-res/198486695879_1_20250724-mrtPeru.jpeg?sw=800&sh=800" class="size-10 rounded border border-neutral-200 dark:border-neutral-700 object-contain" alt="">
-                  <img src="https://www.nike.com.pe/dw/image/v2/BJKZ_PRD/on/demandware.static/-/Sites-catalog-equinox/default/dw59540ed6/images/hi-res/198486695879_1_20250724-mrtPeru.jpeg?sw=800&sh=800" class="size-10 rounded border border-neutral-200 dark:border-neutral-700 object-contain" alt="">
-                  <img src="https://www.nike.com.pe/dw/image/v2/BJKZ_PRD/on/demandware.static/-/Sites-catalog-equinox/default/dw59540ed6/images/hi-res/198486695879_1_20250724-mrtPeru.jpeg?sw=800&sh=800" class="size-10 rounded border border-neutral-200 dark:border-neutral-700 object-contain" alt="">
+                  <img
+                    src="https://www.nike.com.pe/dw/image/v2/BJKZ_PRD/on/demandware.static/-/Sites-catalog-equinox/default/dw59540ed6/images/hi-res/198486695879_1_20250724-mrtPeru.jpeg?sw=800&sh=800"
+                    class="size-10 rounded border border-neutral-200 dark:border-neutral-700 object-contain" alt="">
+                  <img
+                    src="https://www.nike.com.pe/dw/image/v2/BJKZ_PRD/on/demandware.static/-/Sites-catalog-equinox/default/dw59540ed6/images/hi-res/198486695879_1_20250724-mrtPeru.jpeg?sw=800&sh=800"
+                    class="size-10 rounded border border-neutral-200 dark:border-neutral-700 object-contain" alt="">
+                  <img
+                    src="https://www.nike.com.pe/dw/image/v2/BJKZ_PRD/on/demandware.static/-/Sites-catalog-equinox/default/dw59540ed6/images/hi-res/198486695879_1_20250724-mrtPeru.jpeg?sw=800&sh=800"
+                    class="size-10 rounded border border-neutral-200 dark:border-neutral-700 object-contain" alt="">
                 </div>
               </div>
-              <a href="/producto/1" class="mt-2 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-neutral-900 dark:bg-neutral-200 text-white dark:text-neutral-900 px-4 py-2 text-sm font-semibold hover:opacity-90">
+              <a href="/producto/1"
+                class="mt-2 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-neutral-900 dark:bg-neutral-200 text-white dark:text-neutral-900 px-4 py-2 text-sm font-semibold hover:opacity-90">
                 Ver más
               </a>
             </div>
           </article>
 
-          <article class="group rounded-2xl bg-white dark:bg-neutral-900 ring-1 ring-neutral-300/50 dark:ring-neutral-800 overflow-hidden hover:shadow-lg transition">
+          <article
+            class="group rounded-2xl bg-white dark:bg-neutral-900 ring-1 ring-neutral-300/50 dark:ring-neutral-800 overflow-hidden hover:shadow-lg transition">
             <div class="relative">
               <div class="aspect-[4/3] bg-neutral-100 dark:bg-neutral-100">
-                <img src="https://www.nike.com.pe/dw/image/v2/BJKZ_PRD/on/demandware.static/-/Sites-catalog-equinox/default/dw59540ed6/images/hi-res/198486695879_1_20250724-mrtPeru.jpeg?sw=800&sh=800" 
-                alt="Nike Revolution 7" class="w-full h-full object-contain p-4"
-                style="mix-blend-mode: multiply;">
+                <img
+                  src="https://www.nike.com.pe/dw/image/v2/BJKZ_PRD/on/demandware.static/-/Sites-catalog-equinox/default/dw59540ed6/images/hi-res/198486695879_1_20250724-mrtPeru.jpeg?sw=800&sh=800"
+                  alt="Nike Revolution 7" class="w-full h-full object-contain p-4" style="mix-blend-mode: multiply;">
               </div>
             </div>
             <div class="p-4 space-y-2">
@@ -205,23 +261,31 @@
                 <span class="text-base font-bold">S/ 259.00</span>
                 <div class="flex gap-1">
                   <!-- miniaturas -->
-                  <img src="https://www.nike.com.pe/dw/image/v2/BJKZ_PRD/on/demandware.static/-/Sites-catalog-equinox/default/dw59540ed6/images/hi-res/198486695879_1_20250724-mrtPeru.jpeg?sw=800&sh=800" class="size-10 rounded border border-neutral-200 dark:border-neutral-700 object-contain" alt="">
-                  <img src="https://www.nike.com.pe/dw/image/v2/BJKZ_PRD/on/demandware.static/-/Sites-catalog-equinox/default/dw59540ed6/images/hi-res/198486695879_1_20250724-mrtPeru.jpeg?sw=800&sh=800" class="size-10 rounded border border-neutral-200 dark:border-neutral-700 object-contain" alt="">
-                  <img src="https://www.nike.com.pe/dw/image/v2/BJKZ_PRD/on/demandware.static/-/Sites-catalog-equinox/default/dw59540ed6/images/hi-res/198486695879_1_20250724-mrtPeru.jpeg?sw=800&sh=800" class="size-10 rounded border border-neutral-200 dark:border-neutral-700 object-contain" alt="">
+                  <img
+                    src="https://www.nike.com.pe/dw/image/v2/BJKZ_PRD/on/demandware.static/-/Sites-catalog-equinox/default/dw59540ed6/images/hi-res/198486695879_1_20250724-mrtPeru.jpeg?sw=800&sh=800"
+                    class="size-10 rounded border border-neutral-200 dark:border-neutral-700 object-contain" alt="">
+                  <img
+                    src="https://www.nike.com.pe/dw/image/v2/BJKZ_PRD/on/demandware.static/-/Sites-catalog-equinox/default/dw59540ed6/images/hi-res/198486695879_1_20250724-mrtPeru.jpeg?sw=800&sh=800"
+                    class="size-10 rounded border border-neutral-200 dark:border-neutral-700 object-contain" alt="">
+                  <img
+                    src="https://www.nike.com.pe/dw/image/v2/BJKZ_PRD/on/demandware.static/-/Sites-catalog-equinox/default/dw59540ed6/images/hi-res/198486695879_1_20250724-mrtPeru.jpeg?sw=800&sh=800"
+                    class="size-10 rounded border border-neutral-200 dark:border-neutral-700 object-contain" alt="">
                 </div>
               </div>
-              <a href="/producto/1" class="mt-2 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-neutral-900 dark:bg-neutral-200 text-white dark:text-neutral-900 px-4 py-2 text-sm font-semibold hover:opacity-90">
+              <a href="/producto/1"
+                class="mt-2 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-neutral-900 dark:bg-neutral-200 text-white dark:text-neutral-900 px-4 py-2 text-sm font-semibold hover:opacity-90">
                 Ver más
               </a>
             </div>
           </article>
 
-          <article class="group rounded-2xl bg-white dark:bg-neutral-900 ring-1 ring-neutral-300/50 dark:ring-neutral-800 overflow-hidden hover:shadow-lg transition">
+          <article
+            class="group rounded-2xl bg-white dark:bg-neutral-900 ring-1 ring-neutral-300/50 dark:ring-neutral-800 overflow-hidden hover:shadow-lg transition">
             <div class="relative">
               <div class="aspect-[4/3] bg-neutral-100 dark:bg-neutral-100">
-                <img src="https://www.nike.com.pe/dw/image/v2/BJKZ_PRD/on/demandware.static/-/Sites-catalog-equinox/default/dw59540ed6/images/hi-res/198486695879_1_20250724-mrtPeru.jpeg?sw=800&sh=800" 
-                alt="Nike Revolution 7" class="w-full h-full object-contain p-4"
-                style="mix-blend-mode: multiply;">
+                <img
+                  src="https://www.nike.com.pe/dw/image/v2/BJKZ_PRD/on/demandware.static/-/Sites-catalog-equinox/default/dw59540ed6/images/hi-res/198486695879_1_20250724-mrtPeru.jpeg?sw=800&sh=800"
+                  alt="Nike Revolution 7" class="w-full h-full object-contain p-4" style="mix-blend-mode: multiply;">
               </div>
             </div>
             <div class="p-4 space-y-2">
@@ -231,22 +295,30 @@
                 <span class="text-base font-bold">S/ 259.00</span>
                 <div class="flex gap-1">
                   <!-- miniaturas -->
-                  <img src="https://www.nike.com.pe/dw/image/v2/BJKZ_PRD/on/demandware.static/-/Sites-catalog-equinox/default/dw59540ed6/images/hi-res/198486695879_1_20250724-mrtPeru.jpeg?sw=800&sh=800" class="size-10 rounded border border-neutral-200 dark:border-neutral-700 object-contain" alt="">
-                  <img src="https://www.nike.com.pe/dw/image/v2/BJKZ_PRD/on/demandware.static/-/Sites-catalog-equinox/default/dw59540ed6/images/hi-res/198486695879_1_20250724-mrtPeru.jpeg?sw=800&sh=800" class="size-10 rounded border border-neutral-200 dark:border-neutral-700 object-contain" alt="">
-                  <img src="https://www.nike.com.pe/dw/image/v2/BJKZ_PRD/on/demandware.static/-/Sites-catalog-equinox/default/dw59540ed6/images/hi-res/198486695879_1_20250724-mrtPeru.jpeg?sw=800&sh=800" class="size-10 rounded border border-neutral-200 dark:border-neutral-700 object-contain" alt="">
+                  <img
+                    src="https://www.nike.com.pe/dw/image/v2/BJKZ_PRD/on/demandware.static/-/Sites-catalog-equinox/default/dw59540ed6/images/hi-res/198486695879_1_20250724-mrtPeru.jpeg?sw=800&sh=800"
+                    class="size-10 rounded border border-neutral-200 dark:border-neutral-700 object-contain" alt="">
+                  <img
+                    src="https://www.nike.com.pe/dw/image/v2/BJKZ_PRD/on/demandware.static/-/Sites-catalog-equinox/default/dw59540ed6/images/hi-res/198486695879_1_20250724-mrtPeru.jpeg?sw=800&sh=800"
+                    class="size-10 rounded border border-neutral-200 dark:border-neutral-700 object-contain" alt="">
+                  <img
+                    src="https://www.nike.com.pe/dw/image/v2/BJKZ_PRD/on/demandware.static/-/Sites-catalog-equinox/default/dw59540ed6/images/hi-res/198486695879_1_20250724-mrtPeru.jpeg?sw=800&sh=800"
+                    class="size-10 rounded border border-neutral-200 dark:border-neutral-700 object-contain" alt="">
                 </div>
               </div>
-              <a href="/producto/1" class="mt-2 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-neutral-900 dark:bg-neutral-200 text-white dark:text-neutral-900 px-4 py-2 text-sm font-semibold hover:opacity-90">
+              <a href="/producto/1"
+                class="mt-2 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-neutral-900 dark:bg-neutral-200 text-white dark:text-neutral-900 px-4 py-2 text-sm font-semibold hover:opacity-90">
                 Ver más
               </a>
             </div>
           </article>
-          <article class="group rounded-2xl bg-white dark:bg-neutral-900 ring-1 ring-neutral-300/50 dark:ring-neutral-800 overflow-hidden hover:shadow-lg transition">
+          <article
+            class="group rounded-2xl bg-white dark:bg-neutral-900 ring-1 ring-neutral-300/50 dark:ring-neutral-800 overflow-hidden hover:shadow-lg transition">
             <div class="relative">
               <div class="aspect-[4/3] bg-neutral-100 dark:bg-neutral-100">
-                <img src="https://www.nike.com.pe/dw/image/v2/BJKZ_PRD/on/demandware.static/-/Sites-catalog-equinox/default/dw59540ed6/images/hi-res/198486695879_1_20250724-mrtPeru.jpeg?sw=800&sh=800" 
-                alt="Nike Revolution 7" class="w-full h-full object-contain p-4"
-                style="mix-blend-mode: multiply;">
+                <img
+                  src="https://www.nike.com.pe/dw/image/v2/BJKZ_PRD/on/demandware.static/-/Sites-catalog-equinox/default/dw59540ed6/images/hi-res/198486695879_1_20250724-mrtPeru.jpeg?sw=800&sh=800"
+                  alt="Nike Revolution 7" class="w-full h-full object-contain p-4" style="mix-blend-mode: multiply;">
               </div>
             </div>
             <div class="p-4 space-y-2">
@@ -256,49 +328,31 @@
                 <span class="text-base font-bold">S/ 259.00</span>
                 <div class="flex gap-1">
                   <!-- miniaturas -->
-                  <img src="https://www.nike.com.pe/dw/image/v2/BJKZ_PRD/on/demandware.static/-/Sites-catalog-equinox/default/dw59540ed6/images/hi-res/198486695879_1_20250724-mrtPeru.jpeg?sw=800&sh=800" class="size-10 rounded border border-neutral-200 dark:border-neutral-700 object-contain" alt="">
-                  <img src="https://www.nike.com.pe/dw/image/v2/BJKZ_PRD/on/demandware.static/-/Sites-catalog-equinox/default/dw59540ed6/images/hi-res/198486695879_1_20250724-mrtPeru.jpeg?sw=800&sh=800" class="size-10 rounded border border-neutral-200 dark:border-neutral-700 object-contain" alt="">
-                  <img src="https://www.nike.com.pe/dw/image/v2/BJKZ_PRD/on/demandware.static/-/Sites-catalog-equinox/default/dw59540ed6/images/hi-res/198486695879_1_20250724-mrtPeru.jpeg?sw=800&sh=800" class="size-10 rounded border border-neutral-200 dark:border-neutral-700 object-contain" alt="">
+                  <img
+                    src="https://www.nike.com.pe/dw/image/v2/BJKZ_PRD/on/demandware.static/-/Sites-catalog-equinox/default/dw59540ed6/images/hi-res/198486695879_1_20250724-mrtPeru.jpeg?sw=800&sh=800"
+                    class="size-10 rounded border border-neutral-200 dark:border-neutral-700 object-contain" alt="">
+                  <img
+                    src="https://www.nike.com.pe/dw/image/v2/BJKZ_PRD/on/demandware.static/-/Sites-catalog-equinox/default/dw59540ed6/images/hi-res/198486695879_1_20250724-mrtPeru.jpeg?sw=800&sh=800"
+                    class="size-10 rounded border border-neutral-200 dark:border-neutral-700 object-contain" alt="">
+                  <img
+                    src="https://www.nike.com.pe/dw/image/v2/BJKZ_PRD/on/demandware.static/-/Sites-catalog-equinox/default/dw59540ed6/images/hi-res/198486695879_1_20250724-mrtPeru.jpeg?sw=800&sh=800"
+                    class="size-10 rounded border border-neutral-200 dark:border-neutral-700 object-contain" alt="">
                 </div>
               </div>
-              <a href="/producto/1" class="mt-2 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-neutral-900 dark:bg-neutral-200 text-white dark:text-neutral-900 px-4 py-2 text-sm font-semibold hover:opacity-90">
-                Ver más
-              </a>
-            </div>
-          </article>
-
-          <article class="group rounded-2xl bg-white dark:bg-neutral-900 ring-1 ring-neutral-300/50 dark:ring-neutral-800 overflow-hidden hover:shadow-lg transition">
-            <div class="relative">
-              <div class="aspect-[4/3] bg-neutral-100 dark:bg-neutral-100">
-                <img src="https://www.nike.com.pe/dw/image/v2/BJKZ_PRD/on/demandware.static/-/Sites-catalog-equinox/default/dw59540ed6/images/hi-res/198486695879_1_20250724-mrtPeru.jpeg?sw=800&sh=800" 
-                alt="Nike Revolution 7" class="w-full h-full object-contain p-4"
-                style="mix-blend-mode: multiply;">
-              </div>
-            </div>
-            <div class="p-4 space-y-2">
-              <h4 class="text-sm font-semibold truncate">Nike Revolution 7</h4>
-              <p class="text-xs text-neutral-500 dark:text-neutral-400 truncate">Running • Mujer</p>
-              <div class="flex flex-col justify-between gap-2">
-                <span class="text-base font-bold">S/ 259.00</span>
-                <div class="flex gap-1">
-                  <!-- miniaturas -->
-                  <img src="https://www.nike.com.pe/dw/image/v2/BJKZ_PRD/on/demandware.static/-/Sites-catalog-equinox/default/dw59540ed6/images/hi-res/198486695879_1_20250724-mrtPeru.jpeg?sw=800&sh=800" class="size-10 rounded border border-neutral-200 dark:border-neutral-700 object-contain" alt="">
-                  <img src="https://www.nike.com.pe/dw/image/v2/BJKZ_PRD/on/demandware.static/-/Sites-catalog-equinox/default/dw59540ed6/images/hi-res/198486695879_1_20250724-mrtPeru.jpeg?sw=800&sh=800" class="size-10 rounded border border-neutral-200 dark:border-neutral-700 object-contain" alt="">
-                  <img src="https://www.nike.com.pe/dw/image/v2/BJKZ_PRD/on/demandware.static/-/Sites-catalog-equinox/default/dw59540ed6/images/hi-res/198486695879_1_20250724-mrtPeru.jpeg?sw=800&sh=800" class="size-10 rounded border border-neutral-200 dark:border-neutral-700 object-contain" alt="">
-                </div>
-              </div>
-              <a href="/producto/1" class="mt-2 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-neutral-900 dark:bg-neutral-200 text-white dark:text-neutral-900 px-4 py-2 text-sm font-semibold hover:opacity-90">
+              <a href="/producto/1"
+                class="mt-2 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-neutral-900 dark:bg-neutral-200 text-white dark:text-neutral-900 px-4 py-2 text-sm font-semibold hover:opacity-90">
                 Ver más
               </a>
             </div>
           </article>
 
-          <article class="group rounded-2xl bg-white dark:bg-neutral-900 ring-1 ring-neutral-300/50 dark:ring-neutral-800 overflow-hidden hover:shadow-lg transition">
+          <article
+            class="group rounded-2xl bg-white dark:bg-neutral-900 ring-1 ring-neutral-300/50 dark:ring-neutral-800 overflow-hidden hover:shadow-lg transition">
             <div class="relative">
               <div class="aspect-[4/3] bg-neutral-100 dark:bg-neutral-100">
-                <img src="https://www.nike.com.pe/dw/image/v2/BJKZ_PRD/on/demandware.static/-/Sites-catalog-equinox/default/dw59540ed6/images/hi-res/198486695879_1_20250724-mrtPeru.jpeg?sw=800&sh=800" 
-                alt="Nike Revolution 7" class="w-full h-full object-contain p-4"
-                style="mix-blend-mode: multiply;">
+                <img
+                  src="https://www.nike.com.pe/dw/image/v2/BJKZ_PRD/on/demandware.static/-/Sites-catalog-equinox/default/dw59540ed6/images/hi-res/198486695879_1_20250724-mrtPeru.jpeg?sw=800&sh=800"
+                  alt="Nike Revolution 7" class="w-full h-full object-contain p-4" style="mix-blend-mode: multiply;">
               </div>
             </div>
             <div class="p-4 space-y-2">
@@ -308,23 +362,31 @@
                 <span class="text-base font-bold">S/ 259.00</span>
                 <div class="flex gap-1">
                   <!-- miniaturas -->
-                  <img src="https://www.nike.com.pe/dw/image/v2/BJKZ_PRD/on/demandware.static/-/Sites-catalog-equinox/default/dw59540ed6/images/hi-res/198486695879_1_20250724-mrtPeru.jpeg?sw=800&sh=800" class="size-10 rounded border border-neutral-200 dark:border-neutral-700 object-contain" alt="">
-                  <img src="https://www.nike.com.pe/dw/image/v2/BJKZ_PRD/on/demandware.static/-/Sites-catalog-equinox/default/dw59540ed6/images/hi-res/198486695879_1_20250724-mrtPeru.jpeg?sw=800&sh=800" class="size-10 rounded border border-neutral-200 dark:border-neutral-700 object-contain" alt="">
-                  <img src="https://www.nike.com.pe/dw/image/v2/BJKZ_PRD/on/demandware.static/-/Sites-catalog-equinox/default/dw59540ed6/images/hi-res/198486695879_1_20250724-mrtPeru.jpeg?sw=800&sh=800" class="size-10 rounded border border-neutral-200 dark:border-neutral-700 object-contain" alt="">
+                  <img
+                    src="https://www.nike.com.pe/dw/image/v2/BJKZ_PRD/on/demandware.static/-/Sites-catalog-equinox/default/dw59540ed6/images/hi-res/198486695879_1_20250724-mrtPeru.jpeg?sw=800&sh=800"
+                    class="size-10 rounded border border-neutral-200 dark:border-neutral-700 object-contain" alt="">
+                  <img
+                    src="https://www.nike.com.pe/dw/image/v2/BJKZ_PRD/on/demandware.static/-/Sites-catalog-equinox/default/dw59540ed6/images/hi-res/198486695879_1_20250724-mrtPeru.jpeg?sw=800&sh=800"
+                    class="size-10 rounded border border-neutral-200 dark:border-neutral-700 object-contain" alt="">
+                  <img
+                    src="https://www.nike.com.pe/dw/image/v2/BJKZ_PRD/on/demandware.static/-/Sites-catalog-equinox/default/dw59540ed6/images/hi-res/198486695879_1_20250724-mrtPeru.jpeg?sw=800&sh=800"
+                    class="size-10 rounded border border-neutral-200 dark:border-neutral-700 object-contain" alt="">
                 </div>
               </div>
-              <a href="/producto/1" class="mt-2 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-neutral-900 dark:bg-neutral-200 text-white dark:text-neutral-900 px-4 py-2 text-sm font-semibold hover:opacity-90">
+              <a href="/producto/1"
+                class="mt-2 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-neutral-900 dark:bg-neutral-200 text-white dark:text-neutral-900 px-4 py-2 text-sm font-semibold hover:opacity-90">
                 Ver más
               </a>
             </div>
           </article>
 
-          <article class="group rounded-2xl bg-white dark:bg-neutral-900 ring-1 ring-neutral-300/50 dark:ring-neutral-800 overflow-hidden hover:shadow-lg transition">
+          <article
+            class="group rounded-2xl bg-white dark:bg-neutral-900 ring-1 ring-neutral-300/50 dark:ring-neutral-800 overflow-hidden hover:shadow-lg transition">
             <div class="relative">
               <div class="aspect-[4/3] bg-neutral-100 dark:bg-neutral-100">
-                <img src="https://www.nike.com.pe/dw/image/v2/BJKZ_PRD/on/demandware.static/-/Sites-catalog-equinox/default/dw59540ed6/images/hi-res/198486695879_1_20250724-mrtPeru.jpeg?sw=800&sh=800" 
-                alt="Nike Revolution 7" class="w-full h-full object-contain p-4"
-                style="mix-blend-mode: multiply;">
+                <img
+                  src="https://www.nike.com.pe/dw/image/v2/BJKZ_PRD/on/demandware.static/-/Sites-catalog-equinox/default/dw59540ed6/images/hi-res/198486695879_1_20250724-mrtPeru.jpeg?sw=800&sh=800"
+                  alt="Nike Revolution 7" class="w-full h-full object-contain p-4" style="mix-blend-mode: multiply;">
               </div>
             </div>
             <div class="p-4 space-y-2">
@@ -334,48 +396,31 @@
                 <span class="text-base font-bold">S/ 259.00</span>
                 <div class="flex gap-1">
                   <!-- miniaturas -->
-                  <img src="https://www.nike.com.pe/dw/image/v2/BJKZ_PRD/on/demandware.static/-/Sites-catalog-equinox/default/dw59540ed6/images/hi-res/198486695879_1_20250724-mrtPeru.jpeg?sw=800&sh=800" class="size-10 rounded border border-neutral-200 dark:border-neutral-700 object-contain" alt="">
-                  <img src="https://www.nike.com.pe/dw/image/v2/BJKZ_PRD/on/demandware.static/-/Sites-catalog-equinox/default/dw59540ed6/images/hi-res/198486695879_1_20250724-mrtPeru.jpeg?sw=800&sh=800" class="size-10 rounded border border-neutral-200 dark:border-neutral-700 object-contain" alt="">
-                  <img src="https://www.nike.com.pe/dw/image/v2/BJKZ_PRD/on/demandware.static/-/Sites-catalog-equinox/default/dw59540ed6/images/hi-res/198486695879_1_20250724-mrtPeru.jpeg?sw=800&sh=800" class="size-10 rounded border border-neutral-200 dark:border-neutral-700 object-contain" alt="">
+                  <img
+                    src="https://www.nike.com.pe/dw/image/v2/BJKZ_PRD/on/demandware.static/-/Sites-catalog-equinox/default/dw59540ed6/images/hi-res/198486695879_1_20250724-mrtPeru.jpeg?sw=800&sh=800"
+                    class="size-10 rounded border border-neutral-200 dark:border-neutral-700 object-contain" alt="">
+                  <img
+                    src="https://www.nike.com.pe/dw/image/v2/BJKZ_PRD/on/demandware.static/-/Sites-catalog-equinox/default/dw59540ed6/images/hi-res/198486695879_1_20250724-mrtPeru.jpeg?sw=800&sh=800"
+                    class="size-10 rounded border border-neutral-200 dark:border-neutral-700 object-contain" alt="">
+                  <img
+                    src="https://www.nike.com.pe/dw/image/v2/BJKZ_PRD/on/demandware.static/-/Sites-catalog-equinox/default/dw59540ed6/images/hi-res/198486695879_1_20250724-mrtPeru.jpeg?sw=800&sh=800"
+                    class="size-10 rounded border border-neutral-200 dark:border-neutral-700 object-contain" alt="">
                 </div>
               </div>
-              <a href="/producto/1" class="mt-2 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-neutral-900 dark:bg-neutral-200 text-white dark:text-neutral-900 px-4 py-2 text-sm font-semibold hover:opacity-90">
-                Ver más
-              </a>
-            </div>
-          </article>
-          <article class="group rounded-2xl bg-white dark:bg-neutral-900 ring-1 ring-neutral-300/50 dark:ring-neutral-800 overflow-hidden hover:shadow-lg transition">
-            <div class="relative">
-              <div class="aspect-[4/3] bg-neutral-100 dark:bg-neutral-100">
-                <img src="https://www.nike.com.pe/dw/image/v2/BJKZ_PRD/on/demandware.static/-/Sites-catalog-equinox/default/dw59540ed6/images/hi-res/198486695879_1_20250724-mrtPeru.jpeg?sw=800&sh=800" 
-                alt="Nike Revolution 7" class="w-full h-full object-contain p-4"
-                style="mix-blend-mode: multiply;">
-              </div>
-            </div>
-            <div class="p-4 space-y-2">
-              <h4 class="text-sm font-semibold truncate">Nike Revolution 7</h4>
-              <p class="text-xs text-neutral-500 dark:text-neutral-400 truncate">Running • Mujer</p>
-              <div class="flex flex-col justify-between gap-2">
-                <span class="text-base font-bold">S/ 259.00</span>
-                <div class="flex gap-1">
-                  <!-- miniaturas -->
-                  <img src="https://www.nike.com.pe/dw/image/v2/BJKZ_PRD/on/demandware.static/-/Sites-catalog-equinox/default/dw59540ed6/images/hi-res/198486695879_1_20250724-mrtPeru.jpeg?sw=800&sh=800" class="size-10 rounded border border-neutral-200 dark:border-neutral-700 object-contain" alt="">
-                  <img src="https://www.nike.com.pe/dw/image/v2/BJKZ_PRD/on/demandware.static/-/Sites-catalog-equinox/default/dw59540ed6/images/hi-res/198486695879_1_20250724-mrtPeru.jpeg?sw=800&sh=800" class="size-10 rounded border border-neutral-200 dark:border-neutral-700 object-contain" alt="">
-                  <img src="https://www.nike.com.pe/dw/image/v2/BJKZ_PRD/on/demandware.static/-/Sites-catalog-equinox/default/dw59540ed6/images/hi-res/198486695879_1_20250724-mrtPeru.jpeg?sw=800&sh=800" class="size-10 rounded border border-neutral-200 dark:border-neutral-700 object-contain" alt="">
-                </div>
-              </div>
-              <a href="/producto/1" class="mt-2 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-neutral-900 dark:bg-neutral-200 text-white dark:text-neutral-900 px-4 py-2 text-sm font-semibold hover:opacity-90">
+              <a href="/producto/1"
+                class="mt-2 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-neutral-900 dark:bg-neutral-200 text-white dark:text-neutral-900 px-4 py-2 text-sm font-semibold hover:opacity-90">
                 Ver más
               </a>
             </div>
           </article>
 
-          <article class="group rounded-2xl bg-white dark:bg-neutral-900 ring-1 ring-neutral-300/50 dark:ring-neutral-800 overflow-hidden hover:shadow-lg transition">
+          <article
+            class="group rounded-2xl bg-white dark:bg-neutral-900 ring-1 ring-neutral-300/50 dark:ring-neutral-800 overflow-hidden hover:shadow-lg transition">
             <div class="relative">
               <div class="aspect-[4/3] bg-neutral-100 dark:bg-neutral-100">
-                <img src="https://www.nike.com.pe/dw/image/v2/BJKZ_PRD/on/demandware.static/-/Sites-catalog-equinox/default/dw59540ed6/images/hi-res/198486695879_1_20250724-mrtPeru.jpeg?sw=800&sh=800" 
-                alt="Nike Revolution 7" class="w-full h-full object-contain p-4"
-                style="mix-blend-mode: multiply;">
+                <img
+                  src="https://www.nike.com.pe/dw/image/v2/BJKZ_PRD/on/demandware.static/-/Sites-catalog-equinox/default/dw59540ed6/images/hi-res/198486695879_1_20250724-mrtPeru.jpeg?sw=800&sh=800"
+                  alt="Nike Revolution 7" class="w-full h-full object-contain p-4" style="mix-blend-mode: multiply;">
               </div>
             </div>
             <div class="p-4 space-y-2">
@@ -385,23 +430,64 @@
                 <span class="text-base font-bold">S/ 259.00</span>
                 <div class="flex gap-1">
                   <!-- miniaturas -->
-                  <img src="https://www.nike.com.pe/dw/image/v2/BJKZ_PRD/on/demandware.static/-/Sites-catalog-equinox/default/dw59540ed6/images/hi-res/198486695879_1_20250724-mrtPeru.jpeg?sw=800&sh=800" class="size-10 rounded border border-neutral-200 dark:border-neutral-700 object-contain" alt="">
-                  <img src="https://www.nike.com.pe/dw/image/v2/BJKZ_PRD/on/demandware.static/-/Sites-catalog-equinox/default/dw59540ed6/images/hi-res/198486695879_1_20250724-mrtPeru.jpeg?sw=800&sh=800" class="size-10 rounded border border-neutral-200 dark:border-neutral-700 object-contain" alt="">
-                  <img src="https://www.nike.com.pe/dw/image/v2/BJKZ_PRD/on/demandware.static/-/Sites-catalog-equinox/default/dw59540ed6/images/hi-res/198486695879_1_20250724-mrtPeru.jpeg?sw=800&sh=800" class="size-10 rounded border border-neutral-200 dark:border-neutral-700 object-contain" alt="">
+                  <img
+                    src="https://www.nike.com.pe/dw/image/v2/BJKZ_PRD/on/demandware.static/-/Sites-catalog-equinox/default/dw59540ed6/images/hi-res/198486695879_1_20250724-mrtPeru.jpeg?sw=800&sh=800"
+                    class="size-10 rounded border border-neutral-200 dark:border-neutral-700 object-contain" alt="">
+                  <img
+                    src="https://www.nike.com.pe/dw/image/v2/BJKZ_PRD/on/demandware.static/-/Sites-catalog-equinox/default/dw59540ed6/images/hi-res/198486695879_1_20250724-mrtPeru.jpeg?sw=800&sh=800"
+                    class="size-10 rounded border border-neutral-200 dark:border-neutral-700 object-contain" alt="">
+                  <img
+                    src="https://www.nike.com.pe/dw/image/v2/BJKZ_PRD/on/demandware.static/-/Sites-catalog-equinox/default/dw59540ed6/images/hi-res/198486695879_1_20250724-mrtPeru.jpeg?sw=800&sh=800"
+                    class="size-10 rounded border border-neutral-200 dark:border-neutral-700 object-contain" alt="">
                 </div>
               </div>
-              <a href="/producto/1" class="mt-2 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-neutral-900 dark:bg-neutral-200 text-white dark:text-neutral-900 px-4 py-2 text-sm font-semibold hover:opacity-90">
+              <a href="/producto/1"
+                class="mt-2 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-neutral-900 dark:bg-neutral-200 text-white dark:text-neutral-900 px-4 py-2 text-sm font-semibold hover:opacity-90">
+                Ver más
+              </a>
+            </div>
+          </article>
+          <article
+            class="group rounded-2xl bg-white dark:bg-neutral-900 ring-1 ring-neutral-300/50 dark:ring-neutral-800 overflow-hidden hover:shadow-lg transition">
+            <div class="relative">
+              <div class="aspect-[4/3] bg-neutral-100 dark:bg-neutral-100">
+                <img
+                  src="https://www.nike.com.pe/dw/image/v2/BJKZ_PRD/on/demandware.static/-/Sites-catalog-equinox/default/dw59540ed6/images/hi-res/198486695879_1_20250724-mrtPeru.jpeg?sw=800&sh=800"
+                  alt="Nike Revolution 7" class="w-full h-full object-contain p-4" style="mix-blend-mode: multiply;">
+              </div>
+            </div>
+            <div class="p-4 space-y-2">
+              <h4 class="text-sm font-semibold truncate">Nike Revolution 7</h4>
+              <p class="text-xs text-neutral-500 dark:text-neutral-400 truncate">Running • Mujer</p>
+              <div class="flex flex-col justify-between gap-2">
+                <span class="text-base font-bold">S/ 259.00</span>
+                <div class="flex gap-1">
+                  <!-- miniaturas -->
+                  <img
+                    src="https://www.nike.com.pe/dw/image/v2/BJKZ_PRD/on/demandware.static/-/Sites-catalog-equinox/default/dw59540ed6/images/hi-res/198486695879_1_20250724-mrtPeru.jpeg?sw=800&sh=800"
+                    class="size-10 rounded border border-neutral-200 dark:border-neutral-700 object-contain" alt="">
+                  <img
+                    src="https://www.nike.com.pe/dw/image/v2/BJKZ_PRD/on/demandware.static/-/Sites-catalog-equinox/default/dw59540ed6/images/hi-res/198486695879_1_20250724-mrtPeru.jpeg?sw=800&sh=800"
+                    class="size-10 rounded border border-neutral-200 dark:border-neutral-700 object-contain" alt="">
+                  <img
+                    src="https://www.nike.com.pe/dw/image/v2/BJKZ_PRD/on/demandware.static/-/Sites-catalog-equinox/default/dw59540ed6/images/hi-res/198486695879_1_20250724-mrtPeru.jpeg?sw=800&sh=800"
+                    class="size-10 rounded border border-neutral-200 dark:border-neutral-700 object-contain" alt="">
+                </div>
+              </div>
+              <a href="/producto/1"
+                class="mt-2 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-neutral-900 dark:bg-neutral-200 text-white dark:text-neutral-900 px-4 py-2 text-sm font-semibold hover:opacity-90">
                 Ver más
               </a>
             </div>
           </article>
 
-          <article class="group rounded-2xl bg-white dark:bg-neutral-900 ring-1 ring-neutral-300/50 dark:ring-neutral-800 overflow-hidden hover:shadow-lg transition">
+          <article
+            class="group rounded-2xl bg-white dark:bg-neutral-900 ring-1 ring-neutral-300/50 dark:ring-neutral-800 overflow-hidden hover:shadow-lg transition">
             <div class="relative">
               <div class="aspect-[4/3] bg-neutral-100 dark:bg-neutral-100">
-                <img src="https://www.nike.com.pe/dw/image/v2/BJKZ_PRD/on/demandware.static/-/Sites-catalog-equinox/default/dw59540ed6/images/hi-res/198486695879_1_20250724-mrtPeru.jpeg?sw=800&sh=800" 
-                alt="Nike Revolution 7" class="w-full h-full object-contain p-4"
-                style="mix-blend-mode: multiply;">
+                <img
+                  src="https://www.nike.com.pe/dw/image/v2/BJKZ_PRD/on/demandware.static/-/Sites-catalog-equinox/default/dw59540ed6/images/hi-res/198486695879_1_20250724-mrtPeru.jpeg?sw=800&sh=800"
+                  alt="Nike Revolution 7" class="w-full h-full object-contain p-4" style="mix-blend-mode: multiply;">
               </div>
             </div>
             <div class="p-4 space-y-2">
@@ -411,23 +497,31 @@
                 <span class="text-base font-bold">S/ 259.00</span>
                 <div class="flex gap-1">
                   <!-- miniaturas -->
-                  <img src="https://www.nike.com.pe/dw/image/v2/BJKZ_PRD/on/demandware.static/-/Sites-catalog-equinox/default/dw59540ed6/images/hi-res/198486695879_1_20250724-mrtPeru.jpeg?sw=800&sh=800" class="size-10 rounded border border-neutral-200 dark:border-neutral-700 object-contain" alt="">
-                  <img src="https://www.nike.com.pe/dw/image/v2/BJKZ_PRD/on/demandware.static/-/Sites-catalog-equinox/default/dw59540ed6/images/hi-res/198486695879_1_20250724-mrtPeru.jpeg?sw=800&sh=800" class="size-10 rounded border border-neutral-200 dark:border-neutral-700 object-contain" alt="">
-                  <img src="https://www.nike.com.pe/dw/image/v2/BJKZ_PRD/on/demandware.static/-/Sites-catalog-equinox/default/dw59540ed6/images/hi-res/198486695879_1_20250724-mrtPeru.jpeg?sw=800&sh=800" class="size-10 rounded border border-neutral-200 dark:border-neutral-700 object-contain" alt="">
+                  <img
+                    src="https://www.nike.com.pe/dw/image/v2/BJKZ_PRD/on/demandware.static/-/Sites-catalog-equinox/default/dw59540ed6/images/hi-res/198486695879_1_20250724-mrtPeru.jpeg?sw=800&sh=800"
+                    class="size-10 rounded border border-neutral-200 dark:border-neutral-700 object-contain" alt="">
+                  <img
+                    src="https://www.nike.com.pe/dw/image/v2/BJKZ_PRD/on/demandware.static/-/Sites-catalog-equinox/default/dw59540ed6/images/hi-res/198486695879_1_20250724-mrtPeru.jpeg?sw=800&sh=800"
+                    class="size-10 rounded border border-neutral-200 dark:border-neutral-700 object-contain" alt="">
+                  <img
+                    src="https://www.nike.com.pe/dw/image/v2/BJKZ_PRD/on/demandware.static/-/Sites-catalog-equinox/default/dw59540ed6/images/hi-res/198486695879_1_20250724-mrtPeru.jpeg?sw=800&sh=800"
+                    class="size-10 rounded border border-neutral-200 dark:border-neutral-700 object-contain" alt="">
                 </div>
               </div>
-              <a href="/producto/1" class="mt-2 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-neutral-900 dark:bg-neutral-200 text-white dark:text-neutral-900 px-4 py-2 text-sm font-semibold hover:opacity-90">
+              <a href="/producto/1"
+                class="mt-2 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-neutral-900 dark:bg-neutral-200 text-white dark:text-neutral-900 px-4 py-2 text-sm font-semibold hover:opacity-90">
                 Ver más
               </a>
             </div>
           </article>
 
-          <article class="group rounded-2xl bg-white dark:bg-neutral-900 ring-1 ring-neutral-300/50 dark:ring-neutral-800 overflow-hidden hover:shadow-lg transition">
+          <article
+            class="group rounded-2xl bg-white dark:bg-neutral-900 ring-1 ring-neutral-300/50 dark:ring-neutral-800 overflow-hidden hover:shadow-lg transition">
             <div class="relative">
               <div class="aspect-[4/3] bg-neutral-100 dark:bg-neutral-100">
-                <img src="https://www.nike.com.pe/dw/image/v2/BJKZ_PRD/on/demandware.static/-/Sites-catalog-equinox/default/dw59540ed6/images/hi-res/198486695879_1_20250724-mrtPeru.jpeg?sw=800&sh=800" 
-                alt="Nike Revolution 7" class="w-full h-full object-contain p-4"
-                style="mix-blend-mode: multiply;">
+                <img
+                  src="https://www.nike.com.pe/dw/image/v2/BJKZ_PRD/on/demandware.static/-/Sites-catalog-equinox/default/dw59540ed6/images/hi-res/198486695879_1_20250724-mrtPeru.jpeg?sw=800&sh=800"
+                  alt="Nike Revolution 7" class="w-full h-full object-contain p-4" style="mix-blend-mode: multiply;">
               </div>
             </div>
             <div class="p-4 space-y-2">
@@ -437,12 +531,53 @@
                 <span class="text-base font-bold">S/ 259.00</span>
                 <div class="flex gap-1">
                   <!-- miniaturas -->
-                  <img src="https://www.nike.com.pe/dw/image/v2/BJKZ_PRD/on/demandware.static/-/Sites-catalog-equinox/default/dw59540ed6/images/hi-res/198486695879_1_20250724-mrtPeru.jpeg?sw=800&sh=800" class="size-10 rounded border border-neutral-200 dark:border-neutral-700 object-contain" alt="">
-                  <img src="https://www.nike.com.pe/dw/image/v2/BJKZ_PRD/on/demandware.static/-/Sites-catalog-equinox/default/dw59540ed6/images/hi-res/198486695879_1_20250724-mrtPeru.jpeg?sw=800&sh=800" class="size-10 rounded border border-neutral-200 dark:border-neutral-700 object-contain" alt="">
-                  <img src="https://www.nike.com.pe/dw/image/v2/BJKZ_PRD/on/demandware.static/-/Sites-catalog-equinox/default/dw59540ed6/images/hi-res/198486695879_1_20250724-mrtPeru.jpeg?sw=800&sh=800" class="size-10 rounded border border-neutral-200 dark:border-neutral-700 object-contain" alt="">
+                  <img
+                    src="https://www.nike.com.pe/dw/image/v2/BJKZ_PRD/on/demandware.static/-/Sites-catalog-equinox/default/dw59540ed6/images/hi-res/198486695879_1_20250724-mrtPeru.jpeg?sw=800&sh=800"
+                    class="size-10 rounded border border-neutral-200 dark:border-neutral-700 object-contain" alt="">
+                  <img
+                    src="https://www.nike.com.pe/dw/image/v2/BJKZ_PRD/on/demandware.static/-/Sites-catalog-equinox/default/dw59540ed6/images/hi-res/198486695879_1_20250724-mrtPeru.jpeg?sw=800&sh=800"
+                    class="size-10 rounded border border-neutral-200 dark:border-neutral-700 object-contain" alt="">
+                  <img
+                    src="https://www.nike.com.pe/dw/image/v2/BJKZ_PRD/on/demandware.static/-/Sites-catalog-equinox/default/dw59540ed6/images/hi-res/198486695879_1_20250724-mrtPeru.jpeg?sw=800&sh=800"
+                    class="size-10 rounded border border-neutral-200 dark:border-neutral-700 object-contain" alt="">
                 </div>
               </div>
-              <a href="/producto/1" class="mt-2 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-neutral-900 dark:bg-neutral-200 text-white dark:text-neutral-900 px-4 py-2 text-sm font-semibold hover:opacity-90">
+              <a href="/producto/1"
+                class="mt-2 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-neutral-900 dark:bg-neutral-200 text-white dark:text-neutral-900 px-4 py-2 text-sm font-semibold hover:opacity-90">
+                Ver más
+              </a>
+            </div>
+          </article>
+
+          <article
+            class="group rounded-2xl bg-white dark:bg-neutral-900 ring-1 ring-neutral-300/50 dark:ring-neutral-800 overflow-hidden hover:shadow-lg transition">
+            <div class="relative">
+              <div class="aspect-[4/3] bg-neutral-100 dark:bg-neutral-100">
+                <img
+                  src="https://www.nike.com.pe/dw/image/v2/BJKZ_PRD/on/demandware.static/-/Sites-catalog-equinox/default/dw59540ed6/images/hi-res/198486695879_1_20250724-mrtPeru.jpeg?sw=800&sh=800"
+                  alt="Nike Revolution 7" class="w-full h-full object-contain p-4" style="mix-blend-mode: multiply;">
+              </div>
+            </div>
+            <div class="p-4 space-y-2">
+              <h4 class="text-sm font-semibold truncate">Nike Revolution 7</h4>
+              <p class="text-xs text-neutral-500 dark:text-neutral-400 truncate">Running • Mujer</p>
+              <div class="flex flex-col justify-between gap-2">
+                <span class="text-base font-bold">S/ 259.00</span>
+                <div class="flex gap-1">
+                  <!-- miniaturas -->
+                  <img
+                    src="https://www.nike.com.pe/dw/image/v2/BJKZ_PRD/on/demandware.static/-/Sites-catalog-equinox/default/dw59540ed6/images/hi-res/198486695879_1_20250724-mrtPeru.jpeg?sw=800&sh=800"
+                    class="size-10 rounded border border-neutral-200 dark:border-neutral-700 object-contain" alt="">
+                  <img
+                    src="https://www.nike.com.pe/dw/image/v2/BJKZ_PRD/on/demandware.static/-/Sites-catalog-equinox/default/dw59540ed6/images/hi-res/198486695879_1_20250724-mrtPeru.jpeg?sw=800&sh=800"
+                    class="size-10 rounded border border-neutral-200 dark:border-neutral-700 object-contain" alt="">
+                  <img
+                    src="https://www.nike.com.pe/dw/image/v2/BJKZ_PRD/on/demandware.static/-/Sites-catalog-equinox/default/dw59540ed6/images/hi-res/198486695879_1_20250724-mrtPeru.jpeg?sw=800&sh=800"
+                    class="size-10 rounded border border-neutral-200 dark:border-neutral-700 object-contain" alt="">
+                </div>
+              </div>
+              <a href="/producto/1"
+                class="mt-2 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-neutral-900 dark:bg-neutral-200 text-white dark:text-neutral-900 px-4 py-2 text-sm font-semibold hover:opacity-90">
                 Ver más
               </a>
             </div>
@@ -453,11 +588,16 @@
 
         <!-- Paginación (estática) -->
         <nav class="mt-8 flex items-center justify-center gap-2">
-          <a href="#" class="px-3 py-2 rounded-lg ring-1 ring-neutral-300 dark:ring-neutral-800 hover:bg-neutral-100 dark:hover:bg-neutral-800 text-sm">Anterior</a>
-          <a href="#" class="px-3 py-2 rounded-lg bg-neutral-900 dark:bg-neutral-200 text-white dark:text-neutral-900 text-sm font-semibold">1</a>
-          <a href="#" class="px-3 py-2 rounded-lg ring-1 ring-neutral-300 dark:ring-neutral-800 hover:bg-neutral-100 dark:hover:bg-neutral-800 text-sm">2</a>
-          <a href="#" class="px-3 py-2 rounded-lg ring-1 ring-neutral-300 dark:ring-neutral-800 hover:bg-neutral-100 dark:hover:bg-neutral-800 text-sm">3</a>
-          <a href="#" class="px-3 py-2 rounded-lg ring-1 ring-neutral-300 dark:ring-neutral-800 hover:bg-neutral-100 dark:hover:bg-neutral-800 text-sm">Siguiente</a>
+          <a href="#"
+            class="px-3 py-2 rounded-lg ring-1 ring-neutral-300 dark:ring-neutral-800 hover:bg-neutral-100 dark:hover:bg-neutral-800 text-sm">Anterior</a>
+          <a href="#"
+            class="px-3 py-2 rounded-lg bg-neutral-900 dark:bg-neutral-200 text-white dark:text-neutral-900 text-sm font-semibold">1</a>
+          <a href="#"
+            class="px-3 py-2 rounded-lg ring-1 ring-neutral-300 dark:ring-neutral-800 hover:bg-neutral-100 dark:hover:bg-neutral-800 text-sm">2</a>
+          <a href="#"
+            class="px-3 py-2 rounded-lg ring-1 ring-neutral-300 dark:ring-neutral-800 hover:bg-neutral-100 dark:hover:bg-neutral-800 text-sm">3</a>
+          <a href="#"
+            class="px-3 py-2 rounded-lg ring-1 ring-neutral-300 dark:ring-neutral-800 hover:bg-neutral-100 dark:hover:bg-neutral-800 text-sm">Siguiente</a>
         </nav>
       </div>
     </div>
