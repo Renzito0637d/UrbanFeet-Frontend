@@ -1,9 +1,7 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { ThemetoggleComponent } from '../themetoggle/themetoggle.component';
-import {
-  MatDialog
-} from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
 import { LoginComponent } from '../login/login.component';
 
 @Component({
@@ -15,7 +13,7 @@ import { LoginComponent } from '../login/login.component';
   standalone: true,
 })
 export class HeaderComponent {
-readonly dialog = inject(MatDialog);
+  readonly dialog = inject(MatDialog);
 
   openDialog(enterAnimationDuration: string, exitAnimationDuration: string): void {
     this.dialog.open(LoginComponent, {
