@@ -1,0 +1,289 @@
+<!-- ADMIN · Ventas (TailwindCSS) -->
+<section class="text-neutral-800 dark:text-neutral-200 min-h-screen py-8">
+    <div class="mx-auto max-w-7xl px-6">
+
+        <!-- Header + filtros -->
+        <header class="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+            <div>
+                <h1 class="text-2xl md:text-3xl font-bold">Ventas</h1>
+                <p class="text-sm text-neutral-600 dark:text-neutral-400">Resumen de usuarios, pedidos y montos.</p>
+            </div>
+            <div class="flex flex-col sm:flex-row gap-3">
+                <div class="flex items-center gap-2">
+                    <label class="text-sm">Desde</label>
+                    <input type="date"
+                        class="rounded-xl border border-neutral-300 dark:border-neutral-700 bg-white dark:bg-neutral-900 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-cyan-400 dark:focus:ring-cyan-300">
+                    <label class="text-sm">Hasta</label>
+                    <input type="date"
+                        class="rounded-xl border border-neutral-300 dark:border-neutral-700 bg-white dark:bg-neutral-900 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-cyan-400 dark:focus:ring-cyan-300">
+                    <button
+                        class="rounded-xl px-4 py-2 text-sm font-semibold bg-neutral-900 dark:bg-neutral-200 text-white dark:text-neutral-900 hover:opacity-90">Aplicar</button>
+                </div>
+                <button
+                    class="rounded-xl px-4 py-2 text-sm font-semibold bg-cyan-400 dark:bg-cyan-300 text-neutral-900 hover:opacity-90">Exportar
+                    PDF
+                </button>
+            </div>
+        </header>
+
+        <!-- KPIs -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 my-4">
+            <div class="rounded-2xl bg-white dark:bg-neutral-900 ring-1 ring-neutral-400/60 dark:ring-neutral-800 p-5">
+                <div class="text-sm text-neutral-500 dark:text-neutral-400">Venta total (S/)</div>
+                <div class="mt-1 flex items-baseline gap-2">
+                    <div class="text-2xl font-bold">52,740.00</div>
+                </div>
+            </div>
+            <div class="rounded-2xl bg-white dark:bg-neutral-900 ring-1 ring-neutral-400/60 dark:ring-neutral-800 p-5">
+                <div class="text-sm text-neutral-500 dark:text-neutral-400">Total de ventas</div>
+                <div class="mt-1 text-2xl font-bold">1,412</div>
+            </div>
+
+        </div>
+
+        <!-- Listado de ventas (cards) -->
+        <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+
+            <article
+                class="rounded-2xl bg-white dark:bg-neutral-900 ring-1 ring-neutral-400/60 dark:ring-neutral-800 p-5 flex flex-col gap-4">
+                <div class="flex items-start justify-between">
+                    <div class="space-y-0.5">
+                        <h3 class="font-semibold">#V-00012345</h3>
+                        <p class="text-xs text-neutral-500 dark:text-neutral-400">13 mayo 2025 · 15:42</p>
+                    </div>
+                    <span
+                        class="inline-flex items-center gap-2 rounded-full px-2.5 py-1 text-xs ring-1 ring-neutral-300 dark:ring-neutral-700">
+                        <span class="size-1.5 rounded-full bg-emerald-500"></span> Pagado
+                    </span>
+                </div>
+
+                <div class="grid grid-cols-2 gap-3 text-sm">
+                    <div>
+                        <div class="text-neutral-500 dark:text-neutral-400">Usuario</div>
+                        <div class="font-medium">Juan Pérez · <a href="mailto:juansdexample.com"
+                                class="text-cyan-600 dark:text-cyan-300 hover:underline">juanaexample.com</a></div>
+                    </div>
+                    <div>
+                        <div class="text-neutral-500 dark:text-neutral-400">Total</div>
+                        <div class="font-semibold">S/ 500.00</div>
+                    </div>
+                    <div>
+                        <div class="text-neutral-500 dark:text-neutral-400">Productos</div>
+                        <div>Nike Revolution 7 (x2), Predator (x1)</div>
+                    </div>
+                    <div>
+                        <div class="text-neutral-500 dark:text-neutral-400">Pago</div>
+                        <div>Tarjeta · **** 1234</div>
+                    </div>
+                </div>
+
+                <div class="flex items-center justify-between pt-2 border-t border-neutral-200 dark:border-neutral-800">
+                    <div class="text-xs text-neutral-500 dark:text-neutral-400">Lima, Perú</div>
+                    <a href="/admin/pedidos" class="text-sm text-cyan-600 dark:text-cyan-300 hover:underline">Ver
+                        pedido</a>
+                </div>
+            </article>
+
+            <article
+                class="rounded-2xl bg-white dark:bg-neutral-900 ring-1 ring-neutral-400/60 dark:ring-neutral-800 p-5 flex flex-col gap-4">
+                <div class="flex items-start justify-between">
+                    <div class="space-y-0.5">
+                        <h3 class="font-semibold">#V-00012346</h3>
+                        <p class="text-xs text-neutral-500 dark:text-neutral-400">13 mayo 2025 · 12:05</p>
+                    </div>
+                    <span
+                        class="inline-flex items-center gap-2 rounded-full px-2.5 py-1 text-xs ring-1 ring-neutral-300 dark:ring-neutral-700">
+                        <span class="size-1.5 rounded-full bg-emerald-500"></span> Pagado
+                    </span>
+                </div>
+
+                <div class="grid grid-cols-2 gap-3 text-sm">
+                    <div>
+                        <div class="text-neutral-500 dark:text-neutral-400">Usuario</div>
+                        <div class="font-medium">María López · <a href="mailto:mariaaexample.com"
+                                class="text-cyan-600 dark:text-cyan-300 hover:underline">mariaaexample.com</a></div>
+                    </div>
+                    <div>
+                        <div class="text-neutral-500 dark:text-neutral-400">Total</div>
+                        <div class="font-semibold">S/ 259.00</div>
+                    </div>
+                    <div>
+                        <div class="text-neutral-500 dark:text-neutral-400">Productos</div>
+                        <div>Adidas Predator (x1)</div>
+                    </div>
+                    <div>
+                        <div class="text-neutral-500 dark:text-neutral-400">Pago</div>
+                        <div>Yape</div>
+                    </div>
+                </div>
+
+                <div class="flex items-center justify-between pt-2 border-t border-neutral-200 dark:border-neutral-800">
+                    <div class="text-xs text-neutral-500 dark:text-neutral-400">Ate, Lima</div>
+                    <a href="/admin/pedidos" class="text-sm text-cyan-600 dark:text-cyan-300 hover:underline">Ver
+                        pedido</a>
+                </div>
+            </article>
+
+            <article
+                class="rounded-2xl bg-white dark:bg-neutral-900 ring-1 ring-neutral-400/60 dark:ring-neutral-800 p-5 flex flex-col gap-4">
+                <div class="flex items-start justify-between">
+                    <div class="space-y-0.5">
+                        <h3 class="font-semibold">#V-00012347</h3>
+                        <p class="text-xs text-neutral-500 dark:text-neutral-400">12 mayo 2025 · 19:21</p>
+                    </div>
+                    <span
+                        class="inline-flex items-center gap-2 rounded-full px-2.5 py-1 text-xs ring-1 ring-neutral-300 dark:ring-neutral-700">
+                        <span class="size-1.5 rounded-full bg-amber-500"></span> Pendiente
+                    </span>
+                </div>
+
+                <div class="grid grid-cols-2 gap-3 text-sm">
+                    <div>
+                        <div class="text-neutral-500 dark:text-neutral-400">Usuario</div>
+                        <div class="font-medium">Carlos Díaz · <a href="mailto:carlosaexample.com"
+                                class="text-cyan-600 dark:text-cyan-300 hover:underline">carlosaexample.com</a></div>
+                    </div>
+                    <div>
+                        <div class="text-neutral-500 dark:text-neutral-400">Total</div>
+                        <div class="font-semibold">S/ 389.90</div>
+                    </div>
+                    <div>
+                        <div class="text-neutral-500 dark:text-neutral-400">Productos</div>
+                        <div>iRun Freestyle (x1), Puma RS-X (x1)</div>
+                    </div>
+                    <div>
+                        <div class="text-neutral-500 dark:text-neutral-400">Pago</div>
+                        <div>Contraentrega</div>
+                    </div>
+                </div>
+
+                <div class="flex items-center justify-between pt-2 border-t border-neutral-200 dark:border-neutral-800">
+                    <div class="text-xs text-neutral-500 dark:text-neutral-400">SMP, Lima</div>
+                    <a href="/admin/pedidos" class="text-sm text-cyan-600 dark:text-cyan-300 hover:underline">Ver
+                        pedido</a>
+                </div>
+            </article>
+
+            <article
+                class="rounded-2xl bg-white dark:bg-neutral-900 ring-1 ring-neutral-400/60 dark:ring-neutral-800 p-5 flex flex-col gap-4">
+                <div class="flex items-start justify-between">
+                    <div class="space-y-0.5">
+                        <h3 class="font-semibold">#V-00012345</h3>
+                        <p class="text-xs text-neutral-500 dark:text-neutral-400">13 mayo 2025 · 15:42</p>
+                    </div>
+                    <span
+                        class="inline-flex items-center gap-2 rounded-full px-2.5 py-1 text-xs ring-1 ring-neutral-300 dark:ring-neutral-700">
+                        <span class="size-1.5 rounded-full bg-emerald-500"></span> Pagado
+                    </span>
+                </div>
+
+                <div class="grid grid-cols-2 gap-3 text-sm">
+                    <div>
+                        <div class="text-neutral-500 dark:text-neutral-400">Usuario</div>
+                        <div class="font-medium">Juan Pérez · <a href="mailto:juansdexample.com"
+                                class="text-cyan-600 dark:text-cyan-300 hover:underline">juanaexample.com</a></div>
+                    </div>
+                    <div>
+                        <div class="text-neutral-500 dark:text-neutral-400">Total</div>
+                        <div class="font-semibold">S/ 500.00</div>
+                    </div>
+                    <div>
+                        <div class="text-neutral-500 dark:text-neutral-400">Productos</div>
+                        <div>Nike Revolution 7 (x2), Predator (x1)</div>
+                    </div>
+                    <div>
+                        <div class="text-neutral-500 dark:text-neutral-400">Pago</div>
+                        <div>Tarjeta · **** 1234</div>
+                    </div>
+                </div>
+
+                <div class="flex items-center justify-between pt-2 border-t border-neutral-200 dark:border-neutral-800">
+                    <div class="text-xs text-neutral-500 dark:text-neutral-400">Lima, Perú</div>
+                    <a href="/admin/pedidos" class="text-sm text-cyan-600 dark:text-cyan-300 hover:underline">Ver
+                        pedido</a>
+                </div>
+            </article>
+
+            <article
+                class="rounded-2xl bg-white dark:bg-neutral-900 ring-1 ring-neutral-400/60 dark:ring-neutral-800 p-5 flex flex-col gap-4">
+                <div class="flex items-start justify-between">
+                    <div class="space-y-0.5">
+                        <h3 class="font-semibold">#V-00012346</h3>
+                        <p class="text-xs text-neutral-500 dark:text-neutral-400">13 mayo 2025 · 12:05</p>
+                    </div>
+                    <span
+                        class="inline-flex items-center gap-2 rounded-full px-2.5 py-1 text-xs ring-1 ring-neutral-300 dark:ring-neutral-700">
+                        <span class="size-1.5 rounded-full bg-emerald-500"></span> Pagado
+                    </span>
+                </div>
+
+                <div class="grid grid-cols-2 gap-3 text-sm">
+                    <div>
+                        <div class="text-neutral-500 dark:text-neutral-400">Usuario</div>
+                        <div class="font-medium">María López · <a href="mailto:mariaaexample.com"
+                                class="text-cyan-600 dark:text-cyan-300 hover:underline">mariaaexample.com</a></div>
+                    </div>
+                    <div>
+                        <div class="text-neutral-500 dark:text-neutral-400">Total</div>
+                        <div class="font-semibold">S/ 259.00</div>
+                    </div>
+                    <div>
+                        <div class="text-neutral-500 dark:text-neutral-400">Productos</div>
+                        <div>Adidas Predator (x1)</div>
+                    </div>
+                    <div>
+                        <div class="text-neutral-500 dark:text-neutral-400">Pago</div>
+                        <div>Yape</div>
+                    </div>
+                </div>
+
+                <div class="flex items-center justify-between pt-2 border-t border-neutral-200 dark:border-neutral-800">
+                    <div class="text-xs text-neutral-500 dark:text-neutral-400">Ate, Lima</div>
+                    <a href="/admin/pedidos" class="text-sm text-cyan-600 dark:text-cyan-300 hover:underline">Ver
+                        pedido</a>
+                </div>
+            </article>
+
+            <article
+                class="rounded-2xl bg-white dark:bg-neutral-900 ring-1 ring-neutral-400/60 dark:ring-neutral-800 p-5 flex flex-col gap-4">
+                <div class="flex items-start justify-between">
+                    <div class="space-y-0.5">
+                        <h3 class="font-semibold">#V-00012347</h3>
+                        <p class="text-xs text-neutral-500 dark:text-neutral-400">12 mayo 2025 · 19:21</p>
+                    </div>
+                    <span
+                        class="inline-flex items-center gap-2 rounded-full px-2.5 py-1 text-xs ring-1 ring-neutral-300 dark:ring-neutral-700">
+                        <span class="size-1.5 rounded-full bg-amber-500"></span> Pendiente
+                    </span>
+                </div>
+
+                <div class="grid grid-cols-2 gap-3 text-sm">
+                    <div>
+                        <div class="text-neutral-500 dark:text-neutral-400">Usuario</div>
+                        <div class="font-medium">Carlos Díaz · <a href="mailto:carlosaexample.com"
+                                class="text-cyan-600 dark:text-cyan-300 hover:underline">carlosaexample.com</a></div>
+                    </div>
+                    <div>
+                        <div class="text-neutral-500 dark:text-neutral-400">Total</div>
+                        <div class="font-semibold">S/ 389.90</div>
+                    </div>
+                    <div>
+                        <div class="text-neutral-500 dark:text-neutral-400">Productos</div>
+                        <div>iRun Freestyle (x1), Puma RS-X (x1)</div>
+                    </div>
+                    <div>
+                        <div class="text-neutral-500 dark:text-neutral-400">Pago</div>
+                        <div>Contraentrega</div>
+                    </div>
+                </div>
+
+                <div class="flex items-center justify-between pt-2 border-t border-neutral-200 dark:border-neutral-800">
+                    <div class="text-xs text-neutral-500 dark:text-neutral-400">SMP, Lima</div>
+                    <a href="/admin/pedidos" class="text-sm text-cyan-600 dark:text-cyan-300 hover:underline">Ver
+                        pedido</a>
+                </div>
+            </article>
+        </div>
+
+    </div>
+</section>
