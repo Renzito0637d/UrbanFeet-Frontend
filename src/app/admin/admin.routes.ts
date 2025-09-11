@@ -5,6 +5,7 @@ import { LayoutComponent } from './layout/layout.component';
 import { UsuariosComponent } from './pages/usuarios/usuarios.component';
 import { CatalogoComponent } from './pages/catalogo/catalogo.component';
 import { PedidosComponent } from './pages/pedidos/pedidos.component';
+import { VentasComponent } from './pages/ventas/ventas.component';
 
 export const ADMIN_ROUTES: Routes = [
     {
@@ -15,6 +16,7 @@ export const ADMIN_ROUTES: Routes = [
             { path: 'usuarios', component: UsuariosComponent},
             { path: 'catalogo', component: CatalogoComponent},
             { path: 'pedidos', component: PedidosComponent},
+            { path: 'ventas', component: VentasComponent}
         ]
     }
 ];
