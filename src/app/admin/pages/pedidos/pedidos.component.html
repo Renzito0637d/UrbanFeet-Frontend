@@ -1,0 +1,465 @@
+<!-- Gestión de Pedidos — TailwindCSS, sin Bootstrap/th, moderno y responsive -->
+<section class="text-neutral-800 dark:text-neutral-200 py-8">
+    <div class="mx-auto max-w-7xl px-6">
+        <h2 class="text-2xl font-bold text-cyan-600 dark:text-cyan-300 mb-6">📦 Gestión de Pedidos</h2>
+
+        <div class="space-y-6">
+            <details id="pedido-12345"
+                class="group rounded-2xl bg-white dark:bg-neutral-900 ring-1 ring-neutral-300/60 dark:ring-neutral-800 shadow-sm">
+                <summary
+                    class="list-none cursor-pointer px-5 py-4 flex flex-col gap-1 md:flex-row md:items-center md:justify-between">
+                    <div class="flex flex-wrap items-center gap-x-3 gap-y-1">
+                        <span class="text-sm text-neutral-500 dark:text-neutral-400">Pedido</span>
+                        <span class="font-semibold">#12345</span>
+                        <span class="hidden md:inline text-neutral-500 dark:text-neutral-400">•</span>
+                        <span class="text-sm">13 mayo 2025</span>
+                        <span class="hidden md:inline text-neutral-500 dark:text-neutral-400">•</span>
+                        <span class="font-semibold">Total:
+                            <span class="text-emerald-600 dark:text-emerald-400">S/ 500.00</span>
+                        </span>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <!-- badge de estado -->
+                        <span
+                            class="inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-xs ring-1 ring-neutral-300 dark:ring-neutral-700">
+                            <span class="size-1.5 rounded-full bg-amber-500"></span> Preparando
+                        </span>
+                        <!-- caret -->
+                        <svg class="size-5 text-neutral-500 transition-transform group-open:rotate-180"
+                            viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd"
+                                d="M5.23 7.21a.75.75 0 011.06.02L10 11.21l3.71-3.98a.75.75 0 111.08 1.04l-4.24 4.54a.75.75 0 01-1.08 0L4.15 8.27a.75.75 0 011.08-1.06z"
+                                clip-rule="evenodd" />
+                        </svg>
+                    </div>
+                </summary>
+
+                <!-- contenido con animación de altura -->
+                <div
+                    class="transition-all duration-500 ease-in-out max-h-0 overflow-hidden group-open:max-h-[2000px] border-t border-neutral-200 dark:border-neutral-800">
+                    <div class="px-5 pb-5 pt-4 space-y-6">
+
+                        <!-- Estado + acciones -->
+                        <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-4">
+                            <div>
+                                <label for="estadoPedido1" class="block text-sm font-medium mb-1">Estado del
+                                    pedido</label>
+                                <select id="estadoPedido1"
+                                    class="w-56 max-w-full rounded-xl border border-neutral-300 dark:border-neutral-700 bg-white dark:bg-neutral-900 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-cyan-400 dark:focus:ring-cyan-300">
+                                    <option value="Recibido">Recibido</option>
+                                    <option value="Preparando" selected>Preparando</option>
+                                    <option value="Enviado">Enviado</option>
+                                    <option value="Entregado">Entregado</option>
+                                </select>
+                            </div>
+
+                            <div class="flex flex-wrap items-center gap-3">
+                                <button
+                                    class="inline-flex items-center gap-2 rounded-xl bg-emerald-500 text-white px-4 py-2 text-sm font-semibold hover:opacity-90"
+                                    onclick="actualizarEstado('12345','estadoPedido1')">
+                                    💾 Guardar cambios
+                                </button>
+                                <button
+                                    class="inline-flex items-center gap-2 rounded-xl px-4 py-2 text-sm font-semibold ring-1 ring-red-400/40 text-red-600 dark:text-red-400 hover:bg-red-500/10"
+                                    onclick="eliminarPedido('12345')">
+                                    🗑️ Eliminar pedido
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Cuerpo -->
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <!-- Artículos -->
+                            <div class="rounded-2xl ring-1 ring-neutral-200 dark:ring-neutral-800 overflow-hidden">
+                                <div class="px-4 py-3 border-b border-neutral-200 dark:border-neutral-800">
+                                    <h6 class="text-sm font-semibold">🛒 Artículos</h6>
+                                </div>
+                                <ul class="divide-y divide-neutral-200 dark:divide-neutral-800">
+                                    <!-- item -->
+                                    <li class="px-4 py-3 flex items-center justify-between gap-4">
+                                        <span class="articulo-nombre font-medium">Nike Revolution 7</span>
+                                        <span class="flex items-center gap-2">
+                                            <span class="cantidad-texto text-sm">Cantidad: 2</span>
+                                            <input type="number" value="2"
+                                                class="cantidad-input hidden w-20 rounded-lg border border-neutral-300 dark:border-neutral-700 bg-white dark:bg-neutral-900 px-2 py-1 text-sm">
+                                        </span>
+                                    </li>
+                                    <!-- item -->
+                                    <li class="px-4 py-3 flex items-center justify-between gap-4">
+                                        <span class="articulo-nombre font-medium">Chimpunes Predator</span>
+                                        <span class="flex items-center gap-2">
+                                            <span class="cantidad-texto text-sm">Cantidad: 1</span>
+                                            <input type="number" value="1"
+                                                class="cantidad-input hidden w-20 rounded-lg border border-neutral-300 dark:border-neutral-700 bg-white dark:bg-neutral-900 px-2 py-1 text-sm">
+                                        </span>
+                                    </li>
+                                    <!-- item -->
+                                    <li class="px-4 py-3 flex items-center justify-between gap-4">
+                                        <span class="articulo-nombre font-medium">Zapatillas Freestyle</span>
+                                        <span class="flex items-center gap-2">
+                                            <span class="cantidad-texto text-sm">Cantidad: 1</span>
+                                            <input type="number" value="1"
+                                                class="cantidad-input hidden w-20 rounded-lg border border-neutral-300 dark:border-neutral-700 bg-white dark:bg-neutral-900 px-2 py-1 text-sm">
+                                        </span>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <!-- Detalles -->
+                            <div class="rounded-2xl ring-1 ring-neutral-200 dark:ring-neutral-800 overflow-hidden">
+                                <div class="px-4 py-3 border-b border-neutral-200 dark:border-neutral-800">
+                                    <h6 class="text-sm font-semibold">📍 Detalles</h6>
+                                </div>
+                                <ul class="divide-y divide-neutral-200 dark:divide-neutral-800 text-sm">
+                                    <li class="px-4 py-3">
+                                        Dirección:
+                                        <span id="direccionTexto-12345" class="font-medium">Las Uvas 123, Los
+                                            Olivos</span>
+                                        <input id="direccionInput-12345" type="text" value="Las Uvas 123, Los Olivos"
+                                            class="mt-2 hidden w-full rounded-lg border border-neutral-300 dark:border-neutral-700 bg-white dark:bg-neutral-900 px-3 py-2">
+                                    </li>
+                                    <li class="px-4 py-3">
+                                        Método de pago:
+                                        <span id="pagoTexto-12345" class="font-medium">Tarjeta</span>
+                                        <select id="pagoSelect-12345"
+                                            class="mt-2 hidden w-56 rounded-lg border border-neutral-300 dark:border-neutral-700 bg-white dark:bg-neutral-900 px-3 py-2">
+                                            <option value="Tarjeta" selected>Tarjeta</option>
+                                            <option value="Efectivo">Efectivo</option>
+                                            <option value="Yape">Yape</option>
+                                        </select>
+                                    </li>
+                                </ul>
+
+                                <!-- Botones edición -->
+                                <div id="botonesEdicion-12345" class="px-4 py-3 flex gap-2">
+                                    <button
+                                        class="rounded-xl bg-cyan-400 dark:bg-cyan-300 text-neutral-900 px-4 py-2 text-sm font-semibold hover:opacity-90"
+                                        onclick="activarEdicion('12345')">✏️ Editar</button>
+                                </div>
+
+                                <div id="accionesEdicion-12345" class="px-4 py-3 hidden gap-2">
+                                    <button
+                                        class="rounded-xl bg-emerald-500 text-white px-4 py-2 text-sm font-semibold hover:opacity-90"
+                                        onclick="guardarEdicion('12345')">💾 Guardar</button>
+                                    <button
+                                        class="rounded-xl bg-neutral-200 dark:bg-neutral-800 px-4 py-2 text-sm font-semibold hover:opacity-90"
+                                        onclick="cancelarEdicion('12345')">❌ Cancelar</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Nota sutil -->
+                        <p class="text-xs text-neutral-500 dark:text-neutral-400">
+                            * Para editar cantidades, dirección o método, usa “✏️ Editar”. Luego guarda o cancela
+                            cambios.
+                        </p>
+                    </div>
+                </div>
+            </details>
+            <details id="pedido-12345"
+                class="group rounded-2xl bg-white dark:bg-neutral-900 ring-1 ring-neutral-300/60 dark:ring-neutral-800 shadow-sm">
+                <summary
+                    class="list-none cursor-pointer px-5 py-4 flex flex-col gap-1 md:flex-row md:items-center md:justify-between">
+                    <div class="flex flex-wrap items-center gap-x-3 gap-y-1">
+                        <span class="text-sm text-neutral-500 dark:text-neutral-400">Pedido</span>
+                        <span class="font-semibold">#12345</span>
+                        <span class="hidden md:inline text-neutral-500 dark:text-neutral-400">•</span>
+                        <span class="text-sm">13 mayo 2025</span>
+                        <span class="hidden md:inline text-neutral-500 dark:text-neutral-400">•</span>
+                        <span class="font-semibold">Total:
+                            <span class="text-emerald-600 dark:text-emerald-400">S/ 500.00</span>
+                        </span>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <!-- badge de estado -->
+                        <span
+                            class="inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-xs ring-1 ring-neutral-300 dark:ring-neutral-700">
+                            <span class="size-1.5 rounded-full bg-amber-500"></span> Preparando
+                        </span>
+                        <!-- caret -->
+                        <svg class="size-5 text-neutral-500 transition-transform group-open:rotate-180"
+                            viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd"
+                                d="M5.23 7.21a.75.75 0 011.06.02L10 11.21l3.71-3.98a.75.75 0 111.08 1.04l-4.24 4.54a.75.75 0 01-1.08 0L4.15 8.27a.75.75 0 011.08-1.06z"
+                                clip-rule="evenodd" />
+                        </svg>
+                    </div>
+                </summary>
+
+                <!-- contenido con animación de altura -->
+                <div
+                    class="transition-all duration-500 ease-in-out max-h-0 overflow-hidden group-open:max-h-[2000px] border-t border-neutral-200 dark:border-neutral-800">
+                    <div class="px-5 pb-5 pt-4 space-y-6">
+
+                        <!-- Estado + acciones -->
+                        <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-4">
+                            <div>
+                                <label for="estadoPedido1" class="block text-sm font-medium mb-1">Estado del
+                                    pedido</label>
+                                <select id="estadoPedido1"
+                                    class="w-56 max-w-full rounded-xl border border-neutral-300 dark:border-neutral-700 bg-white dark:bg-neutral-900 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-cyan-400 dark:focus:ring-cyan-300">
+                                    <option value="Recibido">Recibido</option>
+                                    <option value="Preparando" selected>Preparando</option>
+                                    <option value="Enviado">Enviado</option>
+                                    <option value="Entregado">Entregado</option>
+                                </select>
+                            </div>
+
+                            <div class="flex flex-wrap items-center gap-3">
+                                <button
+                                    class="inline-flex items-center gap-2 rounded-xl bg-emerald-500 text-white px-4 py-2 text-sm font-semibold hover:opacity-90"
+                                    onclick="actualizarEstado('12345','estadoPedido1')">
+                                    💾 Guardar cambios
+                                </button>
+                                <button
+                                    class="inline-flex items-center gap-2 rounded-xl px-4 py-2 text-sm font-semibold ring-1 ring-red-400/40 text-red-600 dark:text-red-400 hover:bg-red-500/10"
+                                    onclick="eliminarPedido('12345')">
+                                    🗑️ Eliminar pedido
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Cuerpo -->
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <!-- Artículos -->
+                            <div class="rounded-2xl ring-1 ring-neutral-200 dark:ring-neutral-800 overflow-hidden">
+                                <div class="px-4 py-3 border-b border-neutral-200 dark:border-neutral-800">
+                                    <h6 class="text-sm font-semibold">🛒 Artículos</h6>
+                                </div>
+                                <ul class="divide-y divide-neutral-200 dark:divide-neutral-800">
+                                    <!-- item -->
+                                    <li class="px-4 py-3 flex items-center justify-between gap-4">
+                                        <span class="articulo-nombre font-medium">Nike Revolution 7</span>
+                                        <span class="flex items-center gap-2">
+                                            <span class="cantidad-texto text-sm">Cantidad: 2</span>
+                                            <input type="number" value="2"
+                                                class="cantidad-input hidden w-20 rounded-lg border border-neutral-300 dark:border-neutral-700 bg-white dark:bg-neutral-900 px-2 py-1 text-sm">
+                                        </span>
+                                    </li>
+                                    <!-- item -->
+                                    <li class="px-4 py-3 flex items-center justify-between gap-4">
+                                        <span class="articulo-nombre font-medium">Chimpunes Predator</span>
+                                        <span class="flex items-center gap-2">
+                                            <span class="cantidad-texto text-sm">Cantidad: 1</span>
+                                            <input type="number" value="1"
+                                                class="cantidad-input hidden w-20 rounded-lg border border-neutral-300 dark:border-neutral-700 bg-white dark:bg-neutral-900 px-2 py-1 text-sm">
+                                        </span>
+                                    </li>
+                                    <!-- item -->
+                                    <li class="px-4 py-3 flex items-center justify-between gap-4">
+                                        <span class="articulo-nombre font-medium">Zapatillas Freestyle</span>
+                                        <span class="flex items-center gap-2">
+                                            <span class="cantidad-texto text-sm">Cantidad: 1</span>
+                                            <input type="number" value="1"
+                                                class="cantidad-input hidden w-20 rounded-lg border border-neutral-300 dark:border-neutral-700 bg-white dark:bg-neutral-900 px-2 py-1 text-sm">
+                                        </span>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <!-- Detalles -->
+                            <div class="rounded-2xl ring-1 ring-neutral-200 dark:ring-neutral-800 overflow-hidden">
+                                <div class="px-4 py-3 border-b border-neutral-200 dark:border-neutral-800">
+                                    <h6 class="text-sm font-semibold">📍 Detalles</h6>
+                                </div>
+                                <ul class="divide-y divide-neutral-200 dark:divide-neutral-800 text-sm">
+                                    <li class="px-4 py-3">
+                                        Dirección:
+                                        <span id="direccionTexto-12345" class="font-medium">Las Uvas 123, Los
+                                            Olivos</span>
+                                        <input id="direccionInput-12345" type="text" value="Las Uvas 123, Los Olivos"
+                                            class="mt-2 hidden w-full rounded-lg border border-neutral-300 dark:border-neutral-700 bg-white dark:bg-neutral-900 px-3 py-2">
+                                    </li>
+                                    <li class="px-4 py-3">
+                                        Método de pago:
+                                        <span id="pagoTexto-12345" class="font-medium">Tarjeta</span>
+                                        <select id="pagoSelect-12345"
+                                            class="mt-2 hidden w-56 rounded-lg border border-neutral-300 dark:border-neutral-700 bg-white dark:bg-neutral-900 px-3 py-2">
+                                            <option value="Tarjeta" selected>Tarjeta</option>
+                                            <option value="Efectivo">Efectivo</option>
+                                            <option value="Yape">Yape</option>
+                                        </select>
+                                    </li>
+                                </ul>
+
+                                <!-- Botones edición -->
+                                <div id="botonesEdicion-12345" class="px-4 py-3 flex gap-2">
+                                    <button
+                                        class="rounded-xl bg-cyan-400 dark:bg-cyan-300 text-neutral-900 px-4 py-2 text-sm font-semibold hover:opacity-90"
+                                        onclick="activarEdicion('12345')">✏️ Editar</button>
+                                </div>
+
+                                <div id="accionesEdicion-12345" class="px-4 py-3 hidden gap-2">
+                                    <button
+                                        class="rounded-xl bg-emerald-500 text-white px-4 py-2 text-sm font-semibold hover:opacity-90"
+                                        onclick="guardarEdicion('12345')">💾 Guardar</button>
+                                    <button
+                                        class="rounded-xl bg-neutral-200 dark:bg-neutral-800 px-4 py-2 text-sm font-semibold hover:opacity-90"
+                                        onclick="cancelarEdicion('12345')">❌ Cancelar</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Nota sutil -->
+                        <p class="text-xs text-neutral-500 dark:text-neutral-400">
+                            * Para editar cantidades, dirección o método, usa “✏️ Editar”. Luego guarda o cancela
+                            cambios.
+                        </p>
+                    </div>
+                </div>
+            </details>
+            <details id="pedido-12345"
+                class="group rounded-2xl bg-white dark:bg-neutral-900 ring-1 ring-neutral-300/60 dark:ring-neutral-800 shadow-sm">
+                <summary
+                    class="list-none cursor-pointer px-5 py-4 flex flex-col gap-1 md:flex-row md:items-center md:justify-between">
+                    <div class="flex flex-wrap items-center gap-x-3 gap-y-1">
+                        <span class="text-sm text-neutral-500 dark:text-neutral-400">Pedido</span>
+                        <span class="font-semibold">#12345</span>
+                        <span class="hidden md:inline text-neutral-500 dark:text-neutral-400">•</span>
+                        <span class="text-sm">13 mayo 2025</span>
+                        <span class="hidden md:inline text-neutral-500 dark:text-neutral-400">•</span>
+                        <span class="font-semibold">Total:
+                            <span class="text-emerald-600 dark:text-emerald-400">S/ 500.00</span>
+                        </span>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <!-- badge de estado -->
+                        <span
+                            class="inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-xs ring-1 ring-neutral-300 dark:ring-neutral-700">
+                            <span class="size-1.5 rounded-full bg-amber-500"></span> Preparando
+                        </span>
+                        <!-- caret -->
+                        <svg class="size-5 text-neutral-500 transition-transform group-open:rotate-180"
+                            viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd"
+                                d="M5.23 7.21a.75.75 0 011.06.02L10 11.21l3.71-3.98a.75.75 0 111.08 1.04l-4.24 4.54a.75.75 0 01-1.08 0L4.15 8.27a.75.75 0 011.08-1.06z"
+                                clip-rule="evenodd" />
+                        </svg>
+                    </div>
+                </summary>
+
+                <!-- contenido con animación de altura -->
+                <div
+                    class="transition-all duration-500 ease-in-out max-h-0 overflow-hidden group-open:max-h-[2000px] border-t border-neutral-200 dark:border-neutral-800">
+                    <div class="px-5 pb-5 pt-4 space-y-6">
+
+                        <!-- Estado + acciones -->
+                        <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-4">
+                            <div>
+                                <label for="estadoPedido1" class="block text-sm font-medium mb-1">Estado del
+                                    pedido</label>
+                                <select id="estadoPedido1"
+                                    class="w-56 max-w-full rounded-xl border border-neutral-300 dark:border-neutral-700 bg-white dark:bg-neutral-900 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-cyan-400 dark:focus:ring-cyan-300">
+                                    <option value="Recibido">Recibido</option>
+                                    <option value="Preparando" selected>Preparando</option>
+                                    <option value="Enviado">Enviado</option>
+                                    <option value="Entregado">Entregado</option>
+                                </select>
+                            </div>
+
+                            <div class="flex flex-wrap items-center gap-3">
+                                <button
+                                    class="inline-flex items-center gap-2 rounded-xl bg-emerald-500 text-white px-4 py-2 text-sm font-semibold hover:opacity-90"
+                                    onclick="actualizarEstado('12345','estadoPedido1')">
+                                    💾 Guardar cambios
+                                </button>
+                                <button
+                                    class="inline-flex items-center gap-2 rounded-xl px-4 py-2 text-sm font-semibold ring-1 ring-red-400/40 text-red-600 dark:text-red-400 hover:bg-red-500/10"
+                                    onclick="eliminarPedido('12345')">
+                                    🗑️ Eliminar pedido
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Cuerpo -->
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <!-- Artículos -->
+                            <div class="rounded-2xl ring-1 ring-neutral-200 dark:ring-neutral-800 overflow-hidden">
+                                <div class="px-4 py-3 border-b border-neutral-200 dark:border-neutral-800">
+                                    <h6 class="text-sm font-semibold">🛒 Artículos</h6>
+                                </div>
+                                <ul class="divide-y divide-neutral-200 dark:divide-neutral-800">
+                                    <!-- item -->
+                                    <li class="px-4 py-3 flex items-center justify-between gap-4">
+                                        <span class="articulo-nombre font-medium">Nike Revolution 7</span>
+                                        <span class="flex items-center gap-2">
+                                            <span class="cantidad-texto text-sm">Cantidad: 2</span>
+                                            <input type="number" value="2"
+                                                class="cantidad-input hidden w-20 rounded-lg border border-neutral-300 dark:border-neutral-700 bg-white dark:bg-neutral-900 px-2 py-1 text-sm">
+                                        </span>
+                                    </li>
+                                    <!-- item -->
+                                    <li class="px-4 py-3 flex items-center justify-between gap-4">
+                                        <span class="articulo-nombre font-medium">Chimpunes Predator</span>
+                                        <span class="flex items-center gap-2">
+                                            <span class="cantidad-texto text-sm">Cantidad: 1</span>
+                                            <input type="number" value="1"
+                                                class="cantidad-input hidden w-20 rounded-lg border border-neutral-300 dark:border-neutral-700 bg-white dark:bg-neutral-900 px-2 py-1 text-sm">
+                                        </span>
+                                    </li>
+                                    <!-- item -->
+                                    <li class="px-4 py-3 flex items-center justify-between gap-4">
+                                        <span class="articulo-nombre font-medium">Zapatillas Freestyle</span>
+                                        <span class="flex items-center gap-2">
+                                            <span class="cantidad-texto text-sm">Cantidad: 1</span>
+                                            <input type="number" value="1"
+                                                class="cantidad-input hidden w-20 rounded-lg border border-neutral-300 dark:border-neutral-700 bg-white dark:bg-neutral-900 px-2 py-1 text-sm">
+                                        </span>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <!-- Detalles -->
+                            <div class="rounded-2xl ring-1 ring-neutral-200 dark:ring-neutral-800 overflow-hidden">
+                                <div class="px-4 py-3 border-b border-neutral-200 dark:border-neutral-800">
+                                    <h6 class="text-sm font-semibold">📍 Detalles</h6>
+                                </div>
+                                <ul class="divide-y divide-neutral-200 dark:divide-neutral-800 text-sm">
+                                    <li class="px-4 py-3">
+                                        Dirección:
+                                        <span id="direccionTexto-12345" class="font-medium">Las Uvas 123, Los
+                                            Olivos</span>
+                                        <input id="direccionInput-12345" type="text" value="Las Uvas 123, Los Olivos"
+                                            class="mt-2 hidden w-full rounded-lg border border-neutral-300 dark:border-neutral-700 bg-white dark:bg-neutral-900 px-3 py-2">
+                                    </li>
+                                    <li class="px-4 py-3">
+                                        Método de pago:
+                                        <span id="pagoTexto-12345" class="font-medium">Tarjeta</span>
+                                        <select id="pagoSelect-12345"
+                                            class="mt-2 hidden w-56 rounded-lg border border-neutral-300 dark:border-neutral-700 bg-white dark:bg-neutral-900 px-3 py-2">
+                                            <option value="Tarjeta" selected>Tarjeta</option>
+                                            <option value="Efectivo">Efectivo</option>
+                                            <option value="Yape">Yape</option>
+                                        </select>
+                                    </li>
+                                </ul>
+
+                                <!-- Botones edición -->
+                                <div id="botonesEdicion-12345" class="px-4 py-3 flex gap-2">
+                                    <button
+                                        class="rounded-xl bg-cyan-400 dark:bg-cyan-300 text-neutral-900 px-4 py-2 text-sm font-semibold hover:opacity-90"
+                                        onclick="activarEdicion('12345')">✏️ Editar</button>
+                                </div>
+
+                                <div id="accionesEdicion-12345" class="px-4 py-3 hidden gap-2">
+                                    <button
+                                        class="rounded-xl bg-emerald-500 text-white px-4 py-2 text-sm font-semibold hover:opacity-90"
+                                        onclick="guardarEdicion('12345')">💾 Guardar</button>
+                                    <button
+                                        class="rounded-xl bg-neutral-200 dark:bg-neutral-800 px-4 py-2 text-sm font-semibold hover:opacity-90"
+                                        onclick="cancelarEdicion('12345')">❌ Cancelar</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Nota sutil -->
+                        <p class="text-xs text-neutral-500 dark:text-neutral-400">
+                            * Para editar cantidades, dirección o método, usa “✏️ Editar”. Luego guarda o cancela
+                            cambios.
+                        </p>
+                    </div>
+                </div>
+            </details>
+        </div>
+    </div>
+</section>
