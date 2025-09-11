@@ -1,0 +1,206 @@
+<section class=" text-neutral-800 dark:text-neutral-200 py-8">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 space-y-10">
+        <div class="flex items-center gap-2">
+            <button
+                class="rounded-xl px-4 py-2 text-sm font-semibold bg-cyan-400 dark:bg-cyan-300 text-neutral-900 hover:opacity-90">Exportar
+                PDF
+            </button>
+            <button
+                class="rounded-xl px-4 py-2 text-sm font-semibold bg-cyan-400 dark:bg-cyan-300 text-neutral-900 hover:opacity-90">Exportar
+                Excel
+            </button>
+        </div>
+        <!-- ADMINISTRADORES -->
+        <header class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
+            <div>
+                <h2 class="text-2xl font-bold">Administradores</h2>
+                <p class="text-sm text-neutral-600 dark:text-neutral-400">Gestión de cuentas con permisos elevados.</p>
+            </div>
+
+            <div class="flex items-center gap-3">
+                <input id="filtroAdmin" type="text" placeholder="Buscar administrador..."
+                    class="w-72 max-w-full rounded-xl border border-neutral-300 dark:border-neutral-700 bg-white dark:bg-neutral-900 px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-cyan-400 dark:focus:ring-cyan-300">
+                <button type="button"
+                    class="inline-flex items-center gap-2 rounded-xl bg-cyan-400 dark:bg-cyan-300 text-neutral-900 px-4 py-2 text-sm font-semibold hover:opacity-90">
+                    <!-- + icon -->
+                    <svg class="size-4" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M11 11V5h2v6h6v2h-6v6h-2v-6H5v-2z" />
+                    </svg>
+                    Agregar
+                </button>
+            </div>
+        </header>
+
+        <div
+            class="overflow-x-auto rounded-2xl ring-1 ring-neutral-300/90 dark:ring-neutral-800 bg-neutral-200/70 dark:bg-neutral-900">
+            <table class="min-w-[800px] w-full text-sm">
+                <thead class="bg-neutral-100 dark:bg-neutral-800 text-left">
+                    <tr class="text-neutral-950 dark:text-neutral-300">
+                        <th class="px-4 py-3 font-semibold">ID</th>
+                        <th class="px-4 py-3 font-semibold">Nombre</th>
+                        <th class="px-4 py-3 font-semibold">Apellido</th>
+                        <th class="px-4 py-3 font-semibold">Email</th>
+                        <th class="px-4 py-3 font-semibold">Departamento</th>
+                        <th class="px-4 py-3 font-semibold">Provincia</th>
+                        <th class="px-4 py-3 font-semibold">Distrito</th>
+                        <th class="px-4 py-3 font-semibold">Contraseña</th>
+                        <th class="px-4 py-3 font-semibold">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-neutral-200 dark:divide-neutral-800">
+                    <!-- Fila de ejemplo (duplica y reemplaza por tus datos) -->
+                    <tr class="even:bg-neutral-50 dark:even:bg-neutral-800">
+                        <td class="px-4 py-3">1</td>
+                        <td class="px-4 py-3">Nombre Admin</td>
+                        <td class="px-4 py-3">Apellido Admin</td>
+                        <td class="px-4 py-3">admindemail.com</td>
+                        <td class="px-4 py-3">Lima</td>
+                        <td class="px-4 py-3">Lima</td>
+                        <td class="px-4 py-3">Miraflores</td>
+                        <td class="px-4 py-3"><span class="tracking-widest">••••</span></td>
+                        <td class="px-4 py-3">
+                            <div class="flex items-center gap-2">
+                                <button type="button"
+                                    class="px-3 py-1.5 rounded-lg text-xs font-semibold bg-amber-400/20 text-amber-700 dark:text-amber-300 ring-1 ring-amber-300/40 hover:bg-amber-400/30">Editar</button>
+                                <button type="button"
+                                    class="px-3 py-1.5 rounded-lg text-xs font-semibold bg-red-500/15 text-red-600 dark:text-red-400 ring-1 ring-red-400/30 hover:bg-red-500/25">Eliminar</button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr class="even:bg-neutral-50 dark:even:bg-neutral-800">
+                        <td class="px-4 py-3">1</td>
+                        <td class="px-4 py-3">Nombre Admin</td>
+                        <td class="px-4 py-3">Apellido Admin</td>
+                        <td class="px-4 py-3">admindemail.com</td>
+                        <td class="px-4 py-3">Lima</td>
+                        <td class="px-4 py-3">Lima</td>
+                        <td class="px-4 py-3">Miraflores</td>
+                        <td class="px-4 py-3"><span class="tracking-widest">••••</span></td>
+                        <td class="px-4 py-3">
+                            <div class="flex items-center gap-2">
+                                <button type="button"
+                                    class="px-3 py-1.5 rounded-lg text-xs font-semibold bg-amber-400/20 text-amber-700 dark:text-amber-300 ring-1 ring-amber-300/40 hover:bg-amber-400/30">Editar</button>
+                                <button type="button"
+                                    class="px-3 py-1.5 rounded-lg text-xs font-semibold bg-red-500/15 text-red-600 dark:text-red-400 ring-1 ring-red-400/30 hover:bg-red-500/25">Eliminar</button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr class="even:bg-neutral-50 dark:even:bg-neutral-800">
+                        <td class="px-4 py-3">1</td>
+                        <td class="px-4 py-3">Nombre Admin</td>
+                        <td class="px-4 py-3">Apellido Admin</td>
+                        <td class="px-4 py-3">admindemail.com</td>
+                        <td class="px-4 py-3">Lima</td>
+                        <td class="px-4 py-3">Lima</td>
+                        <td class="px-4 py-3">Miraflores</td>
+                        <td class="px-4 py-3"><span class="tracking-widest">••••</span></td>
+                        <td class="px-4 py-3">
+                            <div class="flex items-center gap-2">
+                                <button type="button"
+                                    class="px-3 py-1.5 rounded-lg text-xs font-semibold bg-amber-400/20 text-amber-700 dark:text-amber-300 ring-1 ring-amber-300/40 hover:bg-amber-400/30">Editar</button>
+                                <button type="button"
+                                    class="px-3 py-1.5 rounded-lg text-xs font-semibold bg-red-500/15 text-red-600 dark:text-red-400 ring-1 ring-red-400/30 hover:bg-red-500/25">Eliminar</button>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- CLIENTES -->
+        <header class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
+            <div>
+                <h2 class="text-2xl font-bold">Clientes</h2>
+                <p class="text-sm text-neutral-600 dark:text-neutral-400">Usuarios finales de la tienda.</p>
+            </div>
+
+            <div class="flex items-center gap-3">
+                <input id="filtroUser" type="text" placeholder="Buscar usuario..."
+                    class="w-72 max-w-full rounded-xl border border-neutral-300 dark:border-neutral-700 bg-white dark:bg-neutral-900 px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-cyan-400 dark:focus:ring-cyan-300">
+                <button type="button"
+                    class="inline-flex items-center gap-2 rounded-xl bg-cyan-400 dark:bg-cyan-300 text-neutral-900 px-4 py-2 text-sm font-semibold hover:opacity-90">
+                    <svg class="size-4" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M11 11V5h2v6h6v2h-6v6h-2v-6H5v-2z" />
+                    </svg>
+                    Agregar
+                </button>
+            </div>
+        </header>
+
+        <div
+            class="overflow-x-auto rounded-2xl ring-1 ring-neutral-300/90 dark:ring-neutral-800 bg-neutral-200/70 dark:bg-neutral-900">
+            <table class="min-w-[800px] w-full text-sm">
+                <thead class="bg-neutral-100 dark:bg-neutral-800 text-left">
+                    <tr class="text-neutral-950 dark:text-neutral-300">
+                        <th class="px-4 py-3 font-semibold">ID</th>
+                        <th class="px-4 py-3 font-semibold">Nombre</th>
+                        <th class="px-4 py-3 font-semibold">Apellido</th>
+                        <th class="px-4 py-3 font-semibold">Email</th>
+                        <th class="px-4 py-3 font-semibold">Departamento</th>
+                        <th class="px-4 py-3 font-semibold">Provincia</th>
+                        <th class="px-4 py-3 font-semibold">Distrito</th>
+                        <th class="px-4 py-3 font-semibold">Contraseña</th>
+                        <th class="px-4 py-3 font-semibold">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-neutral-200 dark:divide-neutral-800">
+                    <tr class="even:bg-neutral-50 dark:even:bg-neutral-800">
+                        <td class="px-4 py-3">1</td>
+                        <td class="px-4 py-3">Nombre User</td>
+                        <td class="px-4 py-3">Apellido User</td>
+                        <td class="px-4 py-3">userdemail.com</td>
+                        <td class="px-4 py-3">Lima</td>
+                        <td class="px-4 py-3">Lima</td>
+                        <td class="px-4 py-3">SMP</td>
+                        <td class="px-4 py-3"><span class="tracking-widest">••••</span></td>
+                        <td class="px-4 py-3">
+                            <div class="flex items-center gap-2">
+                                <button type="button"
+                                    class="px-3 py-1.5 rounded-lg text-xs font-semibold bg-amber-400/20 text-amber-700 dark:text-amber-300 ring-1 ring-amber-300/40 hover:bg-amber-400/30">Editar</button>
+                                <button type="button"
+                                    class="px-3 py-1.5 rounded-lg text-xs font-semibold bg-red-500/15 text-red-600 dark:text-red-400 ring-1 ring-red-400/30 hover:bg-red-500/25">Eliminar</button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr class="even:bg-neutral-50 dark:even:bg-neutral-800">
+                        <td class="px-4 py-3">1</td>
+                        <td class="px-4 py-3">Nombre User</td>
+                        <td class="px-4 py-3">Apellido User</td>
+                        <td class="px-4 py-3">userdemail.com</td>
+                        <td class="px-4 py-3">Lima</td>
+                        <td class="px-4 py-3">Lima</td>
+                        <td class="px-4 py-3">SMP</td>
+                        <td class="px-4 py-3"><span class="tracking-widest">••••</span></td>
+                        <td class="px-4 py-3">
+                            <div class="flex items-center gap-2">
+                                <button type="button"
+                                    class="px-3 py-1.5 rounded-lg text-xs font-semibold bg-amber-400/20 text-amber-700 dark:text-amber-300 ring-1 ring-amber-300/40 hover:bg-amber-400/30">Editar</button>
+                                <button type="button"
+                                    class="px-3 py-1.5 rounded-lg text-xs font-semibold bg-red-500/15 text-red-600 dark:text-red-400 ring-1 ring-red-400/30 hover:bg-red-500/25">Eliminar</button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr class="even:bg-neutral-50 dark:even:bg-neutral-800">
+                        <td class="px-4 py-3">1</td>
+                        <td class="px-4 py-3">Nombre User</td>
+                        <td class="px-4 py-3">Apellido User</td>
+                        <td class="px-4 py-3">userdemail.com</td>
+                        <td class="px-4 py-3">Lima</td>
+                        <td class="px-4 py-3">Lima</td>
+                        <td class="px-4 py-3">SMP</td>
+                        <td class="px-4 py-3"><span class="tracking-widest">••••</span></td>
+                        <td class="px-4 py-3">
+                            <div class="flex items-center gap-2">
+                                <button type="button"
+                                    class="px-3 py-1.5 rounded-lg text-xs font-semibold bg-amber-400/20 text-amber-700 dark:text-amber-300 ring-1 ring-amber-300/40 hover:bg-amber-400/30">Editar</button>
+                                <button type="button"
+                                    class="px-3 py-1.5 rounded-lg text-xs font-semibold bg-red-500/15 text-red-600 dark:text-red-400 ring-1 ring-red-400/30 hover:bg-red-500/25">Eliminar</button>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</section>

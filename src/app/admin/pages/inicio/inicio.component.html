@@ -1,0 +1,255 @@
+<!-- INICIO ADMIN — Dashboard de ventas y estadísticas (TailwindCSS, claro/oscuro) -->
+<section class="text-neutral-800 dark:text-neutral-200 min-h-screen py-8">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 space-y-8">
+
+        <!-- Header -->
+        <header class="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+            <div>
+                <h1 class="text-2xl md:text-3xl font-bold">Panel Administrador</h1>
+                <p class="text-sm text-neutral-600 dark:text-neutral-400">Resumen de ventas, pedidos y productos.</p>
+            </div>
+
+            <!-- Acciones: filtros + ir a pedidos -->
+            <div class="flex flex-col sm:flex-row gap-3">
+                <div class="flex items-center gap-2">
+                    <label class="text-sm">Desde</label>
+                    <input type="date"
+                        class="rounded-xl border border-neutral-300 dark:border-neutral-700 bg-white dark:bg-neutral-900 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-cyan-400 dark:focus:ring-cyan-300">
+                    <label class="text-sm">Hasta</label>
+                    <input type="date"
+                        class="rounded-xl border border-neutral-300 dark:border-neutral-700 bg-white dark:bg-neutral-900 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-cyan-400 dark:focus:ring-cyan-300">
+                    <button
+                        class="rounded-xl px-4 py-2 text-sm font-semibold bg-neutral-900 dark:bg-neutral-200 text-white dark:text-neutral-900 hover:opacity-90">
+                        Aplicar
+                    </button>
+                </div>
+
+                <a href="/admin/pedidos" class="inline-flex items-center justify-center rounded-xl px-4 py-2 text-sm font-semibold
+                  bg-cyan-400 dark:bg-cyan-300 text-neutral-900 hover:opacity-90">
+                    Ver pedidos
+                </a>
+            </div>
+        </header>
+
+        <!-- KPIs -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            <!-- Ventas totales -->
+            <div class="rounded-2xl bg-white dark:bg-neutral-900 ring-1 ring-neutral-400/60 dark:ring-neutral-800 p-5">
+                <div class="text-sm text-neutral-500 dark:text-neutral-400">Ventas (S/)</div>
+                <div class="mt-1 flex items-baseline gap-2">
+                    <div class="text-2xl font-bold">42,350</div>
+                </div>
+            </div>
+
+            <!-- Pedidos -->
+            <div class="rounded-2xl bg-white dark:bg-neutral-900 ring-1 ring-neutral-400/60 dark:ring-neutral-800 p-5">
+                <div class="text-sm text-neutral-500 dark:text-neutral-400">Pedidos</div>
+                <div class="mt-1 flex items-baseline gap-2">
+                    <div class="text-2xl font-bold">1,248</div>
+                </div>
+            </div>
+
+            <!-- Usuarios total -->
+            <div class="rounded-2xl bg-white dark:bg-neutral-900 ring-1 ring-neutral-400/60 dark:ring-neutral-800 p-5">
+                <div class="text-sm text-neutral-500 dark:text-neutral-400">Usuarios</div>
+                <div class="mt-1 flex items-baseline gap-2">
+                    <div class="text-2xl font-bold">101</div>
+                </div>
+            </div>
+
+            <!-- Devoluciones -->
+            <div class="rounded-2xl bg-white dark:bg-neutral-900 ring-1 ring-neutral-400/60 dark:ring-neutral-800 p-5">
+                <div class="text-sm text-neutral-500 dark:text-neutral-400">Productos</div>
+                <div class="mt-1 flex items-baseline gap-2">
+                    <div class="text-2xl font-bold">1029</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Gráficos -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            <!-- Ventas por día (área) -->
+            <div
+                class="lg:col-span-2 rounded-2xl bg-white dark:bg-neutral-900 ring-1 ring-neutral-400/60 dark:ring-neutral-800 p-5">
+                <div class="flex items-center justify-between">
+                    <h3 class="font-semibold">Ventas por fecha</h3>
+                    <select
+                        class="rounded-lg border border-neutral-300 dark:border-neutral-700 bg-white dark:bg-neutral-900 px-3 py-1.5 text-xs">
+                        <option>Últimos 7 días</option>
+                        <option>Últimos 30 días</option>
+                        <option>Este año</option>
+                    </select>
+                </div>
+
+                <!-- SVG escalable: viewBox fija, se adapta al ancho del contenedor -->
+                <div class="w-full h-56 md:h-72">
+                    <svg viewBox="0 0 100 60" class="w-full h-full">
+                        <!-- Fondo -->
+                        <rect x="0" y="0" width="100" height="60" class="fill-neutral-100 dark:fill-neutral-900" />
+
+                        <!-- Grid horizontal (3 líneas) -->
+                        <g [attr.stroke]="palette.grid" stroke-width="0.3">
+                            <line *ngFor="let y of gridYs" x1="8" [attr.y1]="y" x2="98" [attr.y2]="y" />
+                        </g>
+
+                        <!-- Eje Y y X -->
+                        <g [attr.stroke]="palette.grid" stroke-width="0.6">
+                            <line x1="8" y1="6" x2="8" y2="52" />
+                            <line x1="8" y1="52" x2="98" y2="52" />
+                        </g>
+
+                        <!-- Área -->
+                        <path [attr.d]="areaPath" [attr.fill]="palette.area" />
+
+                        <!-- Línea -->
+                        <path [attr.d]="linePath" [attr.stroke]="palette.line" fill="none" stroke-width="1.5" />
+
+                        <!-- Puntos -->
+                        <g [attr.fill]="palette.line">
+                            <circle *ngFor="let p of points" [attr.cx]="p.x" [attr.cy]="p.y" r="0.8"></circle>
+                        </g>
+
+                        <!-- Labels X (máx 10 para no saturar) -->
+                        <g font-size="2.5" [attr.fill]="palette.ticks">
+                            <text *ngFor="let lx of xLabelsLimited" [attr.x]="lx.x" y="57" text-anchor="middle">{{
+                                lx.label }}</text>
+                        </g>
+
+                        <!-- Título pequeño (opcional) -->
+                        <text x="10" y="12" font-size="3" [attr.fill]="palette.ticks">Ventas (S/)</text>
+                    </svg>
+                </div>
+
+            </div>
+
+            <!-- Top productos (barras) -->
+            <div class="rounded-2xl bg-white dark:bg-neutral-900 ring-1 ring-neutral-400/60 dark:ring-neutral-800 p-5">
+                <h3 class="font-semibold">Productos más vendidos</h3>
+                <ul class="mt-4 space-y-3">
+                    <!-- fila -->
+                    <li>
+                        <div class="flex items-center justify-between text-sm">
+                            <span>Nike Revolution 7</span><span class="font-semibold">480</span>
+                        </div>
+                        <div class="mt-1 h-2 rounded-full bg-neutral-200 dark:bg-neutral-800">
+                            <div class="h-2 rounded-full bg-cyan-400 dark:bg-cyan-300" style="width: 88%"></div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="flex items-center justify-between text-sm">
+                            <span>Adidas Predator</span><span class="font-semibold">390</span>
+                        </div>
+                        <div class="mt-1 h-2 rounded-full bg-neutral-200 dark:bg-neutral-800">
+                            <div class="h-2 rounded-full bg-cyan-400 dark:bg-cyan-300" style="width: 72%"></div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="flex items-center justify-between text-sm">
+                            <span>iRun Freestyle</span><span class="font-semibold">265</span>
+                        </div>
+                        <div class="mt-1 h-2 rounded-full bg-neutral-200 dark:bg-neutral-800">
+                            <div class="h-2 rounded-full bg-cyan-400 dark:bg-cyan-300" style="width: 49%"></div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="flex items-center justify-between text-sm">
+                            <span>Puma RS-X</span><span class="font-semibold">210</span>
+                        </div>
+                        <div class="mt-1 h-2 rounded-full bg-neutral-200 dark:bg-neutral-800">
+                            <div class="h-2 rounded-full bg-cyan-400 dark:bg-cyan-300" style="width: 40%"></div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Tabla de pedidos recientes -->
+        <div class="rounded-2xl bg-white dark:bg-neutral-900 ring-1 ring-neutral-400/60 dark:ring-neutral-800">
+            <div class="px-5 pt-5 flex items-center justify-between">
+                <h3 class="font-semibold">Pedidos recientes</h3>
+                <div class="flex items-center gap-2">
+                    <input type="text" placeholder="Buscar pedido..."
+                        class="w-56 max-w-full rounded-xl border border-neutral-300 dark:border-neutral-700 bg-white dark:bg-neutral-900 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-cyan-400 dark:focus:ring-cyan-300">
+                    <button
+                        class="rounded-xl px-3 py-2 text-sm font-semibold ring-1 ring-neutral-300 dark:ring-neutral-700 hover:bg-neutral-100 dark:hover:bg-neutral-800">
+                        Exportar CSV
+                    </button>
+                </div>
+            </div>
+            <div class="mt-4 overflow-x-auto">
+                <table class="min-w-[800px] w-full text-sm">
+                    <thead class="bg-neutral-100 dark:bg-neutral-800 text-left">
+                        <tr class="text-neutral-600 dark:text-neutral-300">
+                            <th class="px-5 py-3 font-semibold">Pedido</th>
+                            <th class="px-5 py-3 font-semibold">Fecha</th>
+                            <th class="px-5 py-3 font-semibold">Cliente</th>
+                            <th class="px-5 py-3 font-semibold">Estado</th>
+                            <th class="px-5 py-3 font-semibold">Total</th>
+                            <th class="px-5 py-3 font-semibold text-right">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-neutral-200 dark:divide-neutral-800">
+                        <tr class="even:bg-neutral-50 dark:even:bg-neutral-800">
+                            <td class="px-5 py-3 font-medium">#12345</td>
+                            <td class="px-5 py-3">13/05/2025</td>
+                            <td class="px-5 py-3">Juan Pérez</td>
+                            <td class="px-5 py-3">
+                                <span
+                                    class="inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-xs ring-1 ring-neutral-300 dark:ring-neutral-700">
+                                    <span class="size-1.5 rounded-full bg-amber-500"></span> Preparando
+                                </span>
+                            </td>
+                            <td class="px-5 py-3 font-semibold">S/ 500.00</td>
+                            <td class="px-5 py-3 text-right">
+                                <a href="/admin/pedidos"
+                                    class="text-cyan-600 dark:text-cyan-300 hover:underline">Ver</a>
+                            </td>
+                        </tr>
+                        <tr class="even:bg-neutral-50 dark:even:bg-neutral-800">
+                            <td class="px-5 py-3 font-medium">#12346</td>
+                            <td class="px-5 py-3">12/05/2025</td>
+                            <td class="px-5 py-3">María López</td>
+                            <td class="px-5 py-3">
+                                <span
+                                    class="inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-xs ring-1 ring-neutral-300 dark:ring-neutral-700">
+                                    <span class="size-1.5 rounded-full bg-emerald-500"></span> Entregado
+                                </span>
+                            </td>
+                            <td class="px-5 py-3 font-semibold">S/ 259.00</td>
+                            <td class="px-5 py-3 text-right">
+                                <a href="/admin/pedidos"
+                                    class="text-cyan-600 dark:text-cyan-300 hover:underline">Ver</a>
+                            </td>
+                        </tr>
+                        <tr class="even:bg-neutral-50 dark:even:bg-neutral-800">
+                            <td class="px-5 py-3 font-medium">#12347</td>
+                            <td class="px-5 py-3">12/05/2025</td>
+                            <td class="px-5 py-3">Carlos Díaz</td>
+                            <td class="px-5 py-3">
+                                <span
+                                    class="inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-xs ring-1 ring-neutral-300 dark:ring-neutral-700">
+                                    <span class="size-1.5 rounded-full bg-blue-500"></span> Enviado
+                                </span>
+                            </td>
+                            <td class="px-5 py-3 font-semibold">S/ 389.90</td>
+                            <td class="px-5 py-3 text-right">
+                                <a href="/admin/pedidos"
+                                    class="text-cyan-600 dark:text-cyan-300 hover:underline">Ver</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Footer tabla -->
+            <div class="px-5 py-4 flex items-center justify-between">
+                <span class="text-xs text-neutral-500 dark:text-neutral-400">Mostrando 1–3 de 1,248 pedidos</span>
+                <a href="/admin/pedidos"
+                    class="inline-flex items-center justify-center rounded-xl px-4 py-2 text-sm font-semibold bg-cyan-400 dark:bg-cyan-300 text-neutral-900 hover:opacity-90">
+                    Ir a gestión de pedidos
+                </a>
+            </div>
+        </div>
+
+    </div>
+</section>
