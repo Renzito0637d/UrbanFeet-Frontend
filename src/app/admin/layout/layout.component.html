@@ -1,0 +1,80 @@
+<mat-sidenav-container class="h-screen">
+  <mat-sidenav #drawer [mode]="(isHandset | async)?.matches ? 'over' : 'side'" [opened]="!(isHandset | async)?.matches"
+    class="admin-sidenav">
+    <!-- WRAPPER FLEX -->
+    <div class="flex flex-col h-full">
+      <!-- Header -->
+      <div class="sidenav-header px-5 py-4 flex items-center gap-3">
+        <div class="mx-auto shrink-0 flex items-center text-black dark:text-sky-100">
+          <img src="/img/logo.png" alt="UrbanFeet" class="h-16 w-auto" />
+        </div>
+      </div>
+
+      <mat-divider></mat-divider>
+
+      <!-- Menú con grow (empuja el footer) -->
+      <mat-nav-list class="grow">
+        <a mat-list-item routerLink="/admin" routerLinkActive="mat-mdc-list-item-active"
+          [routerLinkActiveOptions]="{ exact: true }" (click)="closeIfHandset()">
+          <mat-icon matListItemIcon class="!text-cyan-400 dark:!text-cyan-300">home</mat-icon>
+          <span matListItemTitle>Inicio</span>
+        </a>
+
+        <a mat-list-item routerLink="/admin/usuarios" routerLinkActive="mat-mdc-list-item-active"
+          (click)="closeIfHandset()">
+          <mat-icon matListItemIcon class="!text-cyan-400 dark:!text-cyan-300">group</mat-icon>
+          <span matListItemTitle>Usuarios</span>
+        </a>
+
+        <a mat-list-item routerLink="/admin/catalogo" routerLinkActive="mat-mdc-list-item-active"
+          (click)="closeIfHandset()">
+          <mat-icon matListItemIcon class="!text-cyan-400 dark:!text-cyan-300">inventory_2</mat-icon>
+          <span matListItemTitle>Catalogo</span>
+        </a>
+
+        <a mat-list-item routerLink="/admin/pedidos" routerLinkActive="mat-mdc-list-item-active"
+          (click)="closeIfHandset()">
+          <mat-icon matListItemIcon class="!text-cyan-400 dark:!text-cyan-300">receipt_long</mat-icon>
+          <span matListItemTitle>Pedidos</span>
+        </a>
+
+        <a mat-list-item routerLink="/admin/ofertas" routerLinkActive="mat-mdc-list-item-active"
+          (click)="closeIfHandset()">
+          <mat-icon matListItemIcon class="!text-cyan-400 dark:!text-cyan-300">local_offer</mat-icon>
+          <span matListItemTitle>Ofertas</span>
+        </a>
+      </mat-nav-list>
+
+      <!-- Footer (queda abajo gracias al grow del menú) -->
+      <div class="p-4 border-t border-neutral-700">
+        <div class="flex items-center gap-3 mb-3">
+          <img src="https://i.pravatar.cc/50?img=3" class="w-10 h-10 rounded-full border" alt="Foto perfil">
+          <div>
+            <p class="font-semibold">Juan Pérez</p>
+            <p class="text-sm text-gray-400">juan.perezsdejemplo.com</p>
+          </div>
+        </div>
+
+        <button mat-stroked-button color="primary" class="w-full flex items-center gap-2">
+          <mat-icon>logout</mat-icon>
+          Cerrar sesión
+        </button>
+      </div>
+    </div>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <mat-toolbar color="primary" class="admin-toolbar">
+      <button mat-icon-button (click)="drawer.toggle()" aria-label="Abrir menú">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <span class="flex-1">Panel de Administración</span>
+      <app-themetoggle class="h-6 flex items-center" />
+
+    </mat-toolbar>
+
+    <div class="p-4">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>
