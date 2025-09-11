@@ -1,1 +1,485 @@
-<p>catalogo works!</p>
+<section class="bg-neutral-200 dark:bg-neutral-950 text-neutral-800 dark:text-neutral-200">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-10">
+    <div class="grid grid-cols-12 gap-8">
+
+      <!-- ASIDE: FILTROS ADMIN -->
+      <aside class="col-span-12 md:col-span-4 lg:col-span-3">
+        <div class="sticky top-16 space-y-6">
+
+          <!-- Panel Admin -->
+          <div class="rounded-2xl bg-white dark:bg-neutral-900 ring-1 ring-neutral-300/50 dark:ring-neutral-800 p-5 space-y-4 shadow-sm">
+            <h2 class="text-xl font-bold text-cyan-400 dark:text-cyan-300">Panel Admin</h2>
+            <p class="text-sm text-neutral-600 dark:text-neutral-400">Gestiona productos, estadísticas y stock</p>
+          </div>
+
+          <!-- Botón agregar producto -->
+          <div class="rounded-2xl bg-white dark:bg-neutral-900 ring-1 ring-neutral-300/50 dark:ring-neutral-800 p-5 shadow-sm flex flex-col gap-4">
+
+  <!-- BOTÓN AGREGAR PRODUCTO -->
+  <button class="w-full rounded-xl bg-green-500 dark:bg-green-600 text-white font-semibold py-3 hover:shadow-lg hover:scale-105 transition transform">
+    + Agregar Producto
+  </button>
+
+  <!-- BOTONES DE EXPORTAR -->
+  <div class="flex gap-3 justify-center">
+    <button class="flex-1 flex items-center justify-center gap-2 rounded-xl bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 py-2 font-semibold hover:bg-gray-300 dark:hover:bg-gray-600 hover:shadow transition">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v8m0 0l-3-3m3 3l3-3m4-3v6a2 2 0 01-2 2H6a2 2 0 01-2-2v-6" />
+      </svg>
+      Exportar PDF
+    </button>
+    <button class="flex-1 flex items-center justify-center gap-2 rounded-xl bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 py-2 font-semibold hover:bg-gray-300 dark:hover:bg-gray-600 hover:shadow transition">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 10H5m14 4H5m2-8h10a2 2 0 012 2v12a2 2 0 01-2 2H7a2 2 0 01-2-2V8a2 2 0 012-2z" />
+      </svg>
+      Exportar Excel
+    </button>
+  </div>
+
+</div>
+
+
+          <!-- Filtros existentes con acordeón -->
+          <div class="rounded-2xl bg-white dark:bg-neutral-900 ring-1 ring-neutral-300/50 dark:ring-neutral-800 p-5 shadow-sm space-y-3">
+            <h3 class="text-lg font-semibold mb-2">Filtros de Productos</h3>
+            <div class="space-y-2">
+              <details class="border border-neutral-200 dark:border-neutral-700 rounded-md p-2">
+                <summary class="font-medium cursor-pointer">Marcas</summary>
+                <div class="mt-2 space-y-1">
+                  <label><input type="checkbox"> Nike</label>
+                  <label><input type="checkbox"> Adidas</label>
+                  <label><input type="checkbox"> Puma</label>
+                </div>
+              </details>
+              <details class="border border-neutral-200 dark:border-neutral-700 rounded-md p-2">
+                <summary class="font-medium cursor-pointer">Tipo</summary>
+                <div class="mt-2 space-y-1">
+                  <label><input type="checkbox"> Running</label>
+                  <label><input type="checkbox"> Casual</label>
+                  <label><input type="checkbox"> Formal</label>
+                </div>
+              </details>
+              <details class="border border-neutral-200 dark:border-neutral-700 rounded-md p-2">
+                <summary class="font-medium cursor-pointer">Precio</summary>
+                <div class="mt-2 space-y-1">
+                  <input type="range" min="50" max="1000" step="10" class="w-full">
+                </div>
+              </details>
+            </div>
+          </div>
+
+          <!-- Botones Buscar / Limpiar -->
+          <div class="flex gap-3">
+            <button class="flex-1 rounded-xl bg-cyan-400 dark:bg-cyan-300 text-neutral-900 font-semibold px-4 py-2 hover:opacity-90 transition">
+              Buscar
+            </button>
+            <a href="/admin/catalogo" class="flex-1 rounded-xl ring-1 ring-neutral-300 dark:ring-neutral-700 px-4 py-2 text-center hover:bg-neutral-100 dark:hover:bg-neutral-800 transition">
+              Limpiar
+            </a>
+          </div>
+        </div>
+      </aside>
+
+      <!-- GRID: PRODUCTOS ADMIN -->
+      <div class="col-span-12 md:col-span-8 lg:col-span-9">
+        <div class="mb-4 flex items-center justify-between">
+          <h3 class="text-xl font-bold">Productos</h3>
+          <span class="text-sm text-neutral-500 dark:text-neutral-400">Mostrando 1–12 de 124</span>
+        </div>
+
+        <!-- Grid de cards -->
+        <div class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-6">
+          <!-- Card de producto ADMIN -->
+          <article class="group rounded-2xl bg-white dark:bg-neutral-900 ring-1 ring-neutral-300/50 dark:ring-neutral-800 overflow-hidden hover:shadow-lg transition shadow-sm">
+  <div class="relative">
+    <div class="aspect-[4/3] bg-neutral-100 dark:bg-neutral-400 flex items-center justify-center">
+      <img src="https://www.nike.com.pe/dw/image/v2/BJKZ_PRD/on/demandware.static/-/Sites-catalog-equinox/default/dw59540ed6/images/hi-res/198486695879_1_20250724-mrtPeru.jpeg?sw=800&sh=800"
+        alt="Nike Revolution 7" class="w-full h-full object-contain p-4" style="mix-blend-mode: multiply;">
+    </div>
+    <span class="absolute top-2 right-2 px-2 py-1 rounded-lg text-xs font-semibold bg-green-400 dark:bg-green-400 text-neutral-900">Stock: Alto</span>
+  </div>
+  <div class="p-4 space-y-2">
+    <h4 class="text-sm font-semibold truncate">Nike Revolution 7</h4>
+    <p class="text-xs text-neutral-500 dark:text-neutral-400 truncate">Running • Mujer</p>
+    <div class="flex justify-between items-center">
+      <span class="text-base font-bold">S/ 259.00</span>
+      <div class="flex gap-1">
+        <img src="https://www.nike.com.pe/dw/image/v2/BJKZ_PRD/on/demandware.static/-/Sites-catalog-equinox/default/dw59540ed6/images/hi-res/198486695879_1_20250724-mrtPeru.jpeg?sw=800&sh=800"
+          class="w-6 h-6 rounded border border-neutral-200 dark:border-neutral-700 object-contain" alt="">
+        <img src="https://www.nike.com.pe/dw/image/v2/BJKZ_PRD/on/demandware.static/-/Sites-catalog-equinox/default/dw59540ed6/images/hi-res/198486695879_1_20250724-mrtPeru.jpeg?sw=800&sh=800"
+          class="w-6 h-6 rounded border border-neutral-200 dark:border-neutral-700 object-contain" alt="">
+      </div>
+    </div>
+
+    <!-- BOTONES ADMIN -->
+    <div class="flex flex-col gap-2 mt-2">
+      <div class="flex gap-2 justify-center">
+      <button class="flex-1 rounded-xl bg-blue-500 dark:bg-blue-400 text-white text-sm font-semibold py-1 hover:opacity-90 transition">Editar</button>
+      <button class="flex-1 rounded-xl bg-red-500 dark:bg-red-400 text-white text-sm font-semibold py-1 hover:opacity-90 transition">Eliminar</button>
+      </div>
+      <button class="w-full rounded-xl bg-gray-500 dark:bg-gray-700 text-white text-sm font-semibold py-1 hover:opacity-90 transition">Detalle</button>
+    </div>
+  </div>
+</article>
+
+        <article class="group rounded-2xl bg-white dark:bg-neutral-900 ring-1 ring-neutral-300/50 dark:ring-neutral-800 overflow-hidden hover:shadow-lg transition shadow-sm">
+  <div class="relative">
+    <div class="aspect-[4/3] bg-neutral-100 dark:bg-neutral-400 flex items-center justify-center">
+      <img src="https://www.nike.com.pe/dw/image/v2/BJKZ_PRD/on/demandware.static/-/Sites-catalog-equinox/default/dw59540ed6/images/hi-res/198486695879_1_20250724-mrtPeru.jpeg?sw=800&sh=800"
+        alt="Nike Revolution 7" class="w-full h-full object-contain p-4" style="mix-blend-mode: multiply;">
+    </div>
+    <span class="absolute top-2 right-2 px-2 py-1 rounded-lg text-xs font-semibold bg-green-400 dark:bg-green-400 text-neutral-900">Stock: Alto</span>
+  </div>
+  <div class="p-4 space-y-2">
+    <h4 class="text-sm font-semibold truncate">Nike Revolution 7</h4>
+    <p class="text-xs text-neutral-500 dark:text-neutral-400 truncate">Running • Mujer</p>
+    <div class="flex justify-between items-center">
+      <span class="text-base font-bold">S/ 259.00</span>
+      <div class="flex gap-1">
+        <img src="https://www.nike.com.pe/dw/image/v2/BJKZ_PRD/on/demandware.static/-/Sites-catalog-equinox/default/dw59540ed6/images/hi-res/198486695879_1_20250724-mrtPeru.jpeg?sw=800&sh=800"
+          class="w-6 h-6 rounded border border-neutral-200 dark:border-neutral-700 object-contain" alt="">
+        <img src="https://www.nike.com.pe/dw/image/v2/BJKZ_PRD/on/demandware.static/-/Sites-catalog-equinox/default/dw59540ed6/images/hi-res/198486695879_1_20250724-mrtPeru.jpeg?sw=800&sh=800"
+          class="w-6 h-6 rounded border border-neutral-200 dark:border-neutral-700 object-contain" alt="">
+      </div>
+    </div>
+
+    <!-- BOTONES ADMIN -->
+    <div class="flex flex-col gap-2 mt-2">
+      <div class="flex gap-2 justify-center">
+      <button class="flex-1 rounded-xl bg-blue-500 dark:bg-blue-400 text-white text-sm font-semibold py-1 hover:opacity-90 transition">Editar</button>
+      <button class="flex-1 rounded-xl bg-red-500 dark:bg-red-400 text-white text-sm font-semibold py-1 hover:opacity-90 transition">Eliminar</button>
+      </div>
+      <button class="w-full rounded-xl bg-gray-500 dark:bg-gray-700 text-white text-sm font-semibold py-1 hover:opacity-90 transition">Detalle</button>
+    </div>
+  </div>
+</article>
+
+
+        <article class="group rounded-2xl bg-white dark:bg-neutral-900 ring-1 ring-neutral-300/50 dark:ring-neutral-800 overflow-hidden hover:shadow-lg transition shadow-sm">
+  <div class="relative">
+    <div class="aspect-[4/3] bg-neutral-100 dark:bg-neutral-400 flex items-center justify-center">
+      <img src="https://www.nike.com.pe/dw/image/v2/BJKZ_PRD/on/demandware.static/-/Sites-catalog-equinox/default/dw59540ed6/images/hi-res/198486695879_1_20250724-mrtPeru.jpeg?sw=800&sh=800"
+        alt="Nike Revolution 7" class="w-full h-full object-contain p-4" style="mix-blend-mode: multiply;">
+    </div>
+    <span class="absolute top-2 right-2 px-2 py-1 rounded-lg text-xs font-semibold bg-green-400 dark:bg-green-400 text-neutral-900">Stock: Alto</span>
+  </div>
+  <div class="p-4 space-y-2">
+    <h4 class="text-sm font-semibold truncate">Nike Revolution 7</h4>
+    <p class="text-xs text-neutral-500 dark:text-neutral-400 truncate">Running • Mujer</p>
+    <div class="flex justify-between items-center">
+      <span class="text-base font-bold">S/ 259.00</span>
+      <div class="flex gap-1">
+        <img src="https://www.nike.com.pe/dw/image/v2/BJKZ_PRD/on/demandware.static/-/Sites-catalog-equinox/default/dw59540ed6/images/hi-res/198486695879_1_20250724-mrtPeru.jpeg?sw=800&sh=800"
+          class="w-6 h-6 rounded border border-neutral-200 dark:border-neutral-700 object-contain" alt="">
+        <img src="https://www.nike.com.pe/dw/image/v2/BJKZ_PRD/on/demandware.static/-/Sites-catalog-equinox/default/dw59540ed6/images/hi-res/198486695879_1_20250724-mrtPeru.jpeg?sw=800&sh=800"
+          class="w-6 h-6 rounded border border-neutral-200 dark:border-neutral-700 object-contain" alt="">
+      </div>
+    </div>
+
+    <!-- BOTONES ADMIN -->
+    <div class="flex flex-col gap-2 mt-2">
+      <div class="flex gap-2 justify-center">
+      <button class="flex-1 rounded-xl bg-blue-500 dark:bg-blue-400 text-white text-sm font-semibold py-1 hover:opacity-90 transition">Editar</button>
+      <button class="flex-1 rounded-xl bg-red-500 dark:bg-red-400 text-white text-sm font-semibold py-1 hover:opacity-90 transition">Eliminar</button>
+      </div>
+      <button class="w-full rounded-xl bg-gray-500 dark:bg-gray-700 text-white text-sm font-semibold py-1 hover:opacity-90 transition">Detalle</button>
+    </div>
+  </div>
+</article>
+
+        <article class="group rounded-2xl bg-white dark:bg-neutral-900 ring-1 ring-neutral-300/50 dark:ring-neutral-800 overflow-hidden hover:shadow-lg transition shadow-sm">
+  <div class="relative">
+    <div class="aspect-[4/3] bg-neutral-100 dark:bg-neutral-400 flex items-center justify-center">
+      <img src="https://www.nike.com.pe/dw/image/v2/BJKZ_PRD/on/demandware.static/-/Sites-catalog-equinox/default/dw59540ed6/images/hi-res/198486695879_1_20250724-mrtPeru.jpeg?sw=800&sh=800"
+        alt="Nike Revolution 7" class="w-full h-full object-contain p-4" style="mix-blend-mode: multiply;">
+    </div>
+    <span class="absolute top-2 right-2 px-2 py-1 rounded-lg text-xs font-semibold bg-green-400 dark:bg-green-400 text-neutral-900">Stock: Alto</span>
+  </div>
+  <div class="p-4 space-y-2">
+    <h4 class="text-sm font-semibold truncate">Nike Revolution 7</h4>
+    <p class="text-xs text-neutral-500 dark:text-neutral-400 truncate">Running • Mujer</p>
+    <div class="flex justify-between items-center">
+      <span class="text-base font-bold">S/ 259.00</span>
+      <div class="flex gap-1">
+        <img src="https://www.nike.com.pe/dw/image/v2/BJKZ_PRD/on/demandware.static/-/Sites-catalog-equinox/default/dw59540ed6/images/hi-res/198486695879_1_20250724-mrtPeru.jpeg?sw=800&sh=800"
+          class="w-6 h-6 rounded border border-neutral-200 dark:border-neutral-700 object-contain" alt="">
+        <img src="https://www.nike.com.pe/dw/image/v2/BJKZ_PRD/on/demandware.static/-/Sites-catalog-equinox/default/dw59540ed6/images/hi-res/198486695879_1_20250724-mrtPeru.jpeg?sw=800&sh=800"
+          class="w-6 h-6 rounded border border-neutral-200 dark:border-neutral-700 object-contain" alt="">
+      </div>
+    </div>
+
+    <!-- BOTONES ADMIN -->
+    <div class="flex flex-col gap-2 mt-2">
+      <div class="flex gap-2 justify-center">
+      <button class="flex-1 rounded-xl bg-blue-500 dark:bg-blue-400 text-white text-sm font-semibold py-1 hover:opacity-90 transition">Editar</button>
+      <button class="flex-1 rounded-xl bg-red-500 dark:bg-red-400 text-white text-sm font-semibold py-1 hover:opacity-90 transition">Eliminar</button>
+      </div>
+      <button class="w-full rounded-xl bg-gray-500 dark:bg-gray-700 text-white text-sm font-semibold py-1 hover:opacity-90 transition">Detalle</button>
+    </div>
+  </div>
+</article>
+
+
+          <article class="group rounded-2xl bg-white dark:bg-neutral-900 ring-1 ring-neutral-300/50 dark:ring-neutral-800 overflow-hidden hover:shadow-lg transition shadow-sm">
+  <div class="relative">
+    <div class="aspect-[4/3] bg-neutral-100 dark:bg-neutral-400 flex items-center justify-center">
+      <img src="https://www.nike.com.pe/dw/image/v2/BJKZ_PRD/on/demandware.static/-/Sites-catalog-equinox/default/dw59540ed6/images/hi-res/198486695879_1_20250724-mrtPeru.jpeg?sw=800&sh=800"
+        alt="Nike Revolution 7" class="w-full h-full object-contain p-4" style="mix-blend-mode: multiply;">
+    </div>
+    <span class="absolute top-2 right-2 px-2 py-1 rounded-lg text-xs font-semibold bg-green-400 dark:bg-green-400 text-neutral-900">Stock: Alto</span>
+  </div>
+  <div class="p-4 space-y-2">
+    <h4 class="text-sm font-semibold truncate">Nike Revolution 7</h4>
+    <p class="text-xs text-neutral-500 dark:text-neutral-400 truncate">Running • Mujer</p>
+    <div class="flex justify-between items-center">
+      <span class="text-base font-bold">S/ 259.00</span>
+      <div class="flex gap-1">
+        <img src="https://www.nike.com.pe/dw/image/v2/BJKZ_PRD/on/demandware.static/-/Sites-catalog-equinox/default/dw59540ed6/images/hi-res/198486695879_1_20250724-mrtPeru.jpeg?sw=800&sh=800"
+          class="w-6 h-6 rounded border border-neutral-200 dark:border-neutral-700 object-contain" alt="">
+        <img src="https://www.nike.com.pe/dw/image/v2/BJKZ_PRD/on/demandware.static/-/Sites-catalog-equinox/default/dw59540ed6/images/hi-res/198486695879_1_20250724-mrtPeru.jpeg?sw=800&sh=800"
+          class="w-6 h-6 rounded border border-neutral-200 dark:border-neutral-700 object-contain" alt="">
+      </div>
+    </div>
+
+    <!-- BOTONES ADMIN -->
+    <div class="flex flex-col gap-2 mt-2">
+      <div class="flex gap-2 justify-center">
+      <button class="flex-1 rounded-xl bg-blue-500 dark:bg-blue-400 text-white text-sm font-semibold py-1 hover:opacity-90 transition">Editar</button>
+      <button class="flex-1 rounded-xl bg-red-500 dark:bg-red-400 text-white text-sm font-semibold py-1 hover:opacity-90 transition">Eliminar</button>
+      </div>
+      <button class="w-full rounded-xl bg-gray-500 dark:bg-gray-700 text-white text-sm font-semibold py-1 hover:opacity-90 transition">Detalle</button>
+    </div>
+  </div>
+</article>
+
+
+        <article class="group rounded-2xl bg-white dark:bg-neutral-900 ring-1 ring-neutral-300/50 dark:ring-neutral-800 overflow-hidden hover:shadow-lg transition shadow-sm">
+  <div class="relative">
+    <div class="aspect-[4/3] bg-neutral-100 dark:bg-neutral-400 flex items-center justify-center">
+      <img src="https://www.nike.com.pe/dw/image/v2/BJKZ_PRD/on/demandware.static/-/Sites-catalog-equinox/default/dw59540ed6/images/hi-res/198486695879_1_20250724-mrtPeru.jpeg?sw=800&sh=800"
+        alt="Nike Revolution 7" class="w-full h-full object-contain p-4" style="mix-blend-mode: multiply;">
+    </div>
+    <span class="absolute top-2 right-2 px-2 py-1 rounded-lg text-xs font-semibold bg-green-400 dark:bg-green-400 text-neutral-900">Stock: Alto</span>
+  </div>
+  <div class="p-4 space-y-2">
+    <h4 class="text-sm font-semibold truncate">Nike Revolution 7</h4>
+    <p class="text-xs text-neutral-500 dark:text-neutral-400 truncate">Running • Mujer</p>
+    <div class="flex justify-between items-center">
+      <span class="text-base font-bold">S/ 259.00</span>
+      <div class="flex gap-1">
+        <img src="https://www.nike.com.pe/dw/image/v2/BJKZ_PRD/on/demandware.static/-/Sites-catalog-equinox/default/dw59540ed6/images/hi-res/198486695879_1_20250724-mrtPeru.jpeg?sw=800&sh=800"
+          class="w-6 h-6 rounded border border-neutral-200 dark:border-neutral-700 object-contain" alt="">
+        <img src="https://www.nike.com.pe/dw/image/v2/BJKZ_PRD/on/demandware.static/-/Sites-catalog-equinox/default/dw59540ed6/images/hi-res/198486695879_1_20250724-mrtPeru.jpeg?sw=800&sh=800"
+          class="w-6 h-6 rounded border border-neutral-200 dark:border-neutral-700 object-contain" alt="">
+      </div>
+    </div>
+
+    <!-- BOTONES ADMIN -->
+    <div class="flex flex-col gap-2 mt-2">
+      <div class="flex gap-2 justify-center">
+      <button class="flex-1 rounded-xl bg-blue-500 dark:bg-blue-400 text-white text-sm font-semibold py-1 hover:opacity-90 transition">Editar</button>
+      <button class="flex-1 rounded-xl bg-red-500 dark:bg-red-400 text-white text-sm font-semibold py-1 hover:opacity-90 transition">Eliminar</button>
+      </div>
+      <button class="w-full rounded-xl bg-gray-500 dark:bg-gray-700 text-white text-sm font-semibold py-1 hover:opacity-90 transition">Detalle</button>
+    </div>
+  </div>
+</article>
+
+
+        <article class="group rounded-2xl bg-white dark:bg-neutral-900 ring-1 ring-neutral-300/50 dark:ring-neutral-800 overflow-hidden hover:shadow-lg transition shadow-sm">
+  <div class="relative">
+    <div class="aspect-[4/3] bg-neutral-100 dark:bg-neutral-400 flex items-center justify-center">
+      <img src="https://www.nike.com.pe/dw/image/v2/BJKZ_PRD/on/demandware.static/-/Sites-catalog-equinox/default/dw59540ed6/images/hi-res/198486695879_1_20250724-mrtPeru.jpeg?sw=800&sh=800"
+        alt="Nike Revolution 7" class="w-full h-full object-contain p-4" style="mix-blend-mode: multiply;">
+    </div>
+    <span class="absolute top-2 right-2 px-2 py-1 rounded-lg text-xs font-semibold bg-green-400 dark:bg-green-400 text-neutral-900">Stock: Alto</span>
+  </div>
+  <div class="p-4 space-y-2">
+    <h4 class="text-sm font-semibold truncate">Nike Revolution 7</h4>
+    <p class="text-xs text-neutral-500 dark:text-neutral-400 truncate">Running • Mujer</p>
+    <div class="flex justify-between items-center">
+      <span class="text-base font-bold">S/ 259.00</span>
+      <div class="flex gap-1">
+        <img src="https://www.nike.com.pe/dw/image/v2/BJKZ_PRD/on/demandware.static/-/Sites-catalog-equinox/default/dw59540ed6/images/hi-res/198486695879_1_20250724-mrtPeru.jpeg?sw=800&sh=800"
+          class="w-6 h-6 rounded border border-neutral-200 dark:border-neutral-700 object-contain" alt="">
+        <img src="https://www.nike.com.pe/dw/image/v2/BJKZ_PRD/on/demandware.static/-/Sites-catalog-equinox/default/dw59540ed6/images/hi-res/198486695879_1_20250724-mrtPeru.jpeg?sw=800&sh=800"
+          class="w-6 h-6 rounded border border-neutral-200 dark:border-neutral-700 object-contain" alt="">
+      </div>
+    </div>
+
+    <!-- BOTONES ADMIN -->
+    <div class="flex flex-col gap-2 mt-2">
+      <div class="flex gap-2 justify-center">
+      <button class="flex-1 rounded-xl bg-blue-500 dark:bg-blue-400 text-white text-sm font-semibold py-1 hover:opacity-90 transition">Editar</button>
+      <button class="flex-1 rounded-xl bg-red-500 dark:bg-red-400 text-white text-sm font-semibold py-1 hover:opacity-90 transition">Eliminar</button>
+      </div>
+      <button class="w-full rounded-xl bg-gray-500 dark:bg-gray-700 text-white text-sm font-semibold py-1 hover:opacity-90 transition">Detalle</button>
+    </div>
+  </div>
+</article>
+
+        <article class="group rounded-2xl bg-white dark:bg-neutral-900 ring-1 ring-neutral-300/50 dark:ring-neutral-800 overflow-hidden hover:shadow-lg transition shadow-sm">
+  <div class="relative">
+    <div class="aspect-[4/3] bg-neutral-100 dark:bg-neutral-400 flex items-center justify-center">
+      <img src="https://www.nike.com.pe/dw/image/v2/BJKZ_PRD/on/demandware.static/-/Sites-catalog-equinox/default/dw59540ed6/images/hi-res/198486695879_1_20250724-mrtPeru.jpeg?sw=800&sh=800"
+        alt="Nike Revolution 7" class="w-full h-full object-contain p-4" style="mix-blend-mode: multiply;">
+    </div>
+    <span class="absolute top-2 right-2 px-2 py-1 rounded-lg text-xs font-semibold bg-green-400 dark:bg-green-400 text-neutral-900">Stock: Alto</span>
+  </div>
+  <div class="p-4 space-y-2">
+    <h4 class="text-sm font-semibold truncate">Nike Revolution 7</h4>
+    <p class="text-xs text-neutral-500 dark:text-neutral-400 truncate">Running • Mujer</p>
+    <div class="flex justify-between items-center">
+      <span class="text-base font-bold">S/ 259.00</span>
+      <div class="flex gap-1">
+        <img src="https://www.nike.com.pe/dw/image/v2/BJKZ_PRD/on/demandware.static/-/Sites-catalog-equinox/default/dw59540ed6/images/hi-res/198486695879_1_20250724-mrtPeru.jpeg?sw=800&sh=800"
+          class="w-6 h-6 rounded border border-neutral-200 dark:border-neutral-700 object-contain" alt="">
+        <img src="https://www.nike.com.pe/dw/image/v2/BJKZ_PRD/on/demandware.static/-/Sites-catalog-equinox/default/dw59540ed6/images/hi-res/198486695879_1_20250724-mrtPeru.jpeg?sw=800&sh=800"
+          class="w-6 h-6 rounded border border-neutral-200 dark:border-neutral-700 object-contain" alt="">
+      </div>
+    </div>
+
+    <!-- BOTONES ADMIN -->
+    <div class="flex flex-col gap-2 mt-2">
+      <div class="flex gap-2 justify-center">
+      <button class="flex-1 rounded-xl bg-blue-500 dark:bg-blue-400 text-white text-sm font-semibold py-1 hover:opacity-90 transition">Editar</button>
+      <button class="flex-1 rounded-xl bg-red-500 dark:bg-red-400 text-white text-sm font-semibold py-1 hover:opacity-90 transition">Eliminar</button>
+      </div>
+      <button class="w-full rounded-xl bg-gray-500 dark:bg-gray-700 text-white text-sm font-semibold py-1 hover:opacity-90 transition">Detalle</button>
+    </div>
+  </div>
+</article>
+
+        <article class="group rounded-2xl bg-white dark:bg-neutral-900 ring-1 ring-neutral-300/50 dark:ring-neutral-800 overflow-hidden hover:shadow-lg transition shadow-sm">
+  <div class="relative">
+    <div class="aspect-[4/3] bg-neutral-100 dark:bg-neutral-400 flex items-center justify-center">
+      <img src="https://www.nike.com.pe/dw/image/v2/BJKZ_PRD/on/demandware.static/-/Sites-catalog-equinox/default/dw59540ed6/images/hi-res/198486695879_1_20250724-mrtPeru.jpeg?sw=800&sh=800"
+        alt="Nike Revolution 7" class="w-full h-full object-contain p-4" style="mix-blend-mode: multiply;">
+    </div>
+    <span class="absolute top-2 right-2 px-2 py-1 rounded-lg text-xs font-semibold bg-green-400 dark:bg-green-400 text-neutral-900">Stock: Alto</span>
+  </div>
+  <div class="p-4 space-y-2">
+    <h4 class="text-sm font-semibold truncate">Nike Revolution 7</h4>
+    <p class="text-xs text-neutral-500 dark:text-neutral-400 truncate">Running • Mujer</p>
+    <div class="flex justify-between items-center">
+      <span class="text-base font-bold">S/ 259.00</span>
+      <div class="flex gap-1">
+        <img src="https://www.nike.com.pe/dw/image/v2/BJKZ_PRD/on/demandware.static/-/Sites-catalog-equinox/default/dw59540ed6/images/hi-res/198486695879_1_20250724-mrtPeru.jpeg?sw=800&sh=800"
+          class="w-6 h-6 rounded border border-neutral-200 dark:border-neutral-700 object-contain" alt="">
+        <img src="https://www.nike.com.pe/dw/image/v2/BJKZ_PRD/on/demandware.static/-/Sites-catalog-equinox/default/dw59540ed6/images/hi-res/198486695879_1_20250724-mrtPeru.jpeg?sw=800&sh=800"
+          class="w-6 h-6 rounded border border-neutral-200 dark:border-neutral-700 object-contain" alt="">
+      </div>
+    </div>
+
+    <!-- BOTONES ADMIN -->
+    <div class="flex flex-col gap-2 mt-2">
+      <div class="flex gap-2 justify-center">
+      <button class="flex-1 rounded-xl bg-blue-500 dark:bg-blue-400 text-white text-sm font-semibold py-1 hover:opacity-90 transition">Editar</button>
+      <button class="flex-1 rounded-xl bg-red-500 dark:bg-red-400 text-white text-sm font-semibold py-1 hover:opacity-90 transition">Eliminar</button>
+      </div>
+      <button class="w-full rounded-xl bg-gray-500 dark:bg-gray-700 text-white text-sm font-semibold py-1 hover:opacity-90 transition">Detalle</button>
+    </div>
+  </div>
+</article>
+
+        <article class="group rounded-2xl bg-white dark:bg-neutral-900 ring-1 ring-neutral-300/50 dark:ring-neutral-800 overflow-hidden hover:shadow-lg transition shadow-sm">
+  <div class="relative">
+    <div class="aspect-[4/3] bg-neutral-100 dark:bg-neutral-400 flex items-center justify-center">
+      <img src="https://www.nike.com.pe/dw/image/v2/BJKZ_PRD/on/demandware.static/-/Sites-catalog-equinox/default/dw59540ed6/images/hi-res/198486695879_1_20250724-mrtPeru.jpeg?sw=800&sh=800"
+        alt="Nike Revolution 7" class="w-full h-full object-contain p-4" style="mix-blend-mode: multiply;">
+    </div>
+    <span class="absolute top-2 right-2 px-2 py-1 rounded-lg text-xs font-semibold bg-green-400 dark:bg-green-400 text-neutral-900">Stock: Alto</span>
+  </div>
+  <div class="p-4 space-y-2">
+    <h4 class="text-sm font-semibold truncate">Nike Revolution 7</h4>
+    <p class="text-xs text-neutral-500 dark:text-neutral-400 truncate">Running • Mujer</p>
+    <div class="flex justify-between items-center">
+      <span class="text-base font-bold">S/ 259.00</span>
+      <div class="flex gap-1">
+        <img src="https://www.nike.com.pe/dw/image/v2/BJKZ_PRD/on/demandware.static/-/Sites-catalog-equinox/default/dw59540ed6/images/hi-res/198486695879_1_20250724-mrtPeru.jpeg?sw=800&sh=800"
+          class="w-6 h-6 rounded border border-neutral-200 dark:border-neutral-700 object-contain" alt="">
+        <img src="https://www.nike.com.pe/dw/image/v2/BJKZ_PRD/on/demandware.static/-/Sites-catalog-equinox/default/dw59540ed6/images/hi-res/198486695879_1_20250724-mrtPeru.jpeg?sw=800&sh=800"
+          class="w-6 h-6 rounded border border-neutral-200 dark:border-neutral-700 object-contain" alt="">
+      </div>
+    </div>
+
+    <!-- BOTONES ADMIN -->
+    <div class="flex flex-col gap-2 mt-2">
+      <div class="flex gap-2 justify-center">
+      <button class="flex-1 rounded-xl bg-blue-500 dark:bg-blue-400 text-white text-sm font-semibold py-1 hover:opacity-90 transition">Editar</button>
+      <button class="flex-1 rounded-xl bg-red-500 dark:bg-red-400 text-white text-sm font-semibold py-1 hover:opacity-90 transition">Eliminar</button>
+      </div>
+      <button class="w-full rounded-xl bg-gray-500 dark:bg-gray-700 text-white text-sm font-semibold py-1 hover:opacity-90 transition">Detalle</button>
+    </div>
+  </div>
+</article>
+
+        <article class="group rounded-2xl bg-white dark:bg-neutral-900 ring-1 ring-neutral-300/50 dark:ring-neutral-800 overflow-hidden hover:shadow-lg transition shadow-sm">
+  <div class="relative">
+    <div class="aspect-[4/3] bg-neutral-100 dark:bg-neutral-400 flex items-center justify-center">
+      <img src="https://www.nike.com.pe/dw/image/v2/BJKZ_PRD/on/demandware.static/-/Sites-catalog-equinox/default/dw59540ed6/images/hi-res/198486695879_1_20250724-mrtPeru.jpeg?sw=800&sh=800"
+        alt="Nike Revolution 7" class="w-full h-full object-contain p-4" style="mix-blend-mode: multiply;">
+    </div>
+    <span class="absolute top-2 right-2 px-2 py-1 rounded-lg text-xs font-semibold bg-green-400 dark:bg-green-400 text-neutral-900">Stock: Alto</span>
+  </div>
+  <div class="p-4 space-y-2">
+    <h4 class="text-sm font-semibold truncate">Nike Revolution 7</h4>
+    <p class="text-xs text-neutral-500 dark:text-neutral-400 truncate">Running • Mujer</p>
+    <div class="flex justify-between items-center">
+      <span class="text-base font-bold">S/ 259.00</span>
+      <div class="flex gap-1">
+        <img src="https://www.nike.com.pe/dw/image/v2/BJKZ_PRD/on/demandware.static/-/Sites-catalog-equinox/default/dw59540ed6/images/hi-res/198486695879_1_20250724-mrtPeru.jpeg?sw=800&sh=800"
+          class="w-6 h-6 rounded border border-neutral-200 dark:border-neutral-700 object-contain" alt="">
+        <img src="https://www.nike.com.pe/dw/image/v2/BJKZ_PRD/on/demandware.static/-/Sites-catalog-equinox/default/dw59540ed6/images/hi-res/198486695879_1_20250724-mrtPeru.jpeg?sw=800&sh=800"
+          class="w-6 h-6 rounded border border-neutral-200 dark:border-neutral-700 object-contain" alt="">
+      </div>
+    </div>
+
+    <!-- BOTONES ADMIN -->
+    <div class="flex flex-col gap-2 mt-2">
+      <div class="flex gap-2 justify-center">
+      <button class="flex-1 rounded-xl bg-blue-500 dark:bg-blue-400 text-white text-sm font-semibold py-1 hover:opacity-90 transition">Editar</button>
+      <button class="flex-1 rounded-xl bg-red-500 dark:bg-red-400 text-white text-sm font-semibold py-1 hover:opacity-90 transition">Eliminar</button>
+      </div>
+      <button class="w-full rounded-xl bg-gray-500 dark:bg-gray-700 text-white text-sm font-semibold py-1 hover:opacity-90 transition">Detalle</button>
+    </div>
+  </div>
+</article>
+
+        <article class="group rounded-2xl bg-white dark:bg-neutral-900 ring-1 ring-neutral-300/50 dark:ring-neutral-800 overflow-hidden hover:shadow-lg transition shadow-sm">
+  <div class="relative">
+    <div class="aspect-[4/3] bg-neutral-100 dark:bg-neutral-400 flex items-center justify-center">
+      <img src="https://www.nike.com.pe/dw/image/v2/BJKZ_PRD/on/demandware.static/-/Sites-catalog-equinox/default/dw59540ed6/images/hi-res/198486695879_1_20250724-mrtPeru.jpeg?sw=800&sh=800"
+        alt="Nike Revolution 7" class="w-full h-full object-contain p-4" style="mix-blend-mode: multiply;">
+    </div>
+    <span class="absolute top-2 right-2 px-2 py-1 rounded-lg text-xs font-semibold bg-green-400 dark:bg-green-400 text-neutral-900">Stock: Alto</span>
+  </div>
+  <div class="p-4 space-y-2">
+    <h4 class="text-sm font-semibold truncate">Nike Revolution 7</h4>
+    <p class="text-xs text-neutral-500 dark:text-neutral-400 truncate">Running • Mujer</p>
+    <div class="flex justify-between items-center">
+      <span class="text-base font-bold">S/ 259.00</span>
+      <div class="flex gap-1">
+        <img src="https://www.nike.com.pe/dw/image/v2/BJKZ_PRD/on/demandware.static/-/Sites-catalog-equinox/default/dw59540ed6/images/hi-res/198486695879_1_20250724-mrtPeru.jpeg?sw=800&sh=800"
+          class="w-6 h-6 rounded border border-neutral-200 dark:border-neutral-700 object-contain" alt="">
+        <img src="https://www.nike.com.pe/dw/image/v2/BJKZ_PRD/on/demandware.static/-/Sites-catalog-equinox/default/dw59540ed6/images/hi-res/198486695879_1_20250724-mrtPeru.jpeg?sw=800&sh=800"
+          class="w-6 h-6 rounded border border-neutral-200 dark:border-neutral-700 object-contain" alt="">
+      </div>
+    </div>
+
+    <!-- BOTONES ADMIN -->
+    <div class="flex flex-col gap-2 mt-2">
+      <div class="flex gap-2 justify-center">
+      <button class="flex-1 rounded-xl bg-blue-500 dark:bg-blue-400 text-white text-sm font-semibold py-1 hover:opacity-90 transition">Editar</button>
+      <button class="flex-1 rounded-xl bg-red-500 dark:bg-red-400 text-white text-sm font-semibold py-1 hover:opacity-90 transition">Eliminar</button>
+      </div>
+      <button class="w-full rounded-xl bg-gray-500 dark:bg-gray-700 text-white text-sm font-semibold py-1 hover:opacity-90 transition">Detalle</button>
+    </div>
+  </div>
+</article>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
