@@ -3,6 +3,7 @@ import { Routes } from '@angular/router';
 import { InicioComponent } from './pages/inicio/inicio.component';
 import { LayoutComponent } from './layout/layout.component';
 import { UsuariosComponent } from './pages/usuarios/usuarios.component';
+import { CatalogoComponent } from './pages/catalogo/catalogo.component';
 
 export const ADMIN_ROUTES: Routes = [
     {
@@ -11,6 +12,7 @@ export const ADMIN_ROUTES: Routes = [
         children: [
             { path: '', component: InicioComponent, pathMatch: 'full' },
             { path: 'usuarios', component: UsuariosComponent},
+            { path: 'catalogo', component: CatalogoComponent},
         ]
     }
 ];
