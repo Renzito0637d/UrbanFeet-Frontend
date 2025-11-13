@@ -3,11 +3,12 @@ import { MatDialogRef, MatDialog } from '@angular/material/dialog';
 import { HeaderComponent } from '../header/header.component';
 import { RegisterComponent } from '../register/register.component';
 import { CommonModule } from '@angular/common';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
 import { LoginRequest } from '../../models/auth.model';
 import { HttpClient } from '@angular/common/http';
+import { toast } from 'ngx-sonner';
 
 @Component({
   selector: 'app-login',
@@ -51,8 +52,42 @@ export class LoginComponent {
     password: ['', [Validators.required]],
   });
 
-  // El método que se llama al enviar el formulario
+  get emailControl(): AbstractControl | null {
+    return this.loginForm.get('email');
+  }
+
+  get passwordControl(): AbstractControl | null {
+    return this.loginForm.get('password');
+  }
+
   onSubmit(): void {
+
+    if (this.loginForm.invalid) {
+
+      this.loginForm.markAllAsTouched();
+
+      if (this.emailControl?.invalid) {
+        if (this.emailControl.hasError('required')) {
+          toast.error('El campo correo no puede estar vacío.');
+          return;
+        }
+
+        if (this.emailControl.hasError('email')) {
+          toast.error('El formato del correo no es válido.');
+          return;
+        }
+      }
+
+      if (this.passwordControl?.invalid) {
+        if (this.passwordControl.hasError('required')) {
+          toast.error('El campo contraseña no puede estar vacío.');
+          return;
+        }
+      }
+
+      toast.error('Por favor, completa el formulario correctamente.');
+      return;
+    }
 
     // Creamos el DTO (Request) desde los valores del formulario
     const credentials: LoginRequest = this.loginForm.value;
@@ -65,12 +100,14 @@ export class LoginComponent {
         // El servicio (AuthService) ya guardó el estado.
         // Ahora, redirigimos al usuario
         console.log('Login exitoso:', user);
-        this.router.navigate(['/']);
+        toast.success('Login exitoso');
+        this.onCancel();
       },
       // Manejamos el ERROR
       error: (err) => {
         // El login falló (ej. 401 Credenciales incorrectas)
         console.error('Error en el login:', err);
+        toast.error('Error en el login: ' + (err.error?.message || 'Credenciales incorrectas'));
       }
     });
 
