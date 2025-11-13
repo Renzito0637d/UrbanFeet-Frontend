@@ -16,12 +16,13 @@
     <h2 class="text-2xl font-bold mb-6 text-center text-cyan-400 dark:text-cyan-300">Iniciar Sesión</h2>
 
     <!-- Formulario -->
-    <form class="space-y-4">
+    <form class="space-y-4" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
         <div>
             <label for="floatingEmail" class="block text-sm font-medium mb-1 text-black dark:text-white">Correo
                 electrónico</label>
             <input type="email" id="floatingEmail" name="email" placeholder="nombre@ejemplo.com" required
-                class="w-full px-4 py-3 rounded-xl border border-neutral-300 dark:border-neutral-700 bg-neutral-50 dark:bg-neutral-800 focus:ring-2 focus:ring-cyan-400 dark:focus:ring-cyan-300 outline-none" />
+                class="w-full px-4 py-3 rounded-xl border border-neutral-300 dark:border-neutral-700 bg-neutral-50 dark:bg-neutral-800 focus:ring-2 focus:ring-cyan-400 dark:focus:ring-cyan-300 outline-none"
+                formControlName="email" />
         </div>
 
         <div>
@@ -29,7 +30,8 @@
                 class="block text-sm font-medium mb-1 text-black dark:text-white">Contraseña</label>
             <input type="password" id="floatingPassword" name="password" placeholder="Ingrese su contraseña"
                 autocomplete="off" required
-                class="w-full px-4 py-3 rounded-xl border border-neutral-300 dark:border-neutral-700 bg-neutral-50 dark:bg-neutral-800 focus:ring-2 focus:ring-cyan-400 dark:focus:ring-cyan-300 outline-none" />
+                class="w-full px-4 py-3 rounded-xl border border-neutral-300 dark:border-neutral-700 bg-neutral-50 dark:bg-neutral-800 focus:ring-2 focus:ring-cyan-400 dark:focus:ring-cyan-300 outline-none"
+                formControlName="password" />
         </div>
 
         <input type="hidden" name="formulario" value="login">
