@@ -102,6 +102,16 @@ export class LoginComponent {
         console.log('Login exitoso:', user);
         toast.success('Login exitoso');
         this.onCancel();
+
+        if (this.authService.hasRoles(['ADMIN'])) {
+          // Si es ADMIN, lo mandamos al dashboard de admin
+          this.router.navigate(['/admin']);
+        } else {
+          // Opcional: si es CLIENTE, puedes mandarlo a sus pedidos o al inicio
+          // this.router.navigate(['/pedidos']);
+          // Si no pones nada, simplemente se quedará en la página actual (sin el modal)
+        }
+
       },
       // Manejamos el ERROR
       error: (err) => {
