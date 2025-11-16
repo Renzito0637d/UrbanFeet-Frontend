@@ -1,71 +1,93 @@
 <header
   class="transition duration-300 ease-in-out sticky top-0 z-40 backdrop-blur supports-[backdrop-filter]:bg-neutral-300/60 dark:supports-[backdrop-filter]:bg-neutral-900/40 border-b border-neutral-300/40 dark:border-neutral-800/60">
   <div class="max-w-7xl mx-auto px-6">
-    <div class="grid grid-cols-2 min-[835px]:grid-cols-[1fr_auto_1fr] items-center h-16">
+    <div class="flex items-center justify-between h-16">
 
-      <!-- Logo -->
-      <div class="justify-self-start shrink-0 flex items-center text-black dark:text-sky-100">
-        <img src="/img/logo.webp" alt="UrbanFeet" class="h-14 w-auto" />
+      <div class="flex items-center gap-6">
+        <div class="shrink-0 flex items-center text-black dark:text-sky-100">
+          <img src="/img/logo.webp" alt="UrbanFeet" class="h-14 w-auto" />
+        </div>
+
+        <nav
+          class="hidden min-[835px]:flex items-center justify-self-center text-center gap-2 text-sky-900 dark:text-sky-100">
+          <a routerLink="/"
+            routerLinkActive="bg-sky-300/85 shadow-sm dark:bg-sky-900/100 dark:border-sky-700 text-sky-950 dark:text-sky-200"
+            [routerLinkActiveOptions]="{ exact: true }"
+            class="inline-flex items-center rounded-xl bg-sky-200 dark:bg-sky-900/50 border border-sky-300 dark:border-sky-600 px-3 py-1.5 text-sm font-medium hover:bg-cyan-200/95 hover:dark:bg-sky-900/60">
+            Inicio
+          </a>
+          <a routerLink="/catalogo"
+            routerLinkActive="bg-sky-300/85 shadow-sm dark:bg-sky-900/100 dark:border-sky-700 text-sky-950 dark:text-sky-200"
+            class="inline-flex items-center rounded-xl bg-sky-200 dark:bg-sky-900/50 border border-sky-300 dark:border-sky-600 px-3 py-1.5 text-sm font-medium hover:bg-cyan-200/95 hover:dark:bg-sky-900/60">
+            Catalogo
+          </a>
+          <a routerLink="/nosotros"
+            routerLinkActive="bg-sky-300/85 shadow-sm dark:bg-sky-900/100 dark:border-sky-700 text-sky-950 dark:text-sky-200"
+            class="inline-flex items-center rounded-xl bg-sky-200 dark:bg-sky-900/50 border border-sky-300 dark:border-sky-600 px-3 py-1.5 text-sm font-medium hover:bg-cyan-200/95 hover:dark:bg-sky-900/60">
+            Nosotros
+          </a>
+          <a routerLink="/contactanos"
+            routerLinkActive="bg-sky-300/85 shadow-sm dark:bg-sky-900/100 dark:border-sky-700 text-sky-950 dark:text-sky-200"
+            class="inline-flex items-center rounded-xl bg-sky-200 dark:bg-sky-900/50 border border-sky-300 dark:border-sky-600 px-3 py-1.5 text-sm font-medium hover:bg-cyan-200/95 hover:dark:bg-sky-900/60">
+            Contactanos
+          </a>
+          <a routerLink="/redes"
+            routerLinkActive="bg-sky-300/85 shadow-sm dark:bg-sky-900/100 dark:border-sky-700 text-sky-950 dark:text-sky-200"
+            class="inline-flex items-center rounded-xl bg-sky-200 dark:bg-sky-900/50 border border-sky-300 dark:border-sky-600 px-3 py-1.5 text-sm font-medium hover:bg-cyan-200/95 hover:dark:bg-sky-900/60">
+            Redes
+          </a>
+          <a routerLink="/pedidos"
+            routerLinkActive="bg-sky-300/85 shadow-sm dark:bg-sky-900/100 dark:border-sky-700 text-sky-950 dark:text-sky-200"
+            class="inline-flex items-center rounded-xl bg-sky-200 dark:bg-sky-900/50 border border-sky-300 dark:border-sky-600 px-3 py-1.5 text-sm font-medium hover:bg-cyan-200/95 hover:dark:bg-sky-900/60">
+            Mis pedidos
+          </a>
+        </nav>
       </div>
 
-      <!-- Navegación de Escritorio (Desktop) -->
-      <nav
-        class="hidden min-[835px]:flex items-center justify-self-center text-center gap-2 text-sky-900 dark:text-sky-100">
-        <a routerLink="/"
-          routerLinkActive="bg-sky-300/85 shadow-sm dark:bg-sky-900/100 dark:border-sky-700 text-sky-950 dark:text-sky-200"
-          [routerLinkActiveOptions]="{ exact: true }"
-          class="inline-flex items-center rounded-xl bg-sky-200 dark:bg-sky-900/50 border border-sky-300 dark:border-sky-600 px-3 py-1.5 text-sm font-medium hover:bg-cyan-200/95 hover:dark:bg-sky-900/60">
-          Inicio
-        </a>
-        <a routerLink="/catalogo"
-          routerLinkActive="bg-sky-300/85 shadow-sm dark:bg-sky-900/100 dark:border-sky-700 text-sky-950 dark:text-sky-200"
-          class="inline-flex items-center rounded-xl bg-sky-200 dark:bg-sky-900/50 border border-sky-300 dark:border-sky-600 px-3 py-1.5 text-sm font-medium hover:bg-cyan-200/95 hover:dark:bg-sky-900/60">
-          Catalogo
-        </a>
-        <a routerLink="/nosotros"
-          routerLinkActive="bg-sky-300/85 shadow-sm dark:bg-sky-900/100 dark:border-sky-700 text-sky-950 dark:text-sky-200"
-          class="inline-flex items-center rounded-xl bg-sky-200 dark:bg-sky-900/50 border border-sky-300 dark:border-sky-600 px-3 py-1.5 text-sm font-medium hover:bg-cyan-200/95 hover:dark:bg-sky-900/60">
-          Nosotros
-        </a>
-        <a routerLink="/contactanos"
-          routerLinkActive="bg-sky-300/85 shadow-sm dark:bg-sky-900/100 dark:border-sky-700 text-sky-950 dark:text-sky-200"
-          class="inline-flex items-center rounded-xl bg-sky-200 dark:bg-sky-900/50 border border-sky-300 dark:border-sky-600 px-3 py-1.5 text-sm font-medium hover:bg-cyan-200/95 hover:dark:bg-sky-900/60">
-          Contactanos
-        </a>
-        <a routerLink="/redes"
-          routerLinkActive="bg-sky-300/85 shadow-sm dark:bg-sky-900/100 dark:border-sky-700 text-sky-950 dark:text-sky-200"
-          class="inline-flex items-center rounded-xl bg-sky-200 dark:bg-sky-900/50 border border-sky-300 dark:border-sky-600 px-3 py-1.5 text-sm font-medium hover:bg-cyan-200/95 hover:dark:bg-sky-900/60">
-          Redes
-        </a>
-        <a routerLink="/pedidos"
-          routerLinkActive="bg-sky-300/85 shadow-sm dark:bg-sky-900/100 dark:border-sky-700 text-sky-950 dark:text-sky-200"
-          class="inline-flex items-center rounded-xl bg-sky-200 dark:bg-sky-900/50 border border-sky-300 dark:border-sky-600 px-3 py-1.5 text-sm font-medium hover:bg-cyan-200/95 hover:dark:bg-sky-900/60">
-          Mis pedidos
-        </a>
-      </nav>
-
-      <!-- Acciones de Escritorio y Botón Móvil -->
       <div class="flex justify-end items-center h-16 gap-4">
-        <!-- Acciones de Escritorio -->
         <div class="hidden min-[835px]:flex items-center gap-4">
-          <app-themetoggle class="h-8 flex items-center" />
-          <button (click)="openDialog('300ms', '300ms')"
+          <app-themetoggle class="h-8 flex items-center ml-3" />
+
+          <button *ngIf="!(isLoggedIn$ | async)" (click)="openDialog()"
             class="px-4 py-2 bg-sky-500 hover:bg-sky-600 rounded-lg text-sm font-medium text-white transition">
             Iniciar Sesión
           </button>
+
+          <div *ngIf="currentUser$ | async as user" class="flex items-center gap-3">
+            <a routerLink="/carrito"
+              routerLinkActive="bg-sky-300/85 shadow-sm dark:bg-sky-900/100 dark:border-sky-700 text-sky-950 dark:text-sky-200"
+              aria-label="Ver carrito" title="Ver carrito"
+              class="inline-flex items-center justify-center rounded-xl bg-sky-200 dark:bg-sky-900/50 border border-sky-300 dark:border-sky-600 p-2 text-sm font-medium hover:bg-cyan-200/95 hover:dark:bg-sky-900/60">
+              <mat-icon>shopping_cart</mat-icon>
+            </a>
+            <img
+              [src]="'https://ui-avatars.com/api/?name=' + user.nombre+'%20'+user.apellido+'&size=45&background=random&color=fff'"
+              alt="Avatar LS" class="rounded-4xl">
+            <div class="grid">
+              <span class="text-sm font-medium text-sky-900 dark:text-sky-100 hidden lg:inline" [title]="user.email">
+                {{ user.nombre}}
+                <span>{{user.apellido}}</span>
+              </span>
+              <span class="text-sm font-medium text-sky-900 dark:text-sky-100 hidden lg:inline" [title]="user.email">
+                {{ user.email.split('@')[0] }}&#64;...
+              </span>
+            </div>
+            <button (click)="onLogout()" aria-label="Cerrar Sesión" title="Cerrar Sesión"
+              class="px-2 pt-2 pb-1 bg-red-500 hover:bg-red-800 rounded-lg text-sm font-medium text-white transition">
+              <mat-icon>logout</mat-icon>
+            </button>
+          </div>
+
         </div>
         <app-themetoggle class="h-8 flex items-center min-[835px]:hidden" />
-        <!-- Botón de Menú Móvil (Hamburguesa) -->
         <button (click)="toggleMenu()" type="button"
           class="min-[835px]:hidden p-2 rounded-md text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-neutral-800 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-sky-500"
           aria-controls="mobile-menu" [attr.aria-expanded]="isMenuOpen()">
           <span class="sr-only">Abrir menú principal</span>
-          <!-- Icono de Hamburguesa -->
           <svg *ngIf="!isMenuOpen()" class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none"
             viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
           </svg>
-          <!-- Icono de Cerrar (X) -->
           <svg *ngIf="isMenuOpen()" class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none"
             viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
@@ -134,10 +156,36 @@
 
       <!-- Pie del Panel -->
       <div class="p-4 border-t border-neutral-300/40 dark:border-neutral-800/60 space-y-4">
-        <button (click)="openDialog('300ms', '300ms'); toggleMenu();"
+
+        <button *ngIf="!(isLoggedIn$ | async)" (click)="openDialog(); toggleMenu();"
           class="w-full px-4 py-2 bg-sky-500 hover:bg-sky-600 rounded-lg text-sm font-medium text-white transition">
           Iniciar Sesión
         </button>
+
+        <!-- 2. Mostrar si SÍ está logueado (Usuario) -->
+        <div *ngIf="currentUser$ | async as user" class="flex flex-col items-center space-y-3">
+
+          <img
+            [src]="'https://ui-avatars.com/api/?name=' + user.nombre+'%20'+user.apellido+'&size=45&background=random&color=fff'"
+            alt="Avatar LS" class="rounded-full w-12 h-12">
+
+          <div class="text-center">
+            <span class="text-sm font-medium text-sky-900 dark:text-sky-100"
+              [title]="user.nombre + ' ' + user.apellido">
+              {{ user.nombre}} {{user.apellido}}
+            </span>
+            <span class="block text-xs text-gray-600 dark:text-gray-400 truncate" [title]="user.email">
+              {{ user.email }}
+            </span>
+          </div>
+
+          <button (click)="onLogout()"
+            class="w-full px-4 py-2 bg-red-500 hover:bg-red-600 rounded-lg text-sm font-medium text-white transition flex items-center justify-center gap-2">
+            <mat-icon>logout</mat-icon>
+            <span>Cerrar Sesión</span>
+          </button>
+        </div>
+
       </div>
     </div>
   </div>

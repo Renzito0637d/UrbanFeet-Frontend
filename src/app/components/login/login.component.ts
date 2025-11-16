@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
-import { MatDialogRef, MatDialog } from '@angular/material/dialog';
+import { MatDialogRef, MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { HeaderComponent } from '../header/header.component';
 import { RegisterComponent } from '../register/register.component';
 import { CommonModule } from '@angular/common';
@@ -14,6 +14,7 @@ import { toast } from 'ngx-sonner';
   selector: 'app-login',
   standalone: true,
   imports: [
+    MatDialogModule,
     CommonModule,
     ReactiveFormsModule
   ],
@@ -30,12 +31,13 @@ export class LoginComponent {
 
   readonly dialog = inject(MatDialog);
 
-  openDialog(enterAnimationDuration: string, exitAnimationDuration: string): void {
-    this.dialog.open(RegisterComponent, {
-      width: '700px',
-      height: '600px',
-      enterAnimationDuration,
-      exitAnimationDuration,
+  openDialog() {
+    const dialogRef = this.dialog.open(RegisterComponent,{
+
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
     });
   }
 
@@ -68,7 +70,7 @@ export class LoginComponent {
 
       if (this.emailControl?.invalid) {
         if (this.emailControl.hasError('required')) {
-          toast.error('El campo correo no puede estar vacío.');
+          toast.error('El correo no puede estar vacío.');
           return;
         }
 
@@ -80,7 +82,7 @@ export class LoginComponent {
 
       if (this.passwordControl?.invalid) {
         if (this.passwordControl.hasError('required')) {
-          toast.error('El campo contraseña no puede estar vacío.');
+          toast.error('La contraseña no puede estar vacío.');
           return;
         }
       }

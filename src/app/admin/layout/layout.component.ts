@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, ViewChild, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';   // 👈 aquí está async pipe
 
-import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
+import { Router, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { MatSidenavModule, MatSidenav } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -10,6 +10,10 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDividerModule } from '@angular/material/divider';
 import { ThemetoggleComponent } from '../../components/themetoggle/themetoggle.component';
+import { AuthService } from '../../services/auth.service';
+import { Observable } from 'rxjs';
+import { User } from '../../models/auth.model';
+import { toast } from 'ngx-sonner';
 @Component({
   selector: 'app-layout',
   standalone: true,
@@ -23,7 +27,7 @@ import { ThemetoggleComponent } from '../../components/themetoggle/themetoggle.c
 
     ThemetoggleComponent
   ], templateUrl: './layout.component.html',
-    changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 
   styleUrl: './layout.component.css'
 })
@@ -39,4 +43,24 @@ export class LayoutComponent {
       if (s.matches && this.drawer?.opened) this.drawer.close();
     }).unsubscribe();
   }
+
+  private authService = inject(AuthService); // <--- AÑADIR
+  private router = inject(Router); // <--- AÑADIR
+
+  // --- Observables (nuevos) ---
+  public currentUser$: Observable<User | null> = this.authService.currentUser$;
+
+  onLogout(): void {
+    this.authService.logout().subscribe({
+      next: () => {
+        toast.success('Has cerrado sesión exitosamente.');
+        this.router.navigate(['/']); // Redirigir al inicio
+      },
+      error: (err) => {
+        console.error('Error al cerrar sesión:', err);
+        toast.error('Error al cerrar sesión.');
+      }
+    });
+  }
+
 }
