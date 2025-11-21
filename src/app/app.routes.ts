@@ -8,6 +8,7 @@ import { ReclamosComponent } from './pages/reclamos/reclamos.component';
 import { MispedidosComponent } from './pages/mispedidos/mispedidos.component';
 import { CarritoComponent } from './pages/carrito/carrito.component';
 import { LayoutClienteComponent } from './components/layout-cliente/layout-cliente.component';
+import { authGuard } from './guards/auth.guard';
 
 export const routes: Routes = [
   {
@@ -20,14 +21,15 @@ export const routes: Routes = [
       { path: 'redes', component: RedesComponent },
       { path: 'contactanos', component: ContactanosComponent },
       { path: 'reclamos', component: ReclamosComponent },
-      { path: 'pedidos', component: MispedidosComponent },
-      { path: 'carrito', component: CarritoComponent },
-      // agrega aquí más páginas públicas: catalogo, contactanos, etc.
+      { path: 'pedidos', component: MispedidosComponent, canActivate: [authGuard], data: { roles: ['CLIENTE'] } },
+      { path: 'carrito', component: CarritoComponent, canActivate: [authGuard], data: { roles: ['CLIENTE'] } },
     ]
   },
 
   {
     path: 'admin',
+    canActivate: [authGuard],
+    data: { roles: ['ADMIN'] },
     loadChildren: () => import('./admin/admin.routes').then(m => m.ADMIN_ROUTES)
   },
   { path: '**', redirectTo: '' },
