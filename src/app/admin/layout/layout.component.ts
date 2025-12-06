@@ -63,4 +63,12 @@ export class LayoutComponent {
     });
   }
 
+  hasAccess(user: User | null, allowedRoles: string[]): boolean {
+    if (!user || !user.roles) return false;
+    // Si el usuario es ADMIN, le damos acceso a todo (retorna true siempre)
+    if (user.roles.includes('ROLE_ADMIN')) return true;
+
+    return allowedRoles.some(role => user.roles.includes(role));
+  }
+
 }

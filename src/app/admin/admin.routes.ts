@@ -6,6 +6,7 @@ import { UsuariosComponent } from './pages/usuarios/usuarios.component';
 import { CatalogoComponent } from './pages/catalogo/catalogo.component';
 import { PedidosComponent } from './pages/pedidos/pedidos.component';
 import { VentasComponent } from './pages/ventas/ventas.component';
+import { authGuard } from '../guards/auth.guard';
 
 export const ADMIN_ROUTES: Routes = [
     {
@@ -13,10 +14,10 @@ export const ADMIN_ROUTES: Routes = [
         component: LayoutComponent,       // layout (sidebar/topbar)
         children: [
             { path: '', component: InicioComponent, pathMatch: 'full' },
-            { path: 'usuarios', component: UsuariosComponent},
-            { path: 'catalogo', component: CatalogoComponent},
-            { path: 'pedidos', component: PedidosComponent},
-            { path: 'ventas', component: VentasComponent}
+            { path: 'usuarios', component: UsuariosComponent, canActivate: [authGuard], data: { roles: ['ADMIN'] } },
+            { path: 'catalogo', component: CatalogoComponent, canActivate: [authGuard], data: { roles: ['INVENTARIO','ADMIN'] } },
+            { path: 'pedidos', component: PedidosComponent, canActivate: [authGuard], data: { roles: ['PEDIDOS','ADMIN'] } },
+            { path: 'ventas', component: VentasComponent, canActivate: [authGuard], data: { roles: ['VENTAS','ADMIN'] } },
         ]
     }
 ];
