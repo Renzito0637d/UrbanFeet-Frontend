@@ -57,4 +57,11 @@ export class HeaderComponent {
     });
   }
 
+  isInternal(user: User): boolean {
+    if (!user || !user.roles) return false;
+    const internalRoles = ['ROLE_ADMIN', 'ROLE_VENTAS', 'ROLE_INVENTARIO', 'ROLE_PEDIDOS'];
+    // Verifica si el usuario tiene al menos uno de los roles internos
+    return user.roles.some(role => internalRoles.includes(role));
+  }
+
 }

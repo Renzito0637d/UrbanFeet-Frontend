@@ -32,7 +32,6 @@
        [class.cursor-not-allowed]="!hasAccess(user, ['ROLE_ADMIN'])">
       <mat-icon matListItemIcon class="!text-cyan-400 dark:!text-cyan-300">group</mat-icon>
       <span matListItemTitle>Usuarios</span>
-      <mat-icon *ngIf="!hasAccess(user, ['ROLE_ADMIN'])" matListItemMeta class="text-xs !text-gray-500">lock</mat-icon>
     </a>
 
     <a mat-list-item 
