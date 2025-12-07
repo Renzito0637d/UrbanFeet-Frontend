@@ -1,1 +1,41 @@
-<p>reclamaciones works!</p>
+<div class="p-6">
+  <h1 class="text-3xl font-bold text-cyan-400 mb-6">Reclamaciones Registradas</h1>
+
+  <div *ngIf="reclamos.length === 0" class="text-neutral-500">
+    No hay reclamos por el momento.
+  </div>
+
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+    <div
+      *ngFor="let r of reclamos"
+      class="bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-700 shadow rounded-xl p-6"
+    >
+
+      <div class="space-y-1 text-sm">
+        <p><strong>Nombre:</strong> {{ r.nombre }}</p>
+        <p><strong>Documento:</strong> {{ r.documento }}</p>
+        <p><strong>Domicilio:</strong> {{ r.domicilio }}</p>
+        <p><strong>Email:</strong> {{ r.email }}</p>
+        <p><strong>Teléfono:</strong> {{ r.telefono }}</p>
+      </div>
+
+      <hr class="my-4 border-neutral-300 dark:border-neutral-700" />
+
+      <div class="space-y-1 text-sm">
+        <p><strong>Producto:</strong> {{ r.producto }}</p>
+        <p><strong>Monto reclamado:</strong> S/ {{ r.monto }}</p>
+        <p><strong>Tipo:</strong> {{ r.tipo }}</p>
+        <p><strong>Detalle:</strong> {{ r.detalle }}</p>
+        <p><strong>Pedido del cliente:</strong> {{ r.pedido }}</p>
+        <p><strong>Fecha:</strong> {{ r.fecha | date:'short' }}</p>
+      </div>
+
+      <button
+        (click)="eliminar(r.id)"
+        class="mt-4 px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600"
+      >
+        Eliminar
+      </button>
+    </div>
+  </div>
+</div>
