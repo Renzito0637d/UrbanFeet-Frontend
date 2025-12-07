@@ -3,7 +3,6 @@ import { Routes } from '@angular/router';
 import { InicioComponent } from './pages/inicio/inicio.component';
 import { LayoutComponent } from './layout/layout.component';
 import { UsuariosComponent } from './pages/usuarios/usuarios.component';
-import { CatalogoComponent } from './pages/catalogo/catalogo.component';
 import { PedidosComponent } from './pages/pedidos/pedidos.component';
 import { VentasComponent } from './pages/ventas/ventas.component';
 import { authGuard } from '../guards/auth.guard';
