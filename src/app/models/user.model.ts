@@ -26,15 +26,16 @@ export interface User {
 }
 
 // Interfaz para mapear la respuesta Page<User> de Spring Boot
+export interface PageInfo {
+  size: number;
+  number: number;
+  totalElements: number;
+  totalPages: number;
+}
+
 export interface PageResponse<T> {
   content: T[];
-  totalPages: number;
-  totalElements: number;
-  size: number;
-  number: number; // Página actual (0-indexed)
-  first: boolean;
-  last: boolean;
-  empty: boolean;
+  page: PageInfo; // Ahora la info está aquí dentro
 }
 
 // Interfaz para el Request de creación (RegisterRequest)

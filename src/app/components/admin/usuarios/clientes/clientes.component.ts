@@ -46,9 +46,6 @@ export class ClientesComponent implements OnInit {
       // 1. Rellenar formulario
       this.clientForm.patchValue(this.data);
 
-      // 2. Deshabilitar campos que no deben cambiar
-      this.clientForm.get('email')?.disable();
-
       // 3. La contraseña no es obligatoria al editar (a menos que quieras cambiarla)
       this.clientForm.get('password')?.clearValidators();
       this.clientForm.get('password')?.updateValueAndValidity();

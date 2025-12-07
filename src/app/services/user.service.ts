@@ -66,7 +66,11 @@ export class UserService {
   updateUser(id: number, data: any): Observable<User> {
     return this.http.put<User>(`${this.baseUrl}/${id}`, data);
   }
-  
+
+  changePassword(id: number, password: string): Observable<void> {
+    return this.http.patch<void>(`${this.baseUrl}/${id}/password`, { password });
+  }
+
   /**
    * Eliminar usuario.
    * Endpoint: DELETE /api/users/{id}

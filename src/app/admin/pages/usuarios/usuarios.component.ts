@@ -7,11 +7,13 @@ import { User } from '../../../models/user.model';
 import { UserService } from '../../../services/user.service';
 import { toast } from 'ngx-sonner';
 import { UsuariosInternosComponent } from '../../../components/admin/usuarios/usuariosinternos/usuariosinternos.component';
+import { ChangePasswordComponent } from '../../../components/admin/usuarios/change-password/change-password.component';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-usuarios',
   standalone: true,
-  imports: [CommonModule, MatButtonModule, MatDialogModule],
+  imports: [CommonModule, MatButtonModule, MatDialogModule, MatIconModule],
   templateUrl: './usuarios.component.html',
   styleUrl: './usuarios.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush
@@ -51,10 +53,11 @@ export class UsuariosComponent implements OnInit {
       .subscribe({
         next: (resp) => {
           this.internalUsers = resp.content;
-          this.internalTotalPages = resp.totalPages;
-          this.internalTotalElements = resp.totalElements;
 
-          // 3. AVISAR A ANGULAR QUE HAY CAMBIOS
+          // CAMBIO AQUÍ: Accedemos a resp.page.XXX
+          this.internalTotalPages = resp.page.totalPages;
+          this.internalTotalElements = resp.page.totalElements;
+
           this.cdr.markForCheck();
         },
         error: (err) => console.error('Error cargando internos', err)
@@ -77,10 +80,11 @@ export class UsuariosComponent implements OnInit {
       .subscribe({
         next: (resp) => {
           this.clients = resp.content;
-          this.clientTotalPages = resp.totalPages;
-          this.clientTotalElements = resp.totalElements;
 
-          // 3. AVISAR A ANGULAR QUE HAY CAMBIOS
+          // CAMBIO AQUÍ: Accedemos a resp.page.XXX
+          this.clientTotalPages = resp.page.totalPages;
+          this.clientTotalElements = resp.page.totalElements;
+
           this.cdr.markForCheck();
         },
         error: (err) => console.error('Error cargando clientes', err)
@@ -159,5 +163,11 @@ export class UsuariosComponent implements OnInit {
     });
   }
 
+  openChangePassword(user: User) {
+    this.dialog.open(ChangePasswordComponent, {
+      width: '400px',
+      data: user
+    });
+  }
 
 }
