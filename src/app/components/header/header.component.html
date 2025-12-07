@@ -54,12 +54,15 @@
           </button>
 
           <div *ngIf="currentUser$ | async as user" class="flex items-center gap-3">
-            <a routerLink="/carrito"
+
+            <a [routerLink]="isInternal(user) ? '/admin' : '/carrito'"
               routerLinkActive="bg-sky-300/85 shadow-sm dark:bg-sky-900/100 dark:border-sky-700 text-sky-950 dark:text-sky-200"
-              aria-label="Ver carrito" title="Ver carrito"
-              class="inline-flex items-center justify-center rounded-xl bg-sky-200 dark:bg-sky-900/50 border border-sky-300 dark:border-sky-600 p-2 text-sm font-medium hover:bg-cyan-200/95 hover:dark:bg-sky-900/60">
-              <mat-icon>shopping_cart</mat-icon>
+              [attr.aria-label]="isInternal(user) ? 'Ir al Panel' : 'Ver carrito'"
+              [title]="isInternal(user) ? 'Ir al Panel' : 'Ver carrito'"
+              class="inline-flex items-center justify-center rounded-xl bg-sky-200 dark:bg-sky-900/50 border border-sky-300 dark:border-sky-600 p-2 text-sm font-medium hover:bg-cyan-200/95 hover:dark:bg-sky-900/60 transition-colors">
+              <mat-icon>{{ isInternal(user) ? 'dashboard' : 'shopping_cart' }}</mat-icon>
             </a>
+
             <img
               [src]="'https://ui-avatars.com/api/?name=' + user.nombre+'%20'+user.apellido+'&size=45&background=random&color=fff'"
               alt="Avatar LS" class="rounded-4xl">
@@ -98,18 +101,15 @@
   </div>
 </header>
 
-
 <div id="mobile-menu-container"
   class="min-[835px]:hidden fixed inset-0 z-[100] transition-opacity duration-300 ease-in-out" [ngClass]="{
           'visible pointer-events-auto opacity-100': isMenuOpen(),
           'invisible pointer-events-none opacity-0': !isMenuOpen()
         }">
 
-  <!-- Fondo (Backdrop) -->
   <div (click)="toggleMenu()" class="fixed inset-0 bg-black/50 backdrop-blur-sm" aria-hidden="true">
   </div>
 
-  <!-- Panel del Menú -->
   <div
     class="fixed top-0 right-0 bottom-0 z-[110] w-full max-w-60 bg-white dark:bg-neutral-900 shadow-xl transition-transform duration-300 ease-in-out transform"
     [ngClass]="{
@@ -117,9 +117,7 @@
               'translate-x-full': !isMenuOpen()
             }" role="dialog" aria-modal="true" aria-labelledby="mobile-menu-title">
 
-    <!-- Contenido del Panel -->
     <div class="h-full flex flex-col">
-      <!-- Enlaces de Navegación (con estilos actualizados para menú vertical) -->
       <nav class="flex-1 p-4 space-y-2 overflow-y-auto">
         <a (click)="toggleMenu()" routerLink="/"
           routerLinkActive="bg-sky-100 dark:bg-sky-900 border-sky-500 text-sky-700 dark:text-sky-200"
@@ -154,7 +152,6 @@
         </a>
       </nav>
 
-      <!-- Pie del Panel -->
       <div class="p-4 border-t border-neutral-300/40 dark:border-neutral-800/60 space-y-4">
 
         <button *ngIf="!(isLoggedIn$ | async)" (click)="openDialog(); toggleMenu();"
@@ -162,8 +159,13 @@
           Iniciar Sesión
         </button>
 
-        <!-- 2. Mostrar si SÍ está logueado (Usuario) -->
         <div *ngIf="currentUser$ | async as user" class="flex flex-col items-center space-y-3">
+
+          <a [routerLink]="isInternal(user) ? '/admin' : '/carrito'" (click)="toggleMenu()"
+            class="w-full flex items-center justify-center gap-2 px-4 py-2 bg-sky-200 dark:bg-sky-900/50 rounded-lg text-sm font-medium text-sky-900 dark:text-sky-100 transition-colors">
+            <mat-icon>{{ isInternal(user) ? 'dashboard' : 'shopping_cart' }}</mat-icon>
+            <span>{{ isInternal(user) ? 'Ir al Panel' : 'Ver Carrito' }}</span>
+          </a>
 
           <img
             [src]="'https://ui-avatars.com/api/?name=' + user.nombre+'%20'+user.apellido+'&size=45&background=random&color=fff'"

@@ -14,59 +14,60 @@
 
       <!-- Menú con grow (empuja el footer) -->
       <ng-container *ngIf="currentUser$ | async as user">
-  
-  <mat-nav-list class="grow">
 
-    <a mat-list-item routerLink="/admin" routerLinkActive="mat-mdc-list-item-active"
-      [routerLinkActiveOptions]="{ exact: true }" (click)="closeIfHandset()">
-      <mat-icon matListItemIcon class="!text-cyan-400 dark:!text-cyan-300">home</mat-icon>
-      <span matListItemTitle>Inicio</span>
-    </a>
+        <mat-nav-list class="grow">
 
-    <a mat-list-item 
-       [routerLink]="hasAccess(user, ['ADMIN']) ? '/admin/usuarios' : null"
-       routerLinkActive="mat-mdc-list-item-active"
-       (click)="hasAccess(user, ['ROLE_ADMIN']) ? closeIfHandset() : null"
-       [class.opacity-50]="!hasAccess(user, ['ROLE_ADMIN'])"
-       [class.pointer-events-none]="!hasAccess(user, ['ROLE_ADMIN'])"
-       [class.cursor-not-allowed]="!hasAccess(user, ['ROLE_ADMIN'])">
-      <mat-icon matListItemIcon class="!text-cyan-400 dark:!text-cyan-300">group</mat-icon>
-      <span matListItemTitle>Usuarios</span>
-      <mat-icon *ngIf="!hasAccess(user, ['ROLE_ADMIN'])" matListItemMeta class="text-xs !text-gray-500">lock</mat-icon>
-    </a>
+          <a mat-list-item routerLink="/admin" routerLinkActive="mat-mdc-list-item-active"
+            [routerLinkActiveOptions]="{ exact: true }" (click)="closeIfHandset()">
+            <mat-icon matListItemIcon class="!text-cyan-400 dark:!text-cyan-300">home</mat-icon>
+            <span matListItemTitle>Inicio</span>
+          </a>
 
-    <a mat-list-item 
-       [routerLink]="hasAccess(user, ['ROLE_INVENTARIO']) ? '/admin/catalogo' : null"
-       routerLinkActive="mat-mdc-list-item-active"
-       (click)="hasAccess(user, ['ROLE_INVENTARIO']) ? closeIfHandset() : null"
-       [class.opacity-50]="!hasAccess(user, ['ROLE_INVENTARIO'])"
-       [class.pointer-events-none]="!hasAccess(user, ['ROLE_INVENTARIO'])">
-      <mat-icon matListItemIcon class="!text-cyan-400 dark:!text-cyan-300">inventory_2</mat-icon>
-      <span matListItemTitle>Catálogo</span>
-    </a>
+          <a mat-list-item [routerLink]="hasAccess(user, ['ADMIN']) ? '/admin/usuarios' : null"
+            routerLinkActive="mat-mdc-list-item-active"
+            (click)="hasAccess(user, ['ROLE_ADMIN']) ? closeIfHandset() : null"
+            [class.opacity-50]="!hasAccess(user, ['ROLE_ADMIN'])"
+            [class.pointer-events-none]="!hasAccess(user, ['ROLE_ADMIN'])"
+            [class.cursor-not-allowed]="!hasAccess(user, ['ROLE_ADMIN'])">
+            <mat-icon matListItemIcon class="!text-cyan-400 dark:!text-cyan-300">group</mat-icon>
+            <span matListItemTitle>Usuarios</span>
+          </a>
 
-    <a mat-list-item 
-       [routerLink]="hasAccess(user, ['ROLE_PEDIDOS']) ? '/admin/pedidos' : null"
-       routerLinkActive="mat-mdc-list-item-active"
-       (click)="hasAccess(user, ['ROLE_PEDIDOS']) ? closeIfHandset() : null"
-       [class.opacity-50]="!hasAccess(user, ['ROLE_PEDIDOS'])"
-       [class.pointer-events-none]="!hasAccess(user, ['ROLE_PEDIDOS'])">
-      <mat-icon matListItemIcon class="!text-cyan-400 dark:!text-cyan-300">receipt_long</mat-icon>
-      <span matListItemTitle>Pedidos</span>
-    </a>
+          <a mat-list-item [routerLink]="hasAccess(user, ['ROLE_INVENTARIO']) ? '/admin/catalogo' : null"
+            routerLinkActive="mat-mdc-list-item-active"
+            (click)="hasAccess(user, ['ROLE_INVENTARIO']) ? closeIfHandset() : null"
+            [class.opacity-50]="!hasAccess(user, ['ROLE_INVENTARIO'])"
+            [class.pointer-events-none]="!hasAccess(user, ['ROLE_INVENTARIO'])">
+            <mat-icon matListItemIcon class="!text-cyan-400 dark:!text-cyan-300">inventory_2</mat-icon>
+            <span matListItemTitle>Catálogo</span>
+          </a>
 
-    <a mat-list-item 
-       [routerLink]="hasAccess(user, ['ROLE_VENTAS']) ? '/admin/ventas' : null"
-       routerLinkActive="mat-mdc-list-item-active"
-       (click)="hasAccess(user, ['ROLE_VENTAS']) ? closeIfHandset() : null"
-       [class.opacity-50]="!hasAccess(user, ['ROLE_VENTAS'])"
-       [class.pointer-events-none]="!hasAccess(user, ['ROLE_VENTAS'])">
-      <mat-icon matListItemIcon class="!text-cyan-400 dark:!text-cyan-300">local_offer</mat-icon>
-      <span matListItemTitle>Ventas</span>
-    </a>
+          <a mat-list-item [routerLink]="hasAccess(user, ['ROLE_PEDIDOS']) ? '/admin/pedidos' : null"
+            routerLinkActive="mat-mdc-list-item-active"
+            (click)="hasAccess(user, ['ROLE_PEDIDOS']) ? closeIfHandset() : null"
+            [class.opacity-50]="!hasAccess(user, ['ROLE_PEDIDOS'])"
+            [class.pointer-events-none]="!hasAccess(user, ['ROLE_PEDIDOS'])">
+            <mat-icon matListItemIcon class="!text-cyan-400 dark:!text-cyan-300">receipt_long</mat-icon>
+            <span matListItemTitle>Pedidos</span>
+          </a>
 
-  </mat-nav-list>
-</ng-container>
+          <a mat-list-item [routerLink]="hasAccess(user, ['ROLE_VENTAS']) ? '/admin/ventas' : null"
+            routerLinkActive="mat-mdc-list-item-active"
+            (click)="hasAccess(user, ['ROLE_VENTAS']) ? closeIfHandset() : null"
+            [class.opacity-50]="!hasAccess(user, ['ROLE_VENTAS'])"
+            [class.pointer-events-none]="!hasAccess(user, ['ROLE_VENTAS'])">
+            <mat-icon matListItemIcon class="!text-cyan-400 dark:!text-cyan-300">local_offer</mat-icon>
+            <span matListItemTitle>Ventas</span>
+          </a>
+
+          <a mat-list-item routerLink="/admin/reclamaciones" routerLinkActive="mat-mdc-list-item-active"
+            (click)="closeIfHandset()">
+            <mat-icon matListItemIcon class="!text-cyan-400 dark:!text-cyan-300">feedback</mat-icon>
+            <span matListItemTitle>Reclamaciones</span>
+          </a>
+
+        </mat-nav-list>
+      </ng-container>
 
       <!-- Footer (queda abajo gracias al grow del menú) -->
       <div class="p-4 border-t border-neutral-700">
