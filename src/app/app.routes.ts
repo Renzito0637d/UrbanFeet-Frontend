@@ -29,7 +29,7 @@ export const routes: Routes = [
   {
     path: 'admin',
     canActivate: [authGuard],
-    data: { roles: ['ADMIN'] },
+    data: { roles: ['ADMIN', 'PEDIDOS', 'INVENTARIO', 'VENTAS'] },
     loadChildren: () => import('./admin/admin.routes').then(m => m.ADMIN_ROUTES)
   },
   { path: '**', redirectTo: '' },
