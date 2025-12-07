@@ -7,6 +7,7 @@ import { CatalogoComponent } from './pages/catalogo/catalogo.component';
 import { PedidosComponent } from './pages/pedidos/pedidos.component';
 import { VentasComponent } from './pages/ventas/ventas.component';
 import { authGuard } from '../guards/auth.guard';
+import { ReclamacionesComponent } from './pages/reclamaciones/reclamaciones.component';
 
 export const ADMIN_ROUTES: Routes = [
     {
@@ -15,9 +16,10 @@ export const ADMIN_ROUTES: Routes = [
         children: [
             { path: '', component: InicioComponent, pathMatch: 'full' },
             { path: 'usuarios', component: UsuariosComponent, canActivate: [authGuard], data: { roles: ['ADMIN'] } },
-            { path: 'catalogo', component: CatalogoComponent, canActivate: [authGuard], data: { roles: ['INVENTARIO','ADMIN'] } },
-            { path: 'pedidos', component: PedidosComponent, canActivate: [authGuard], data: { roles: ['PEDIDOS','ADMIN'] } },
-            { path: 'ventas', component: VentasComponent, canActivate: [authGuard], data: { roles: ['VENTAS','ADMIN'] } },
+            { path: 'catalogo', component: CatalogoComponent, canActivate: [authGuard], data: { roles: ['INVENTARIO', 'ADMIN'] } },
+            { path: 'pedidos', component: PedidosComponent, canActivate: [authGuard], data: { roles: ['PEDIDOS', 'ADMIN'] } },
+            { path: 'ventas', component: VentasComponent, canActivate: [authGuard], data: { roles: ['VENTAS', 'ADMIN'] } },
+            { path: 'reclamaciones', component: ReclamacionesComponent },
         ]
     }
 ];
