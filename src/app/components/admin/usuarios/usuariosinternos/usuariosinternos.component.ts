@@ -56,7 +56,6 @@ export class UsuariosInternosComponent implements OnInit {
         role: currentRole
       });
 
-      this.internalForm.get('email')?.disable();
       this.internalForm.get('password')?.clearValidators();
       this.internalForm.get('password')?.updateValueAndValidity();
       this.internalForm.get('password')?.disable();
