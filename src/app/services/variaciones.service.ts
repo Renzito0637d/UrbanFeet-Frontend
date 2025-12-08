@@ -17,8 +17,8 @@ export class VariacionesService {
   }
 
   // POST: /zapatilla-variacion/zapatilla/{id}
-  create(zapatillaId: number, variacion: Variacion): Observable<Variacion> {
-    return this.http.post<Variacion>(`${this.baseUrl}/zapatilla/${zapatillaId}`, variacion);
+  create(zapatillaId: number, payload: any): Observable<Variacion[]> {
+    return this.http.post<Variacion[]>(`${this.baseUrl}/zapatilla/${zapatillaId}`, payload);
   }
 
   update(id: number, data: any): Observable<any> {
