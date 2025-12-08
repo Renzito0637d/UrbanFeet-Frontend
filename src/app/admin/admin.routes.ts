@@ -18,7 +18,7 @@ export const ADMIN_ROUTES: Routes = [
             { path: '', component: InicioComponent, pathMatch: 'full' },
             { path: 'usuarios', component: UsuariosComponent, canActivate: [authGuard], data: { roles: ['ADMIN'] } },
             { path: 'zapatillas', component: ZapatillasComponent, canActivate: [authGuard], data: { roles: ['INVENTARIO', 'ADMIN'] } },
-            { path: 'variaciones', component: VariacionesComponent, canActivate: [authGuard], data: { roles: ['INVENTARIO', 'ADMIN'] } },
+            { path: 'zapatillas/:id', component: VariacionesComponent, canActivate: [authGuard], data: { roles: ['INVENTARIO', 'ADMIN'] } },
             { path: 'pedidos', component: PedidosComponent, canActivate: [authGuard], data: { roles: ['PEDIDOS', 'ADMIN'] } },
             { path: 'ventas', component: VentasComponent, canActivate: [authGuard], data: { roles: ['VENTAS', 'ADMIN'] } },
             { path: 'reclamaciones', component: ReclamacionesComponent },
