@@ -75,6 +75,12 @@
             <span matListItemTitle>Reclamaciones</span>
           </a>
 
+          <a mat-list-item routerLink="/admin/sugerencias" routerLinkActive="mat-mdc-list-item-active"
+            (click)="closeIfHandset()">
+            <mat-icon matListItemIcon class="!text-cyan-400 dark:!text-cyan-300">lightbulb_outline</mat-icon>
+            <span matListItemTitle>Sugerencias</span>
+          </a>
+
         </mat-nav-list>
       </ng-container>
 
