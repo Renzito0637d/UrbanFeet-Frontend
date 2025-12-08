@@ -9,6 +9,7 @@ import { authGuard } from '../guards/auth.guard';
 import { ReclamacionesComponent } from './pages/reclamaciones/reclamaciones.component';
 import { ZapatillasComponent } from './pages/zapatillas/zapatillas.component';
 import { VariacionesComponent } from './pages/variaciones/variaciones.component';
+import { SugerennciasComponent } from './pages/sugerenncias/sugerenncias.component';
 
 export const ADMIN_ROUTES: Routes = [
     {
@@ -22,6 +23,7 @@ export const ADMIN_ROUTES: Routes = [
             { path: 'pedidos', component: PedidosComponent, canActivate: [authGuard], data: { roles: ['PEDIDOS', 'ADMIN'] } },
             { path: 'ventas', component: VentasComponent, canActivate: [authGuard], data: { roles: ['VENTAS', 'ADMIN'] } },
             { path: 'reclamaciones', component: ReclamacionesComponent },
+            { path: 'sugerencias', component: SugerennciasComponent },
         ]
     }
 ];
