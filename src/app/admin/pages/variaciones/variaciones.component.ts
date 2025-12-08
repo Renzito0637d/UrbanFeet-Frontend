@@ -114,4 +114,34 @@ export class VariacionesComponent implements OnInit {
       });
     }
   }
+
+  getColorStyle(colorName: string): any {
+    if (!colorName) return {};
+
+    // Normalizamos para comparar (ignorar mayúsculas)
+    const color = colorName.toLowerCase();
+
+    switch (color) {
+      case 'negro':
+        return { backgroundColor: '#171717' }; // neutral-900
+      case 'blanco':
+        return { backgroundColor: '#ffffff' };
+      case 'rojo':
+        return { backgroundColor: '#ef4444' }; // red-500
+      case 'azul':
+        return { backgroundColor: '#3b82f6' }; // blue-500
+      case 'verde':
+        return { backgroundColor: '#22c55e' }; // green-500
+      case 'amarillo':
+        return { backgroundColor: '#eab308' }; // yellow-500
+      case 'otros':
+        // Círculo multicolor (Arcoiris)
+        return { 
+          background: 'conic-gradient(red, orange, yellow, green, blue, indigo, violet, red)' 
+        };
+      default:
+        // Si no coincide, intentamos usar el valor tal cual (por si guardaste un Hex)
+        return { backgroundColor: colorName };
+    }
+  }
 }

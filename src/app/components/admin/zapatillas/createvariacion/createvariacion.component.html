@@ -24,9 +24,26 @@
 
                 <div class="space-y-1.5">
                     <label class="block text-sm font-semibold text-neutral-700 dark:text-neutral-300">Color</label>
-                    <input type="text" formControlName="color" placeholder="Ej. Rojo / Negro"
-                        class="w-full rounded-xl border bg-neutral-50 dark:bg-neutral-800 px-4 py-2.5 text-sm outline-none transition-all focus:ring-2 focus:ring-indigo-500 focus:bg-white dark:focus:bg-neutral-900"
-                        [ngClass]="{'border-red-500': isInvalid('color'), 'border-neutral-300 dark:border-neutral-700': !isInvalid('color')}">
+                    <div class="relative">
+                        <select formControlName="color"
+                            class="w-full appearance-none rounded-xl border bg-neutral-50 dark:bg-neutral-800 px-4 py-2.5 text-sm outline-none transition-all focus:ring-2 focus:ring-indigo-500 focus:bg-white dark:focus:bg-neutral-900 cursor-pointer"
+                            [ngClass]="{'border-red-500': isInvalid('color'), 'border-neutral-300 dark:border-neutral-700': !isInvalid('color')}">
+                            <option value="" disabled selected>Seleccionar</option>
+                            <option value="Negro">Negro</option>
+                            <option value="Blanco">Blanco</option>
+                            <option value="Rojo">Rojo</option>
+                            <option value="Azul">Azul</option>
+                            <option value="Verde">Verde</option>
+                            <option value="Amarillo">Amarillo</option>
+                            <option value="Otros">Otros</option>
+                        </select>
+                        <!-- Icono Flecha -->
+                        <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-neutral-500">
+                            <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                            </svg>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="space-y-1.5">
