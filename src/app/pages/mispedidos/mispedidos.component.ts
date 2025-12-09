@@ -5,6 +5,7 @@ import { RouterLink } from '@angular/router';
 import { PedidoService } from '../../services/pedido.service'; // Ajusta ruta
 import { PedidoResponse } from '../../models/pedido.model'; // Ajusta ruta
 import { MatIconModule } from '@angular/material/icon';
+import { toast } from 'ngx-sonner';
 
 @Component({
   selector: 'app-mispedidos',
@@ -62,5 +63,27 @@ export class MispedidosComponent implements OnInit {
   calcularTotal(pedido: PedidoResponse): number {
     if (!pedido.detalles) return 0;
     return pedido.detalles.reduce((acc, d) => acc + d.precioTotal, 0);
+  }
+
+  cancelarPedido(id: number) {
+    if (!confirm('¿Estás seguro de que deseas cancelar este pedido? Esta acción restaurará el stock.')) {
+      return;
+    }
+
+    // Bloqueo visual simple (opcional)
+    this.loading = true;
+
+    this.pedidoService.cancelarPedido(id).subscribe({
+      next: () => {
+        toast.success('Pedido cancelado correctamente');
+        // Recargamos la lista para ver el cambio de estado a "CANCELADO"
+        this.cargarPedidos();
+      },
+      error: (err) => {
+        console.error(err);
+        toast.error('No se pudo cancelar el pedido');
+        this.loading = false;
+      }
+    });
   }
 }

@@ -17,4 +17,9 @@ export class PedidoService {
   listarMisPedidos(): Observable<PedidoResponse[]> {
     return this.http.get<PedidoResponse[]>(this.baseUrl);
   }
+
+  cancelarPedido(id: number): Observable<void> {
+    // PATCH suele requerir un cuerpo, aunque sea vacío
+    return this.http.patch<void>(`${this.baseUrl}/${id}/cancelar`, {});
+  }
 }
