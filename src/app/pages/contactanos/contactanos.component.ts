@@ -78,7 +78,7 @@ export class ContactanosComponent implements OnInit {
       mensaje: this.mensaje
     };
 
-    this.sugerenciaService.crearSugerencia(payload).subscribe({
+    this.sugerenciaService.crear(payload).subscribe({
       next: () => {
         // ÉXITO (Color verde/positivo por defecto en sonner)
         toast.success("Mensaje enviado correctamente");
