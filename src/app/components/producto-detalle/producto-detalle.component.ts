@@ -1,9 +1,11 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MAT_DIALOG_DATA, MatDialogRef, MatDialogModule } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogRef, MatDialogModule, MatDialog } from '@angular/material/dialog';
 import { Zapatilla, ZapatillaVariacion } from '../../models/zapatilla.model';
 import { toast } from 'ngx-sonner';
 import { CarritoService } from '../../services/carrito.service';
+import { AuthService } from '../../services/auth.service';
+import { LoginComponent } from '../login/login.component';
 
 interface ColorGroup {
   colorName: string;
@@ -23,6 +25,8 @@ export class ProductoDetalleComponent implements OnInit {
   public data: Zapatilla = inject(MAT_DIALOG_DATA); // Recibimos la zapatilla
   private carritoService = inject(CarritoService);
   addingToCart = false;
+  private authService = inject(AuthService); // 4. Inyectar AuthService
+  private dialog = inject(MatDialog);
 
   // Estado de la UI
   coloresUnicos: ColorGroup[] = [];
@@ -78,30 +82,35 @@ export class ProductoDetalleComponent implements OnInit {
   }
 
   addToCart() {
-    // Validación de seguridad
     if (!this.tallaSeleccionada || !this.tallaSeleccionada.id) {
       toast.warning('Por favor, selecciona una talla.');
       return;
     }
 
-    this.addingToCart = true; // Activar loading
+    if (!this.authService.isAuthenticated()) {
+      toast.info('Inicia sesión para agregar productos al carrito');
 
-    // Preparamos el request
+      this.dialog.open(LoginComponent, {
+        width: '400px',
+      });
+      return;
+    }
+
+    this.addingToCart = true;
+
     const request = {
       zapatillaVariacionId: this.tallaSeleccionada.id,
-      cantidad: 1 // Por defecto agregamos 1 desde el catálogo
+      cantidad: 1
     };
 
-    // Llamada al Backend
     this.carritoService.addItem(request).subscribe({
       next: () => {
         toast.success('Producto agregado al carrito');
         this.addingToCart = false;
-        this.dialogRef.close(); // Cerramos el modal tras el éxito
+        this.dialogRef.close();
       },
       error: (err) => {
         console.error(err);
-        // Manejo de errores específicos (ej. sin stock)
         if (err.status === 400) {
           toast.error(err.error || 'No se pudo agregar');
         } else {
