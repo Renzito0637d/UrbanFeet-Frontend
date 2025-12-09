@@ -6,13 +6,17 @@ import { apiPrefixInterceptor } from './interceptors/api-prefix.interceptor';
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { errorInterceptor } from './interceptors/error.interceptor';
 
+
 export const appConfig: ApplicationConfig = {
-  providers: [provideRouter(routes, withComponentInputBinding()),
+  providers: [
+    provideRouter(routes, withComponentInputBinding()),
+
     provideHttpClient(
       withInterceptors([
         apiPrefixInterceptor,
-        errorInterceptor
+        errorInterceptor,
       ])
-    )
+    ),
+
   ]
 };
