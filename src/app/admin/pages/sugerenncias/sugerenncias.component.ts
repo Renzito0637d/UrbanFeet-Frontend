@@ -4,8 +4,7 @@ import { FormsModule } from '@angular/forms';
 
 import { SugerenciaService } from '../../../services/sugerencia.service';
 import { SugerenciaResponse, SugerenciaRequest } from '../../../models/sugerencia.model';
-
-import { ToastrService } from 'ngx-toastr';
+import { toast } from 'ngx-sonner';
 
 @Component({
   selector: 'app-sugerenncias',
@@ -31,7 +30,6 @@ export class SugerennciasComponent implements OnInit {
 
   constructor(
     private svc: SugerenciaService,
-    private toastr: ToastrService,
     private cd: ChangeDetectorRef
   ) {}
 
@@ -50,7 +48,7 @@ export class SugerennciasComponent implements OnInit {
       },
       error: () => {
         this.loading = false;
-        this.toastr.error('Error al cargar sugerencias');
+        toast.error('Error al cargar sugerencias');
       }
     });
   }
@@ -62,7 +60,7 @@ export class SugerennciasComponent implements OnInit {
   // Crear
   crearSugerencia() {
     if (!this.nuevoAsunto.trim() || !this.nuevoMensaje.trim()) {
-      this.toastr.warning('Todos los campos son obligatorios');
+      toast.warning('Todos los campos son obligatorios');
       return;
     }
 
@@ -74,11 +72,11 @@ export class SugerennciasComponent implements OnInit {
     this.svc.crear(req).subscribe({
       next: (r) => {
         this.sugerencias.unshift(r);
-        this.toastr.success('Sugerencia creada');
+        toast.success('Sugerencia creada');
         this.cerrarModal();
         this.cd.detectChanges(); // 🔥 refresca al instante
       },
-      error: () => this.toastr.error('Error al crear sugerencia')
+      error: () => toast.error('Error al crear sugerencia')
     });
   }
 
@@ -93,7 +91,7 @@ export class SugerennciasComponent implements OnInit {
 
   guardarEdicion(id: number) {
     if (!this.editAsunto.trim() || !this.editMensaje.trim()) {
-      this.toastr.warning('Campos incompletos');
+      toast.warning('Campos incompletos');
       return;
     }
 
@@ -107,11 +105,11 @@ export class SugerennciasComponent implements OnInit {
         const i = this.sugerencias.findIndex(x => x.id === id);
         if (i >= 0) this.sugerencias[i] = r;
 
-        this.toastr.success('Actualizado');
+        toast.success('Actualizado');
         this.editId = null;
         this.cd.detectChanges();
       },
-      error: () => this.toastr.error('Error al actualizar')
+      error: () => toast.error('Error al actualizar')
     });
   }
 
@@ -122,16 +120,16 @@ export class SugerennciasComponent implements OnInit {
     this.svc.eliminar(id).subscribe({
       next: () => {
         this.sugerencias = this.sugerencias.filter(x => x.id !== id);
-        this.toastr.success('Eliminado');
+        toast.success('Eliminado');
         this.cd.detectChanges();
       },
-      error: () => this.toastr.error('Error al eliminar')
+      error: () => toast.error('Error al eliminar')
     });
   }
 
   // Estado local
   cambiarEstadoLocal(s: SugerenciaResponse, nuevo: string) {
     s.estado = nuevo;
-    this.toastr.info('Estado cambiado localmente (sin guardar)');
+    toast.info('Estado cambiado localmente (sin guardar)');
   }
 }
