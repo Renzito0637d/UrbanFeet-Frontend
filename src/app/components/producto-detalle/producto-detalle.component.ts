@@ -1,8 +1,11 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MAT_DIALOG_DATA, MatDialogRef, MatDialogModule } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogRef, MatDialogModule, MatDialog } from '@angular/material/dialog';
 import { Zapatilla, ZapatillaVariacion } from '../../models/zapatilla.model';
 import { toast } from 'ngx-sonner';
+import { CarritoService } from '../../services/carrito.service';
+import { AuthService } from '../../services/auth.service';
+import { LoginComponent } from '../login/login.component';
 
 interface ColorGroup {
   colorName: string;
@@ -20,6 +23,10 @@ interface ColorGroup {
 export class ProductoDetalleComponent implements OnInit {
   readonly dialogRef = inject(MatDialogRef<ProductoDetalleComponent>);
   public data: Zapatilla = inject(MAT_DIALOG_DATA); // Recibimos la zapatilla
+  private carritoService = inject(CarritoService);
+  addingToCart = false;
+  private authService = inject(AuthService); // 4. Inyectar AuthService
+  private dialog = inject(MatDialog);
 
   // Estado de la UI
   coloresUnicos: ColorGroup[] = [];
@@ -75,20 +82,43 @@ export class ProductoDetalleComponent implements OnInit {
   }
 
   addToCart() {
-    if (!this.tallaSeleccionada) {
+    if (!this.tallaSeleccionada || !this.tallaSeleccionada.id) {
       toast.warning('Por favor, selecciona una talla.');
       return;
     }
 
-    console.log('Agregando al carrito:', {
-      producto: this.data.nombre,
-      variacionId: this.tallaSeleccionada.id,
-      color: this.tallaSeleccionada.color,
-      talla: this.tallaSeleccionada.talla
-    });
+    if (!this.authService.isAuthenticated()) {
+      toast.info('Inicia sesión para agregar productos al carrito');
 
-    toast.success('Producto agregado al carrito');
-    this.dialogRef.close();
+      this.dialog.open(LoginComponent, {
+        width: '400px',
+      });
+      return;
+    }
+
+    this.addingToCart = true;
+
+    const request = {
+      zapatillaVariacionId: this.tallaSeleccionada.id,
+      cantidad: 1
+    };
+
+    this.carritoService.addItem(request).subscribe({
+      next: () => {
+        toast.success('Producto agregado al carrito');
+        this.addingToCart = false;
+        this.dialogRef.close();
+      },
+      error: (err) => {
+        console.error(err);
+        if (err.status === 400) {
+          toast.error(err.error || 'No se pudo agregar');
+        } else {
+          toast.error('Ocurrió un error al agregar al carrito');
+        }
+        this.addingToCart = false;
+      }
+    });
   }
 
   onCancel() {
