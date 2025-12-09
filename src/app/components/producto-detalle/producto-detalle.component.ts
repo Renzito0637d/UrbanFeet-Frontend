@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { MAT_DIALOG_DATA, MatDialogRef, MatDialogModule } from '@angular/material/dialog';
 import { Zapatilla, ZapatillaVariacion } from '../../models/zapatilla.model';
 import { toast } from 'ngx-sonner';
+import { CarritoService } from '../../services/carrito.service';
 
 interface ColorGroup {
   colorName: string;
@@ -20,6 +21,8 @@ interface ColorGroup {
 export class ProductoDetalleComponent implements OnInit {
   readonly dialogRef = inject(MatDialogRef<ProductoDetalleComponent>);
   public data: Zapatilla = inject(MAT_DIALOG_DATA); // Recibimos la zapatilla
+  private carritoService = inject(CarritoService);
+  addingToCart = false;
 
   // Estado de la UI
   coloresUnicos: ColorGroup[] = [];
@@ -75,20 +78,38 @@ export class ProductoDetalleComponent implements OnInit {
   }
 
   addToCart() {
-    if (!this.tallaSeleccionada) {
+    // Validación de seguridad
+    if (!this.tallaSeleccionada || !this.tallaSeleccionada.id) {
       toast.warning('Por favor, selecciona una talla.');
       return;
     }
 
-    console.log('Agregando al carrito:', {
-      producto: this.data.nombre,
-      variacionId: this.tallaSeleccionada.id,
-      color: this.tallaSeleccionada.color,
-      talla: this.tallaSeleccionada.talla
-    });
+    this.addingToCart = true; // Activar loading
 
-    toast.success('Producto agregado al carrito');
-    this.dialogRef.close();
+    // Preparamos el request
+    const request = {
+      zapatillaVariacionId: this.tallaSeleccionada.id,
+      cantidad: 1 // Por defecto agregamos 1 desde el catálogo
+    };
+
+    // Llamada al Backend
+    this.carritoService.addItem(request).subscribe({
+      next: () => {
+        toast.success('Producto agregado al carrito');
+        this.addingToCart = false;
+        this.dialogRef.close(); // Cerramos el modal tras el éxito
+      },
+      error: (err) => {
+        console.error(err);
+        // Manejo de errores específicos (ej. sin stock)
+        if (err.status === 400) {
+          toast.error(err.error || 'No se pudo agregar');
+        } else {
+          toast.error('Ocurrió un error al agregar al carrito');
+        }
+        this.addingToCart = false;
+      }
+    });
   }
 
   onCancel() {
