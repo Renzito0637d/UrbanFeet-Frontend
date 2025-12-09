@@ -19,7 +19,7 @@ export const ADMIN_ROUTES: Routes = [
             { path: 'catalogo', component: CatalogoComponent, canActivate: [authGuard], data: { roles: ['INVENTARIO', 'ADMIN'] } },
             { path: 'pedidos', component: PedidosComponent, canActivate: [authGuard], data: { roles: ['PEDIDOS', 'ADMIN'] } },
             { path: 'ventas', component: VentasComponent, canActivate: [authGuard], data: { roles: ['VENTAS', 'ADMIN'] } },
-            { path: 'registro/reclamaciones', component: ReclamacionesComponent, canActivate: [authGuard], data: { roles: ['VENTAS', 'ADMIN'] } }
+            { path: 'reclamaciones', component: ReclamacionesComponent, canActivate: [authGuard], data: { roles: ['VENTAS', 'ADMIN'] } }
         ]
     }
 ];

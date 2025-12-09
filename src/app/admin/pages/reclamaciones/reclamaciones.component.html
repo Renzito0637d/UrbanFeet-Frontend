@@ -1,17 +1,100 @@
-<div class="p-6">
-  <h1 class="text-3xl font-bold text-cyan-400 mb-6">Reclamaciones Registradas</h1>
+<div class="p-8">
 
-  <div *ngIf="reclamos.length === 0" class="text-neutral-500">
-    No hay reclamos por el momento.
+  <!-- TÍTULO -->
+  <h1 class="text-4xl font-bold text-cyan-400 mb-10">
+    Panel de Reclamaciones
+  </h1>
+
+  <!-- FILTROS -->
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
+
+    <!-- FILTRO ESTADO -->
+    <div class="flex items-center gap-4 p-4 bg-neutral-900 border border-neutral-700 rounded-xl shadow-sm">
+      <div class="flex items-center justify-center w-10 h-10 rounded-lg bg-cyan-500/20">
+        <!-- Ícono Filtro -->
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-cyan-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2l-7 7v6l-4-2v-4L3 6V4z" />
+        </svg>
+      </div>
+      <div class="flex-1">
+        <p class="text-neutral-400 text-sm">Filtrar por</p>
+        <p class="text-white font-medium">Estado</p>
+      </div>
+
+      <select
+        class="px-4 py-2 rounded-xl bg-neutral-800 text-white border border-neutral-600 focus:ring-2 focus:ring-cyan-500 transition"
+        [(ngModel)]="filtroEstado"
+        (change)="aplicarFiltro()"
+      >
+        <option value="Todos">Todos</option>
+        <option value="Pendiente">Pendiente</option>
+        <option value="En revisión">En revisión</option>
+        <option value="Aceptado">Aceptado</option>
+      </select>
+    </div>
+
+    <!-- FILTRO TIPO -->
+    <div class="flex items-center gap-4 p-4 bg-neutral-900 border border-neutral-700 rounded-xl shadow-sm">
+      <div class="flex items-center justify-center w-10 h-10 rounded-lg bg-purple-500/20">
+        <!-- Ícono Documento -->
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-purple-400" fill="none" viewBox="0 0 24 24"
+          stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 
+             0 012-2h7l5 5v12a2 2 0 01-2 2z" />
+        </svg>
+      </div>
+
+      <div class="flex-1">
+        <p class="text-neutral-400 text-sm">Filtrar por</p>
+        <p class="text-white font-medium">Tipo</p>
+      </div>
+
+      <select
+        class="px-4 py-2 rounded-xl bg-neutral-800 text-white border border-neutral-600 focus:ring-2 focus:ring-purple-500 transition"
+        [(ngModel)]="filtroTipo"
+        (change)="aplicarFiltro()"
+      >
+        <option value="Todos">Todos</option>
+        <option value="Reclamo">Reclamo</option>
+        <option value="Queja">Queja</option>
+      </select>
+    </div>
   </div>
 
-  <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+  <!-- CONTADOR -->
+  <p class="text-neutral-400 mb-6">
+    Mostrando <span class="text-cyan-400">{{ reclamos.length }}</span> resultados
+  </p>
+
+  <!-- LISTA -->
+  <div class="grid grid-cols-1 xl:grid-cols-2 gap-8">
+
     <div
       *ngFor="let r of reclamos"
-      class="bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-700 shadow rounded-xl p-6"
+      class="p-6 rounded-2xl bg-neutral-900 border border-neutral-700 shadow hover:shadow-xl transition hover:-translate-y-1 cursor-pointer duration-300"
     >
 
-      <div class="space-y-1 text-sm">
+      <div class="flex justify-between items-center mb-4">
+        <h2 class="text-xl font-semibold text-cyan-300">
+          {{ r.tipo }} — #{{ r.id }}
+        </h2>
+
+        <span
+          class="px-3 py-1 rounded-lg text-sm transition"
+          [ngClass]="{
+            'bg-yellow-500/20 text-yellow-300': r.estado === 'Pendiente',
+            'bg-blue-500/20 text-blue-300': r.estado === 'En revisión',
+            'bg-green-500/20 text-green-300': r.estado === 'Aceptado'
+          }"
+        >
+          {{ r.estado }}
+        </span>
+      </div>
+
+      <!-- Datos del usuario -->
+      <div class="space-y-1 text-sm text-neutral-300">
         <p><strong>Nombre:</strong> {{ r.nombre }}</p>
         <p><strong>Documento:</strong> {{ r.documento }}</p>
         <p><strong>Domicilio:</strong> {{ r.domicilio }}</p>
@@ -19,23 +102,43 @@
         <p><strong>Teléfono:</strong> {{ r.telefono }}</p>
       </div>
 
-      <hr class="my-4 border-neutral-300 dark:border-neutral-700" />
+      <hr class="my-4 border-neutral-700" />
 
-      <div class="space-y-1 text-sm">
+      <!-- Datos del reclamo -->
+      <div class="space-y-1 text-sm text-neutral-300">
         <p><strong>Producto:</strong> {{ r.producto }}</p>
         <p><strong>Monto reclamado:</strong> S/ {{ r.monto }}</p>
-        <p><strong>Tipo:</strong> {{ r.tipo }}</p>
         <p><strong>Detalle:</strong> {{ r.detalle }}</p>
         <p><strong>Pedido del cliente:</strong> {{ r.pedido }}</p>
         <p><strong>Fecha:</strong> {{ r.fecha | date:'short' }}</p>
       </div>
 
-      <button
-        (click)="eliminar(r.id)"
-        class="mt-4 px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600"
-      >
-        Eliminar
-      </button>
+      <!-- Acciones -->
+      <div class="flex gap-3 mt-6">
+
+        <!-- Cambiar estado -->
+        <select
+          class="px-3 py-2 bg-neutral-800 border border-neutral-600 rounded-lg text-white hover:border-cyan-400 transition"
+          [(ngModel)]="r.estado"
+          (change)="cambiarEstado(r.id, r.estado)"
+        >
+          <option value="Pendiente">Pendiente</option>
+          <option value="En revisión">En revisión</option>
+          <option value="Aceptado">Aceptado</option>
+        </select>
+
+        <!-- Eliminar -->
+        <button
+          (click)="eliminar(r.id)"
+          class="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition active:scale-95 duration-150"
+        >
+          Eliminar
+        </button>
+
+      </div>
+
     </div>
+
   </div>
+
 </div>

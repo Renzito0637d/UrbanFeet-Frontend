@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import { Router, RouterLink } from '@angular/router';
-import { AuthService } from '../../services/auth.service';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-footer',
@@ -9,9 +8,5 @@ import { AuthService } from '../../services/auth.service';
   styleUrl: './footer.component.css'
 })
 export class FooterComponent {
-  
-  constructor(private authService: AuthService) {}
-  get isAdmin(): boolean {
-    return this.authService.hasRoles(["ADMIN"]);
-  }
+
 }
