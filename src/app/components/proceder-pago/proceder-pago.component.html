@@ -26,7 +26,7 @@
                 <div *ngIf="direcciones.length === 0"
                     class="text-center py-6 border-2 border-dashed border-neutral-300 rounded-xl">
                     <p class="text-neutral-500 mb-2">No tienes direcciones registradas.</p>
-                    <a href="/micuenta" class="text-cyan-600 font-bold hover:underline text-sm">Agregar dirección</a>
+                    <a routerLink="/micuenta" (click)="onCancel()" class="text-cyan-600 font-bold hover:underline text-sm">Agregar dirección</a>
                 </div>
 
                 <label *ngFor="let dir of direcciones"

@@ -205,7 +205,7 @@
 
               <div class="mt-auto flex flex-col gap-2">
                 <span class="text-base font-bold text-neutral-900 dark:text-neutral-100">
-                  {{ getDisplayPrice(zap) | currency:'S/  ':'symbol' }}
+                  {{ getDisplayPrice(zap) | currency:'S/ ':'symbol' }}
                 </span>
 
                 <button (click)="openDialog(zap)"
@@ -219,18 +219,33 @@
         </div>
 
         <!-- Paginación (estática) -->
-        <nav class="mt-8 flex items-center justify-center gap-2">
-          <a href="#"
-            class="px-3 py-2 rounded-lg ring-1 ring-neutral-300 dark:ring-neutral-800 hover:bg-neutral-100 dark:hover:bg-neutral-800 text-sm">Anterior</a>
-          <a href="#"
-            class="px-3 py-2 rounded-lg bg-neutral-900 dark:bg-neutral-200 text-white dark:text-neutral-900 text-sm font-semibold">1</a>
-          <a href="#"
-            class="px-3 py-2 rounded-lg ring-1 ring-neutral-300 dark:ring-neutral-800 hover:bg-neutral-100 dark:hover:bg-neutral-800 text-sm">2</a>
-          <a href="#"
-            class="px-3 py-2 rounded-lg ring-1 ring-neutral-300 dark:ring-neutral-800 hover:bg-neutral-100 dark:hover:bg-neutral-800 text-sm">3</a>
-          <a href="#"
-            class="px-3 py-2 rounded-lg ring-1 ring-neutral-300 dark:ring-neutral-800 hover:bg-neutral-100 dark:hover:bg-neutral-800 text-sm">Siguiente</a>
+        <nav *ngIf="totalPages > 0" class="mt-12 flex items-center justify-center gap-2 select-none">
+
+          <button (click)="anteriorPagina()" [disabled]="isFirst" [class.opacity-50]="isFirst"
+            [class.cursor-not-allowed]="isFirst"
+            class="px-4 py-2 rounded-lg ring-1 ring-neutral-300 dark:ring-neutral-800 hover:bg-neutral-100 dark:hover:bg-neutral-800 text-sm font-medium transition-colors">
+            Anterior
+          </button>
+
+          <button *ngFor="let pageNum of pageNumbers" (click)="cambiarPagina(pageNum)"
+            class="px-4 py-2 rounded-lg text-sm font-semibold transition-all" [ngClass]="{
+             'bg-neutral-900 text-white dark:bg-neutral-100 dark:text-neutral-900 shadow-md transform scale-105': pageNum === currentPage,
+             'ring-1 ring-neutral-300 dark:ring-neutral-800 hover:bg-neutral-100 dark:hover:bg-neutral-800 text-neutral-600 dark:text-neutral-400': pageNum !== currentPage
+          }">
+            {{ pageNum + 1 }}
+          </button>
+
+          <button (click)="siguientePagina()" [disabled]="isLast" [class.opacity-50]="isLast"
+            [class.cursor-not-allowed]="isLast"
+            class="px-4 py-2 rounded-lg ring-1 ring-neutral-300 dark:ring-neutral-800 hover:bg-neutral-100 dark:hover:bg-neutral-800 text-sm font-medium transition-colors">
+            Siguiente
+          </button>
+
         </nav>
+
+        <div class="text-center mt-4 text-xs text-neutral-500">
+          Página {{ currentPage + 1 }} de {{ totalPages }} (Total: {{ totalElements }} productos)
+        </div>
       </div>
     </div>
   </div>

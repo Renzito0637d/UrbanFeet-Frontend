@@ -8,6 +8,7 @@ import { Zapatilla } from '../../../models/zapatilla.model';
 import { CreatezapatillaComponent } from '../../../components/admin/zapatillas/createzapatilla/createzapatilla.component';
 import { toast } from 'ngx-sonner';
 import { Router } from '@angular/router';
+import { Page } from '../../../models/page.model';
 
 @Component({
   selector: 'app-zapatillas',
@@ -26,27 +27,71 @@ export class ZapatillasComponent implements OnInit {
   zapatillas: Zapatilla[] = [];
   loading = true;
 
+  currentPage = 0;
+  pageSize = 8; // Muestra 8 zapatillas por página en Admin (2 filas de 4)
+  totalPages = 0;
+  totalElements = 0;
+  isFirst = true;
+  isLast = false;
+  pageNumbers: number[] = [];
+
   ngOnInit() {
     this.loadZapatillas();
   }
 
   loadZapatillas() {
     this.loading = true;
-    this.zapatillaService.getAll().subscribe({
-      next: (data) => {
-        console.log('Datos recibidos:', data); // Debug para ver si llega el array
-        this.zapatillas = data;
-        this.loading = false;
 
-        // 3. AVISAR A ANGULAR QUE PINTE LA VISTA
+    this.zapatillaService.getPaginated(this.currentPage, this.pageSize).subscribe({
+      next: (data: any) => { // Usamos 'any' para evitar errores de tipo rápido
+        
+        // 1. Contenido
+        this.zapatillas = data.content;
+
+        // 2. Metadatos (CORREGIDO: accedemos a data.page)
+        // Usamos el operador ?. por si acaso 'page' no venga en alguna respuesta rara
+        this.totalPages = data.page?.totalPages || 0;
+        this.totalElements = data.page?.totalElements || 0;
+        
+        // 3. Calculamos isFirst / isLast manualmente porque tu JSON no los trae directos
+        const pageNumber = data.page?.number || 0;
+        this.isFirst = pageNumber === 0;
+        this.isLast = pageNumber === (this.totalPages - 1);
+
+        this.generarNumerosPagina();
+        
+        this.loading = false;
         this.cdr.markForCheck();
+        
+        if (this.currentPage > 0) window.scrollTo({ top: 0, behavior: 'smooth' });
       },
       error: (err) => {
         console.error(err);
         this.loading = false;
-        this.cdr.markForCheck(); // Importante: quitar el loading también en error
+        this.cdr.markForCheck();
       }
     });
+  }
+
+  // --- MÉTODOS DE CONTROL ---
+
+  cambiarPagina(page: number) {
+    if (page < 0 || page >= this.totalPages || page === this.currentPage) return;
+    this.currentPage = page;
+    this.loadZapatillas();
+  }
+
+  siguiente() {
+    if (!this.isLast) this.cambiarPagina(this.currentPage + 1);
+  }
+
+  anterior() {
+    if (!this.isFirst) this.cambiarPagina(this.currentPage - 1);
+  }
+
+  generarNumerosPagina() {
+    // Lógica simple: muestra todas. Si son muchas, necesitarás lógica de "..."
+    this.pageNumbers = Array(this.totalPages).fill(0).map((x, i) => i);
   }
 
   openCreateDialog(zapatillaToEdit?: Zapatilla) {

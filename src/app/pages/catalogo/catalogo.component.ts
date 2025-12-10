@@ -5,11 +5,12 @@ import { ZapatillaService } from '../../services/zapatilla.service'; // Ajusta r
 import { Zapatilla } from '../../models/zapatilla.model'; // Ajusta ruta
 import { ProductoDetalleComponent } from '../../components/producto-detalle/producto-detalle.component';
 import { MatIconModule } from '@angular/material/icon';
+import { Page } from '../../models/page.model';
 
 @Component({
   selector: 'app-catalogo',
   standalone: true,
-  imports: [CommonModule,MatIconModule],
+  imports: [CommonModule, MatIconModule],
   templateUrl: './catalogo.component.html',
   styleUrl: './catalogo.component.css'
 })
@@ -22,22 +23,86 @@ export class CatalogoComponent implements OnInit {
 
   showMobileFilters = false;
 
+  currentPage = 0;   // Página actual (empieza en 0)
+  pageSize = 12;     // Productos por página
+  totalPages = 0;
+  totalElements = 0;
+  isFirst = true;
+  isLast = false;
+
+  pageNumbers: number[] = [];
+
   ngOnInit() {
     this.loadProductos();
   }
 
   loadProductos() {
     this.loading = true;
-    this.zapatillaService.getAll().subscribe({
-      next: (data) => {
-        this.zapatillas = data;
+
+    this.zapatillaService.getPaginatedPublic(this.currentPage, this.pageSize).subscribe({
+      next: (data: any) => { // <--- Usamos 'any' para acceder a data.page sin errores de tipo
+
+        // 1. Llenamos la lista (El contenido sí suele venir en la raíz)
+        this.zapatillas = data.content || [];
+
+        // 2. CORRECCIÓN: Accedemos a los metadatos dentro de 'page'
+        // Usamos ?. (optional chaining) por si acaso venga nulo
+        const pageInfo = data.page;
+
+        if (pageInfo) {
+            this.totalPages = pageInfo.totalPages;
+            this.totalElements = pageInfo.totalElements;
+            
+            // Calculamos si es primera o última manualmente basado en el número de página
+            const currentNum = pageInfo.number || 0;
+            this.isFirst = currentNum === 0;
+            this.isLast = currentNum === (this.totalPages - 1);
+        } else {
+            // Fallback por si el backend cambia formato
+            this.totalPages = 0;
+        }
+
+        // 3. Generamos los números para el HTML
+        this.generarNumerosPagina();
+
         this.loading = false;
+        
+        // Scroll suave arriba
+        if (this.currentPage > 0) {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
       },
       error: (err) => {
-        console.error(err);
+        console.error('Error al cargar catálogo:', err);
         this.loading = false;
       }
     });
+  }
+
+  cambiarPagina(pagina: number) {
+    // Validaciones para no salirnos de los límites
+    if (pagina < 0 || pagina >= this.totalPages || pagina === this.currentPage) {
+      return;
+    }
+    this.currentPage = pagina;
+    this.loadProductos(); // Recargamos con la nueva página
+  }
+
+  siguientePagina() {
+    if (!this.isLast) {
+      this.cambiarPagina(this.currentPage + 1);
+    }
+  }
+
+  anteriorPagina() {
+    if (!this.isFirst) {
+      this.cambiarPagina(this.currentPage - 1);
+    }
+  }
+
+  // Crea un array [0, 1, 2...] según el total de páginas
+  generarNumerosPagina() {
+    this.pageNumbers = Array(this.totalPages).fill(0).map((x, i) => i);
   }
 
   openDialog(zapatilla: Zapatilla): void {

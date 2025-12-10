@@ -10,13 +10,14 @@ import { CarritoItemDetail } from '../../models/carrito.model';
 import { Direccion } from '../../models/direccion.model';
 import { PedidoDetalleRequest, PedidoRequest } from '../../models/pedido.model';
 import { MatIconModule } from '@angular/material/icon';
+import { RouterLink } from '@angular/router';
 
 
 
 @Component({
   selector: 'app-proceder-pago',
   standalone: true,
-  imports: [CommonModule, MatDialogModule, ReactiveFormsModule, MatIconModule],
+  imports: [RouterLink,CommonModule, MatDialogModule, ReactiveFormsModule, MatIconModule],
   templateUrl: './proceder-pago.component.html'
 })
 export class ProcederPagoComponent implements OnInit {
