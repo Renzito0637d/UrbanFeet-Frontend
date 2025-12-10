@@ -9,7 +9,6 @@ import { MispedidosComponent } from './pages/mispedidos/mispedidos.component';
 import { CarritoComponent } from './pages/carrito/carrito.component';
 import { LayoutClienteComponent } from './components/layout-cliente/layout-cliente.component';
 import { authGuard } from './guards/auth.guard';
-import { CuentaComponent } from './pages/cuenta/cuenta.component';
 
 export const routes: Routes = [
   {
@@ -24,14 +23,13 @@ export const routes: Routes = [
       { path: 'reclamos', component: ReclamosComponent },
       { path: 'pedidos', component: MispedidosComponent, canActivate: [authGuard], data: { roles: ['CLIENTE'] } },
       { path: 'carrito', component: CarritoComponent, canActivate: [authGuard], data: { roles: ['CLIENTE'] } },
-      { path: 'micuenta', component: CuentaComponent, canActivate: [authGuard], data: { roles: ['CLIENTE'] } },
     ]
   },
 
   {
     path: 'admin',
     canActivate: [authGuard],
-    data: { roles: ['ADMIN', 'PEDIDOS', 'INVENTARIO', 'VENTAS'] },
+    data: { roles: ['ADMIN'] },
     loadChildren: () => import('./admin/admin.routes').then(m => m.ADMIN_ROUTES)
   },
   { path: '**', redirectTo: '' },

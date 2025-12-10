@@ -1,134 +1,289 @@
+<!-- ADMIN · Ventas (TailwindCSS) -->
 <section class="text-neutral-800 dark:text-neutral-200 min-h-screen py-8">
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
 
+        <!-- Header + filtros -->
         <header class="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
             <div>
                 <h1 class="text-2xl md:text-3xl font-bold">Ventas</h1>
-                <p class="text-sm text-neutral-600 dark:text-neutral-400">Resumen de ingresos y transacciones.</p>
+                <p class="text-sm text-neutral-600 dark:text-neutral-400">Resumen de usuarios, pedidos y montos.</p>
             </div>
             <div class="flex flex-col sm:flex-row gap-3">
                 <div class="flex items-center gap-2">
                     <label class="text-sm">Desde</label>
-                    <input type="date" [(ngModel)]="fechaInicio"
-                        class="rounded-xl border border-neutral-300 dark:border-neutral-700 bg-white dark:bg-neutral-900 px-3 py-2 text-sm">
+                    <input type="date"
+                        class="rounded-xl border border-neutral-300 dark:border-neutral-700 bg-white dark:bg-neutral-900 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-cyan-400 dark:focus:ring-cyan-300">
                     <label class="text-sm">Hasta</label>
-                    <input type="date" [(ngModel)]="fechaFin"
-                        class="rounded-xl border border-neutral-300 dark:border-neutral-700 bg-white dark:bg-neutral-900 px-3 py-2 text-sm">
-                    <button (click)="aplicarFiltros()"
-                        class="rounded-xl px-4 py-2 text-sm font-semibold bg-neutral-900 dark:bg-neutral-200 text-white dark:text-neutral-900 hover:opacity-90">
-                        Aplicar
-                    </button>
+                    <input type="date"
+                        class="rounded-xl border border-neutral-300 dark:border-neutral-700 bg-white dark:bg-neutral-900 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-cyan-400 dark:focus:ring-cyan-300">
+                    <button
+                        class="rounded-xl px-4 py-2 text-sm font-semibold bg-neutral-900 dark:bg-neutral-200 text-white dark:text-neutral-900 hover:opacity-90">Aplicar</button>
                 </div>
+                <button
+                    class="rounded-xl px-4 py-2 text-sm font-semibold bg-cyan-400 dark:bg-cyan-300 text-neutral-900 hover:opacity-90">Exportar
+                    PDF
+                </button>
             </div>
         </header>
 
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 my-6">
+        <!-- KPIs -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 my-4">
             <div class="rounded-2xl bg-white dark:bg-neutral-900 ring-1 ring-neutral-400/60 dark:ring-neutral-800 p-5">
-                <div class="text-sm text-neutral-500 dark:text-neutral-400">Venta total</div>
-                <div class="mt-1 text-2xl font-bold text-emerald-600 dark:text-emerald-400">
-                    {{ totalDinero | currency:'S/ ':'symbol' }}
+                <div class="text-sm text-neutral-500 dark:text-neutral-400">Venta total (S/)</div>
+                <div class="mt-1 flex items-baseline gap-2">
+                    <div class="text-2xl font-bold">52,740.00</div>
                 </div>
             </div>
             <div class="rounded-2xl bg-white dark:bg-neutral-900 ring-1 ring-neutral-400/60 dark:ring-neutral-800 p-5">
-                <div class="text-sm text-neutral-500 dark:text-neutral-400">Transacciones</div>
-                <div class="mt-1 text-2xl font-bold">{{ totalVentas }}</div>
+                <div class="text-sm text-neutral-500 dark:text-neutral-400">Total de ventas</div>
+                <div class="mt-1 text-2xl font-bold">1,412</div>
             </div>
+
         </div>
 
+        <!-- Listado de ventas (cards) -->
         <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
 
-            <article *ngFor="let venta of ventasFiltradas"
-                class="group relative flex flex-col justify-between rounded-3xl bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 p-5 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
-
-                <div class="flex items-start justify-between mb-4">
-                    <div class="flex flex-col">
-                        <span class="text-[10px] font-bold uppercase tracking-wider text-neutral-400">ID Venta</span>
-                        <h3 class="font-bold text-lg text-neutral-800 dark:text-neutral-100">#{{ venta.id }}</h3>
+            <article
+                class="rounded-2xl bg-white dark:bg-neutral-900 ring-1 ring-neutral-400/60 dark:ring-neutral-800 p-5 flex flex-col gap-4">
+                <div class="flex items-start justify-between">
+                    <div class="space-y-0.5">
+                        <h3 class="font-semibold">#V-00012345</h3>
+                        <p class="text-xs text-neutral-500 dark:text-neutral-400">13 mayo 2025 · 15:42</p>
                     </div>
-
                     <span
-                        class="inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-bold ring-1 ring-inset"
-                        [ngClass]="{
-                    'bg-emerald-50 text-emerald-700 ring-emerald-600/20 dark:bg-emerald-500/10 dark:text-emerald-400': venta.estadoPago === 'COMPLETADO',
-                    'bg-red-50 text-red-700 ring-red-600/20 dark:bg-red-500/10 dark:text-red-400': venta.estadoPago === 'REEMBOLSADO'
-                }">
-                        <span class="size-2 rounded-full" [ngClass]="{
-                    'bg-emerald-500': venta.estadoPago === 'COMPLETADO',
-                    'bg-red-500': venta.estadoPago === 'REEMBOLSADO'
-                }"></span>
-                        {{ venta.estadoPago }}
+                        class="inline-flex items-center gap-2 rounded-full px-2.5 py-1 text-xs ring-1 ring-neutral-300 dark:ring-neutral-700">
+                        <span class="size-1.5 rounded-full bg-emerald-500"></span> Pagado
                     </span>
                 </div>
 
-                <div
-                    class="flex items-center gap-3 p-3 mb-5 rounded-2xl bg-neutral-50 dark:bg-neutral-800/50 border border-neutral-100 dark:border-neutral-800">
-                    <div
-                        class="size-10 rounded-full bg-cyan-100 dark:bg-cyan-900/30 flex items-center justify-center text-cyan-600 dark:text-cyan-400">
-                        <span class="material-icons text-xl">person</span>
+                <div class="grid grid-cols-2 gap-3 text-sm">
+                    <div>
+                        <div class="text-neutral-500 dark:text-neutral-400">Usuario</div>
+                        <div class="font-medium">Juan Pérez · <a href="mailto:juansdexample.com"
+                                class="text-cyan-600 dark:text-cyan-300 hover:underline">juanaexample.com</a></div>
                     </div>
-                    <div class="flex-1 min-w-0">
-                        <p class="text-sm font-bold text-neutral-900 dark:text-neutral-100 truncate">
-                            {{ venta.nombreUsuario }} {{ venta.apellidoUsuario }}
-                        </p>
-                        <p class="text-xs text-neutral-500 dark:text-neutral-400 truncate flex items-center gap-1">
-                            <span class="material-icons text-[10px]">email</span>
-                            {{ venta.emailUsuario }}
-                        </p>
+                    <div>
+                        <div class="text-neutral-500 dark:text-neutral-400">Total</div>
+                        <div class="font-semibold">S/ 500.00</div>
                     </div>
-                </div>
-
-                <div class="grid grid-cols-2 gap-4 mb-5">
-
-                    <div
-                        class="flex flex-col p-3 rounded-2xl border border-neutral-100 dark:border-neutral-800 hover:border-emerald-200 dark:hover:border-emerald-900/30 transition-colors group/money">
-                        <span class="text-[10px] font-bold uppercase text-neutral-400 mb-1">Monto Total</span>
-                        <div class="text-md font-bold truncate" [ngClass]="{
-                        'text-emerald-600 dark:text-emerald-400': venta.estadoPago === 'COMPLETADO',
-                        'text-neutral-400 line-through decoration-red-500 decoration-2': venta.estadoPago === 'REEMBOLSADO'
-                    }">
-                            {{ venta.montoPagado | currency:'S/ ':'symbol' }}
-                        </div>
+                    <div>
+                        <div class="text-neutral-500 dark:text-neutral-400">Productos</div>
+                        <div>Nike Revolution 7 (x2), Predator (x1)</div>
                     </div>
-
-                    <div class="flex flex-col p-3 rounded-2xl border border-neutral-100 dark:border-neutral-800">
-                        <span class="text-[10px] font-bold uppercase text-neutral-400 mb-1">Método</span>
-
-                        <div class="flex items-center gap-2 text-neutral-700 dark:text-neutral-300">
-
-                            <span *ngIf="venta.metodoPago === 'TARJETA'" class="material-icons text-xl text-cyan-600">
-                                credit_card
-                            </span>
-
-                            <img *ngIf="venta.metodoPago === 'YAPE'" src="/img/yape-logo.webp" alt="Yape"
-                                class="w-7 h-7 object-contain dark:brightness-200">
-
-                            <img *ngIf="venta.metodoPago === 'PLIN'" src="/img/plin-logo.webp" alt="Plin"
-                                class="w-6 h-6 object-contain rounded-md">
-
-                            <span class="text-sm font-bold capitalize">{{ venta.metodoPago | titlecase }}</span>
-                        </div>
+                    <div>
+                        <div class="text-neutral-500 dark:text-neutral-400">Pago</div>
+                        <div>Tarjeta · **** 1234</div>
                     </div>
                 </div>
 
-                <div
-                    class="mt-auto pt-4 border-t border-neutral-100 dark:border-neutral-800 flex items-center justify-between text-xs text-neutral-500 dark:text-neutral-400">
-
-                    <div class="flex items-center gap-1.5" title="Fecha de transacción">
-                        <span class="material-icons text-base">calendar_today</span>
-                        <span>{{ venta.fecha | date:'dd/MM/yy' }}</span>
-                        <span class="text-neutral-300">•</span>
-                        <span>{{ venta.hora }}</span>
-                    </div>
-
-                    <a routerLink="/admin/pedidos"
-                        class="flex items-center gap-1 font-bold text-cyan-600 dark:text-cyan-400 hover:underline hover:text-cyan-700 cursor-pointer">
-                        Pedido #{{ venta.pedidoId }}
-                        <span class="material-icons text-sm">open_in_new</span>
-                    </a>
+                <div class="flex items-center justify-between pt-2 border-t border-neutral-200 dark:border-neutral-800">
+                    <div class="text-xs text-neutral-500 dark:text-neutral-400">Lima, Perú</div>
+                    <a href="/admin/pedidos" class="text-sm text-cyan-600 dark:text-cyan-300 hover:underline">Ver
+                        pedido</a>
                 </div>
-
             </article>
 
+            <article
+                class="rounded-2xl bg-white dark:bg-neutral-900 ring-1 ring-neutral-400/60 dark:ring-neutral-800 p-5 flex flex-col gap-4">
+                <div class="flex items-start justify-between">
+                    <div class="space-y-0.5">
+                        <h3 class="font-semibold">#V-00012346</h3>
+                        <p class="text-xs text-neutral-500 dark:text-neutral-400">13 mayo 2025 · 12:05</p>
+                    </div>
+                    <span
+                        class="inline-flex items-center gap-2 rounded-full px-2.5 py-1 text-xs ring-1 ring-neutral-300 dark:ring-neutral-700">
+                        <span class="size-1.5 rounded-full bg-emerald-500"></span> Pagado
+                    </span>
+                </div>
+
+                <div class="grid grid-cols-2 gap-3 text-sm">
+                    <div>
+                        <div class="text-neutral-500 dark:text-neutral-400">Usuario</div>
+                        <div class="font-medium">María López · <a href="mailto:mariaaexample.com"
+                                class="text-cyan-600 dark:text-cyan-300 hover:underline">mariaaexample.com</a></div>
+                    </div>
+                    <div>
+                        <div class="text-neutral-500 dark:text-neutral-400">Total</div>
+                        <div class="font-semibold">S/ 259.00</div>
+                    </div>
+                    <div>
+                        <div class="text-neutral-500 dark:text-neutral-400">Productos</div>
+                        <div>Adidas Predator (x1)</div>
+                    </div>
+                    <div>
+                        <div class="text-neutral-500 dark:text-neutral-400">Pago</div>
+                        <div>Yape</div>
+                    </div>
+                </div>
+
+                <div class="flex items-center justify-between pt-2 border-t border-neutral-200 dark:border-neutral-800">
+                    <div class="text-xs text-neutral-500 dark:text-neutral-400">Ate, Lima</div>
+                    <a href="/admin/pedidos" class="text-sm text-cyan-600 dark:text-cyan-300 hover:underline">Ver
+                        pedido</a>
+                </div>
+            </article>
+
+            <article
+                class="rounded-2xl bg-white dark:bg-neutral-900 ring-1 ring-neutral-400/60 dark:ring-neutral-800 p-5 flex flex-col gap-4">
+                <div class="flex items-start justify-between">
+                    <div class="space-y-0.5">
+                        <h3 class="font-semibold">#V-00012347</h3>
+                        <p class="text-xs text-neutral-500 dark:text-neutral-400">12 mayo 2025 · 19:21</p>
+                    </div>
+                    <span
+                        class="inline-flex items-center gap-2 rounded-full px-2.5 py-1 text-xs ring-1 ring-neutral-300 dark:ring-neutral-700">
+                        <span class="size-1.5 rounded-full bg-amber-500"></span> Pendiente
+                    </span>
+                </div>
+
+                <div class="grid grid-cols-2 gap-3 text-sm">
+                    <div>
+                        <div class="text-neutral-500 dark:text-neutral-400">Usuario</div>
+                        <div class="font-medium">Carlos Díaz · <a href="mailto:carlosaexample.com"
+                                class="text-cyan-600 dark:text-cyan-300 hover:underline">carlosaexample.com</a></div>
+                    </div>
+                    <div>
+                        <div class="text-neutral-500 dark:text-neutral-400">Total</div>
+                        <div class="font-semibold">S/ 389.90</div>
+                    </div>
+                    <div>
+                        <div class="text-neutral-500 dark:text-neutral-400">Productos</div>
+                        <div>iRun Freestyle (x1), Puma RS-X (x1)</div>
+                    </div>
+                    <div>
+                        <div class="text-neutral-500 dark:text-neutral-400">Pago</div>
+                        <div>Contraentrega</div>
+                    </div>
+                </div>
+
+                <div class="flex items-center justify-between pt-2 border-t border-neutral-200 dark:border-neutral-800">
+                    <div class="text-xs text-neutral-500 dark:text-neutral-400">SMP, Lima</div>
+                    <a href="/admin/pedidos" class="text-sm text-cyan-600 dark:text-cyan-300 hover:underline">Ver
+                        pedido</a>
+                </div>
+            </article>
+
+            <article
+                class="rounded-2xl bg-white dark:bg-neutral-900 ring-1 ring-neutral-400/60 dark:ring-neutral-800 p-5 flex flex-col gap-4">
+                <div class="flex items-start justify-between">
+                    <div class="space-y-0.5">
+                        <h3 class="font-semibold">#V-00012345</h3>
+                        <p class="text-xs text-neutral-500 dark:text-neutral-400">13 mayo 2025 · 15:42</p>
+                    </div>
+                    <span
+                        class="inline-flex items-center gap-2 rounded-full px-2.5 py-1 text-xs ring-1 ring-neutral-300 dark:ring-neutral-700">
+                        <span class="size-1.5 rounded-full bg-emerald-500"></span> Pagado
+                    </span>
+                </div>
+
+                <div class="grid grid-cols-2 gap-3 text-sm">
+                    <div>
+                        <div class="text-neutral-500 dark:text-neutral-400">Usuario</div>
+                        <div class="font-medium">Juan Pérez · <a href="mailto:juansdexample.com"
+                                class="text-cyan-600 dark:text-cyan-300 hover:underline">juanaexample.com</a></div>
+                    </div>
+                    <div>
+                        <div class="text-neutral-500 dark:text-neutral-400">Total</div>
+                        <div class="font-semibold">S/ 500.00</div>
+                    </div>
+                    <div>
+                        <div class="text-neutral-500 dark:text-neutral-400">Productos</div>
+                        <div>Nike Revolution 7 (x2), Predator (x1)</div>
+                    </div>
+                    <div>
+                        <div class="text-neutral-500 dark:text-neutral-400">Pago</div>
+                        <div>Tarjeta · **** 1234</div>
+                    </div>
+                </div>
+
+                <div class="flex items-center justify-between pt-2 border-t border-neutral-200 dark:border-neutral-800">
+                    <div class="text-xs text-neutral-500 dark:text-neutral-400">Lima, Perú</div>
+                    <a href="/admin/pedidos" class="text-sm text-cyan-600 dark:text-cyan-300 hover:underline">Ver
+                        pedido</a>
+                </div>
+            </article>
+
+            <article
+                class="rounded-2xl bg-white dark:bg-neutral-900 ring-1 ring-neutral-400/60 dark:ring-neutral-800 p-5 flex flex-col gap-4">
+                <div class="flex items-start justify-between">
+                    <div class="space-y-0.5">
+                        <h3 class="font-semibold">#V-00012346</h3>
+                        <p class="text-xs text-neutral-500 dark:text-neutral-400">13 mayo 2025 · 12:05</p>
+                    </div>
+                    <span
+                        class="inline-flex items-center gap-2 rounded-full px-2.5 py-1 text-xs ring-1 ring-neutral-300 dark:ring-neutral-700">
+                        <span class="size-1.5 rounded-full bg-emerald-500"></span> Pagado
+                    </span>
+                </div>
+
+                <div class="grid grid-cols-2 gap-3 text-sm">
+                    <div>
+                        <div class="text-neutral-500 dark:text-neutral-400">Usuario</div>
+                        <div class="font-medium">María López · <a href="mailto:mariaaexample.com"
+                                class="text-cyan-600 dark:text-cyan-300 hover:underline">mariaaexample.com</a></div>
+                    </div>
+                    <div>
+                        <div class="text-neutral-500 dark:text-neutral-400">Total</div>
+                        <div class="font-semibold">S/ 259.00</div>
+                    </div>
+                    <div>
+                        <div class="text-neutral-500 dark:text-neutral-400">Productos</div>
+                        <div>Adidas Predator (x1)</div>
+                    </div>
+                    <div>
+                        <div class="text-neutral-500 dark:text-neutral-400">Pago</div>
+                        <div>Yape</div>
+                    </div>
+                </div>
+
+                <div class="flex items-center justify-between pt-2 border-t border-neutral-200 dark:border-neutral-800">
+                    <div class="text-xs text-neutral-500 dark:text-neutral-400">Ate, Lima</div>
+                    <a href="/admin/pedidos" class="text-sm text-cyan-600 dark:text-cyan-300 hover:underline">Ver
+                        pedido</a>
+                </div>
+            </article>
+
+            <article
+                class="rounded-2xl bg-white dark:bg-neutral-900 ring-1 ring-neutral-400/60 dark:ring-neutral-800 p-5 flex flex-col gap-4">
+                <div class="flex items-start justify-between">
+                    <div class="space-y-0.5">
+                        <h3 class="font-semibold">#V-00012347</h3>
+                        <p class="text-xs text-neutral-500 dark:text-neutral-400">12 mayo 2025 · 19:21</p>
+                    </div>
+                    <span
+                        class="inline-flex items-center gap-2 rounded-full px-2.5 py-1 text-xs ring-1 ring-neutral-300 dark:ring-neutral-700">
+                        <span class="size-1.5 rounded-full bg-amber-500"></span> Pendiente
+                    </span>
+                </div>
+
+                <div class="grid grid-cols-2 gap-3 text-sm">
+                    <div>
+                        <div class="text-neutral-500 dark:text-neutral-400">Usuario</div>
+                        <div class="font-medium">Carlos Díaz · <a href="mailto:carlosaexample.com"
+                                class="text-cyan-600 dark:text-cyan-300 hover:underline">carlosaexample.com</a></div>
+                    </div>
+                    <div>
+                        <div class="text-neutral-500 dark:text-neutral-400">Total</div>
+                        <div class="font-semibold">S/ 389.90</div>
+                    </div>
+                    <div>
+                        <div class="text-neutral-500 dark:text-neutral-400">Productos</div>
+                        <div>iRun Freestyle (x1), Puma RS-X (x1)</div>
+                    </div>
+                    <div>
+                        <div class="text-neutral-500 dark:text-neutral-400">Pago</div>
+                        <div>Contraentrega</div>
+                    </div>
+                </div>
+
+                <div class="flex items-center justify-between pt-2 border-t border-neutral-200 dark:border-neutral-800">
+                    <div class="text-xs text-neutral-500 dark:text-neutral-400">SMP, Lima</div>
+                    <a href="/admin/pedidos" class="text-sm text-cyan-600 dark:text-cyan-300 hover:underline">Ver
+                        pedido</a>
+                </div>
+            </article>
         </div>
+
     </div>
 </section>
