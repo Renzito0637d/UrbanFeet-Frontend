@@ -36,12 +36,20 @@ export class ProcederPagoComponent implements OnInit {
 
   form = this.fb.group({
     direccionId: [null as number | null, Validators.required],
-    metodoPago: ['TARJETA', Validators.required]
+    metodoPago: ['TARJETA', Validators.required],
+    // Campos ficticios (inicialmente requeridos porque el default es TARJETA)
+    numeroTarjeta: ['', [Validators.required, Validators.pattern('^[0-9]{16}$')]],
+    fechaVencimiento: ['', [Validators.required, Validators.pattern('^(0[1-9]|1[0-2])\/[0-9]{2}$')]], // MM/YY
+    cvv: ['', [Validators.required, Validators.pattern('^[0-9]{3,4}$')]]
   });
 
   ngOnInit(): void {
     this.loadDirecciones();
     this.calcularTotal();
+
+    this.form.get('metodoPago')?.valueChanges.subscribe(metodo => {
+      this.actualizarValidadores(metodo);
+    });
   }
 
   loadDirecciones() {
@@ -60,6 +68,25 @@ export class ProcederPagoComponent implements OnInit {
         this.loadingDir = false;
       }
     });
+  }
+
+  actualizarValidadores(metodo: string | null) {
+    const tarjetaControls = ['numeroTarjeta', 'fechaVencimiento', 'cvv'];
+
+    if (metodo === 'TARJETA') {
+      tarjetaControls.forEach(ctrl => {
+        this.form.get(ctrl)?.setValidators([Validators.required]); // O tus patrones
+        this.form.get(ctrl)?.enable();
+        this.form.get(ctrl)?.updateValueAndValidity();
+      });
+    } else {
+      // Si es Yape o Plin, quitamos la obligación de llenar estos campos
+      tarjetaControls.forEach(ctrl => {
+        this.form.get(ctrl)?.clearValidators();
+        this.form.get(ctrl)?.disable(); // Opcional: deshabilita los inputs
+        this.form.get(ctrl)?.updateValueAndValidity();
+      });
+    }
   }
 
   calcularTotal() {

@@ -88,7 +88,54 @@
                 </label>
             </div>
 
-            <div class="bg-neutral-100 dark:bg-neutral-800 p-4 rounded-xl space-y-2">
+            <div *ngIf="form.get('metodoPago')?.value === 'TARJETA'"
+                class="space-y-4 p-4 bg-neutral-50 dark:bg-neutral-800/50 rounded-xl border border-neutral-200 dark:border-neutral-800 animate-in fade-in slide-in-from-top-2">
+                <div>
+                    <label class="block text-xs font-bold text-neutral-500 mb-1">Número de Tarjeta</label>
+                    <div class="relative">
+                        <span class="absolute left-3 top-2.5 text-neutral-400 material-icons !text-lg">payment</span>
+                        <input type="text" formControlName="numeroTarjeta" placeholder="0000 0000 0000 0000"
+                            maxlength="16"
+                            class="w-full pl-10 pr-4 py-2 rounded-lg border bg-white dark:bg-neutral-900 focus:outline-none focus:ring-2 focus:ring-cyan-500 transition-colors"
+                            [class.border-red-500]="form.get('numeroTarjeta')?.invalid && form.get('numeroTarjeta')?.touched"
+                            [class.border-neutral-300]="!form.get('numeroTarjeta')?.invalid">
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-bold text-neutral-500 mb-1">Vencimiento</label>
+                        <input type="text" formControlName="fechaVencimiento" placeholder="MM/YY" maxlength="5"
+                            class="w-full px-4 py-2 rounded-lg border bg-white dark:bg-neutral-900 focus:outline-none focus:ring-2 focus:ring-cyan-500 transition-colors"
+                            [class.border-red-500]="form.get('fechaVencimiento')?.invalid && form.get('fechaVencimiento')?.touched"
+                            [class.border-neutral-300]="!form.get('fechaVencimiento')?.invalid">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-neutral-500 mb-1">CVV</label>
+                        <input type="password" formControlName="cvv" placeholder="123" maxlength="4"
+                            class="w-full px-4 py-2 rounded-lg border bg-white dark:bg-neutral-900 focus:outline-none focus:ring-2 focus:ring-cyan-500 transition-colors"
+                            [class.border-red-500]="form.get('cvv')?.invalid && form.get('cvv')?.touched"
+                            [class.border-neutral-300]="!form.get('cvv')?.invalid">
+                    </div>
+                </div>
+            </div>
+
+            <div *ngIf="form.get('metodoPago')?.value === 'YAPE'"
+                class="text-center p-6 bg-purple-50 dark:bg-purple-900/10 rounded-xl border border-purple-100 dark:border-purple-800 animate-in fade-in">
+                <p class="text-sm font-bold text-purple-700 dark:text-purple-300 mb-4">Escanea el QR para pagar con Yape
+                </p>
+                <img src="https://upload.wikimedia.org/wikipedia/commons/d/d0/QR_code_for_mobile_English_Wikipedia.svg"
+                    alt="QR Yape" class="w-48 h-48 mx-auto rounded-lg shadow-md bg-white p-2">
+            </div>
+
+            <div *ngIf="form.get('metodoPago')?.value === 'PLIN'"
+                class="text-center p-6 bg-blue-50 dark:bg-blue-900/10 rounded-xl border border-blue-100 dark:border-blue-800 animate-in fade-in">
+                <p class="text-sm font-bold text-blue-700 dark:text-blue-300 mb-4">Escanea el QR para pagar con Plin</p>
+                <img src="https://upload.wikimedia.org/wikipedia/commons/d/d0/QR_code_for_mobile_English_Wikipedia.svg"
+                    alt="QR Plin" class="w-48 h-48 mx-auto rounded-lg shadow-md bg-white p-2">
+            </div>
+
+            <div class="bg-neutral-100 dark:bg-neutral-800 p-4 mt-4 rounded-xl space-y-2">
                 <div class="flex justify-between text-sm">
                     <span class="text-neutral-600 dark:text-neutral-400">Items ({{ itemsCarrito.length }})</span>
                     <span class="font-medium">{{ totalPagar | currency:'PEN ':'symbol' }}</span>
