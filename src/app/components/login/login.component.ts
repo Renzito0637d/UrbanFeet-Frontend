@@ -32,7 +32,7 @@ export class LoginComponent {
   readonly dialog = inject(MatDialog);
 
   openDialog() {
-    const dialogRef = this.dialog.open(RegisterComponent,{
+    const dialogRef = this.dialog.open(RegisterComponent, {
 
     });
 
@@ -105,7 +105,7 @@ export class LoginComponent {
         toast.success('Login exitoso');
         this.onCancel();
 
-        if (this.authService.hasRoles(['ADMIN'])) {
+        if (this.authService.hasRoles(['ADMIN', 'PEDIDOS', 'INVENTARIO', 'VENTAS'])) {
           // Si es ADMIN, lo mandamos al dashboard de admin
           this.router.navigate(['/admin']);
         } else {

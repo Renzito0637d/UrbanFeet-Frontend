@@ -1,138 +1,142 @@
-<!-- Contenido para un MatDialog (Angular Material) -->
-<button (click)="onCancel()"
-    class="absolute top-4 right-4 text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 focus:outline-none">
-    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-lg"
-        viewBox="0 0 16 16">
-        <path
-            d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z" />
-    </svg>
-</button>
-<div class="w-full h-full max-w-5xl mx-auto scroll-auto">
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 p-4">
+<div
+    class="relative w-full max-h-[95vh] md:h-auto max-w-5xl mx-auto bg-white dark:bg-neutral-900 text-neutral-900 dark:text-neutral-100 rounded-2xl shadow-xl flex flex-col overflow-hidden">
 
-        <!-- GALERÍA -->
-        <div class="space-y-4">
-            <!-- Imagen principal -->
-            <div class="relative rounded-2xl overflow-hidden bg-white dark:bg-white">
-                <img src="https://www.nike.com.pe/dw/image/v2/BJKZ_PRD/on/demandware.static/-/Sites-catalog-equinox/default/dw59540ed6/images/hi-res/198486695879_1_20250724-mrtPeru.jpeg?sw=800&sh=800"
-                    alt="Zapatilla" class="w-full h-[340px] md:h-[420px] object-contain"
-                    style="mix-blend-mode: multiply;" id="mainImage" />
+    <button (click)="onCancel()"
+        class="absolute top-3 right-3 z-50 p-2 rounded-full bg-black/10 dark:bg-white/10 text-gray-600 dark:text-gray-300 hover:text-red-500 transition backdrop-blur-md">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+            <path
+                d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z" />
+        </svg>
+    </button>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 h-full overflow-y-auto md:overflow-hidden">
+
+        <div class="p-6 bg-neutral-50 dark:bg-neutral-950 flex flex-col gap-4 md:h-full md:justify-center">
+
+            <div
+                class="relative w-full aspect-square rounded-2xl overflow-hidden bg-white dark:bg-neutral-900 flex items-center justify-center p-6 shadow-sm">
+                <img [src]="imagenActual" [alt]="data.nombre"
+                    class="w-full h-full object-contain mix-blend-multiply dark:mix-blend-normal transition-all duration-300">
             </div>
 
-            <!-- Miniaturas -->
-            <div class="flex flex-wrap items-center justify-center gap-2" id="miniaturasWrapper">
-                <!-- Ejemplos; duplica/cambia src y data-* para integrarlo con tu TS -->
-                <button
-                    class="size-16 rounded-xl ring-1 ring-neutral-300 dark:ring-neutral-700 overflow-hidden bg-white dark:bg-neutral-900 hover:ring-cyan-400 dark:hover:ring-cyan-300 transition"
-                    type="button">
-                    <img src="https://www.nike.com.pe/dw/image/v2/BJKZ_PRD/on/demandware.static/-/Sites-catalog-equinox/default/dw59540ed6/images/hi-res/198486695879_1_20250724-mrtPeru.jpeg?sw=800&sh=800"
-                        alt="Color Negro" class="w-full h-full object-contain">
-                </button>
-
-                <button
-                    class="size-16 rounded-xl ring-1 ring-neutral-300 dark:ring-neutral-700 overflow-hidden bg-white dark:bg-neutral-900 hover:ring-cyan-400 dark:hover:ring-cyan-300 transition"
-                    type="button">
-                    <img src="https://www.nike.com.pe/dw/image/v2/BJKZ_PRD/on/demandware.static/-/Sites-catalog-equinox/default/dw59540ed6/images/hi-res/198486695879_1_20250724-mrtPeru.jpeg?sw=800&sh=800"
-                        alt="Color Negro" class="w-full h-full object-contain">
-                </button>
-
-                <button
-                    class="size-16 rounded-xl ring-1 ring-neutral-300 dark:ring-neutral-700 overflow-hidden bg-white dark:bg-neutral-900 hover:ring-cyan-400 dark:hover:ring-cyan-300 transition"
-                    type="button">
-                    <img src="https://www.nike.com.pe/dw/image/v2/BJKZ_PRD/on/demandware.static/-/Sites-catalog-equinox/default/dw59540ed6/images/hi-res/198486695879_1_20250724-mrtPeru.jpeg?sw=800&sh=800"
-                        alt="Color Negro" class="w-full h-full object-contain">
-                </button>
-
-                <button
-                    class="size-16 rounded-xl ring-1 ring-neutral-300 dark:ring-neutral-700 overflow-hidden bg-white dark:bg-neutral-900 hover:ring-cyan-400 dark:hover:ring-cyan-300 transition"
-                    type="button">
-                    <img src="https://www.nike.com.pe/dw/image/v2/BJKZ_PRD/on/demandware.static/-/Sites-catalog-equinox/default/dw59540ed6/images/hi-res/198486695879_1_20250724-mrtPeru.jpeg?sw=800&sh=800"
-                        alt="Color Negro" class="w-full h-full object-contain">
+            <div class="flex flex-wrap gap-3 justify-center">
+                <button *ngFor="let grupo of coloresUnicos" (click)="selectColor(grupo)"
+                    [class.ring-2]="colorSeleccionado === grupo" [class.ring-cyan-400]="colorSeleccionado === grupo"
+                    class="size-14 md:size-16 rounded-xl ring-1 ring-neutral-200 dark:ring-neutral-800 overflow-hidden bg-white dark:bg-neutral-900 hover:ring-cyan-300 transition relative">
+                    <img [src]="grupo.imageUrl" [alt]="grupo.colorName" class="w-full h-full object-contain p-1">
+                    <span class="sr-only">{{ grupo.colorName }}</span>
                 </button>
             </div>
         </div>
 
-        <!-- INFO / COMPRA -->
-        <div
-            class="p-4 md:p-6 rounded-2xl bg-white dark:bg-neutral-900 ring-1 ring-neutral-300/50 dark:ring-neutral-800">
-            <!-- Nombre / descripción -->
-            <h2 class="text-2xl font-bold text-neutral-900 dark:text-neutral-100">Nike Revolution 7</h2>
-            <p class="mt-2 text-sm leading-relaxed text-neutral-700 dark:text-neutral-300">
-                Zapatillas de running diseñadas para ofrecer comodidad en el asfalto, con una mediasuela de espuma suave
-                que mejora la amortiguación, mayor espacio en el antepié para un ajuste más cómodo, y detalles como
-                cojines en el talón que suavizan el contacto con el tendón de Aquiles.
+        <div class="p-6 md:p-8 flex flex-col h-full md:overflow-y-auto bg-white dark:bg-neutral-900">
 
-            <!-- Meta -->
-            <ul class="mt-4 text-sm space-y-1">
-                <li><strong>Marca:</strong> Nike</li>
-                <li><strong>Tipo:</strong> Running</li>
-                <li><strong>Género:</strong> Unisex</li>
-            </ul>
-
-            <!-- Precio / Color actual -->
-            <div class="mt-4 space-y-1">
-                <p class="text-lg">
-                    <strong>Precio: </strong>
-                    <span id="precioVar" class="font-semibold text-cyan-600 dark:text-cyan-300">S/ 259.00</span>
-                </p>
-                <p class="text-sm">
-                    <strong>Color:</strong>
-                    <span id="colorVar"
-                        class="ml-1 inline-flex items-center rounded-full px-2 py-0.5 text-xs ring-1 ring-neutral-300 dark:ring-neutral-700">
-                        Negro
-                    </span>
-                </p>
+            <div class="mb-1">
+                <h2 class="text-2xl md:text-3xl font-bold tracking-tight leading-tight">{{ data.nombre }}</h2>
             </div>
 
-            <!-- Guía de tallas (en modal ya estamos: muestra imagen en un contenedor desplegable o link externo) -->
-            <details class="mt-4 group">
-                <summary class="cursor-pointer text-sm font-semibold text-cyan-600 dark:text-cyan-300 hover:underline">
-                    Guía de tallas
-                </summary>
-                <div class="mt-3 rounded-xl overflow-hidden ring-1 ring-neutral-200 dark:ring-neutral-800">
-                    <img src="/img/guia-tallas.webp" alt="Guía de tallas"
-                        class="w-full h-auto object-contain bg-neutral-50 dark:bg-neutral-800">
+            <p class="mt-3 text-sm leading-relaxed text-neutral-600 dark:text-neutral-400">
+                {{ data.descripcion || 'Sin descripción disponible.' }}
+            </p>
+
+            <div class="mt-5 flex flex-wrap gap-x-4 gap-y-1 text-sm text-neutral-500 dark:text-neutral-400">
+                <p>Marca: <span class="font-medium text-neutral-900 dark:text-neutral-200">{{ data.marca }}</span></p>
+                <p>Tipo: <span class="font-medium text-neutral-900 dark:text-neutral-200">{{ data.tipo }}</span></p>
+                <p>Género: <span class="font-medium text-neutral-900 dark:text-neutral-200">{{ data.genero }}</span></p>
+            </div>
+
+            <div class="my-5 h-px bg-neutral-100 dark:bg-neutral-800"></div>
+
+            <div class="space-y-6">
+                <div>
+                    <p class="text-xs font-bold text-neutral-400 uppercase tracking-wider mb-1">Precio</p>
+                    <p class="text-3xl font-bold text-cyan-600 dark:text-cyan-400">
+                        {{ precioActual | currency:'S/  ':'symbol' }}
+                    </p>
                 </div>
-            </details>
 
-            <!-- Tallas -->
-            <h5 class="mt-6 font-semibold">Selecciona una talla</h5>
-            <div id="tallasWrapper" class="mt-3 grid grid-cols-5 sm:grid-cols-6 gap-2">
-                <!-- Ejemplos; agrega data-* para integrarlo con tu TS -->
-                <button type="button"
-                    class="px-3 py-2 rounded-lg text-sm ring-1 ring-neutral-300 dark:ring-neutral-700 bg-white dark:bg-neutral-900 hover:ring-cyan-400 dark:hover:ring-cyan-300"
-                    data-talla="38" data-stock="true">38</button>
-                <button type="button"
-                    class="px-3 py-2 rounded-lg text-sm ring-1 ring-neutral-300 dark:ring-neutral-700 bg-white dark:bg-neutral-900 hover:ring-cyan-400 dark:hover:ring-cyan-300"
-                    data-talla="39" data-stock="true">39</button>
-                <button type="button"
-                    class="px-3 py-2 rounded-lg text-sm ring-1 ring-neutral-300 dark:ring-neutral-700 bg-white dark:bg-neutral-900 hover:ring-cyan-400 dark:hover:ring-cyan-300"
-                    data-talla="40" data-stock="true">40</button>
-                <button type="button"
-                    class="px-3 py-2 rounded-lg text-sm ring-1 ring-neutral-300 dark:ring-neutral-700 bg-white dark:bg-neutral-900 hover:ring-cyan-400 dark:hover:ring-cyan-300"
-                    data-talla="41" data-stock="true">41</button>
-                <button type="button"
-                    class="px-3 py-2 rounded-lg text-sm ring-1 ring-neutral-300 dark:ring-neutral-700 bg-white dark:bg-neutral-900 hover:ring-cyan-400 dark:hover:ring-cyan-300"
-                    data-talla="42" data-stock="false" disabled>42</button>
-                <button type="button"
-                    class="px-3 py-2 rounded-lg text-sm ring-1 ring-neutral-300 dark:ring-neutral-700 bg-white dark:bg-neutral-900 hover:ring-cyan-400 dark:hover:ring-cyan-300"
-                    data-talla="43" data-stock="true">43</button>
+                <div>
+                    <p class="text-sm font-semibold mb-2 flex items-center">
+                        Color:
+                        <span class="inline-flex items-center gap-2 ml-2 text-cyan-600 dark:text-cyan-400">
+                            <!-- Círculo de Color -->
+                            <span
+                                class="w-4 h-4 rounded-full border border-neutral-200 dark:border-neutral-600 shadow-sm"
+                                [ngStyle]="getColorStyle(colorSeleccionado?.colorName || '')">
+                            </span>
+                            <!-- Nombre del Color -->
+                            {{ colorSeleccionado?.colorName }}
+                        </span>
+                    </p>
+                </div>
+
+                <div>
+                    <div class="flex justify-between items-center mb-3">
+                        <p class="text-sm font-semibold">Tallas disponibles</p>
+                        <button class="text-xs text-cyan-500 hover:underline font-medium">Guía de tallas</button>
+                    </div>
+
+                    <div class="grid grid-cols-4 sm:grid-cols-5 gap-2">
+                        <button *ngFor="let variacion of colorSeleccionado?.variaciones"
+                            (click)="selectTalla(variacion)" [disabled]="variacion.stock === 0"
+                            [class.bg-cyan-400]="tallaSeleccionada === variacion"
+                            [class.text-neutral-900]="tallaSeleccionada === variacion"
+                            [class.ring-cyan-400]="tallaSeleccionada === variacion"
+                            [class.opacity-50]="variacion.stock === 0"
+                            [class.cursor-not-allowed]="variacion.stock === 0"
+                            class="px-2 py-3 rounded-lg text-sm font-medium ring-1 ring-neutral-200 dark:ring-neutral-700 bg-white dark:bg-neutral-800 hover:ring-cyan-400 transition-all relative overflow-hidden">
+
+                            {{ variacion.talla }}
+
+                            <div *ngIf="variacion.stock === 0"
+                                class="absolute inset-0 flex items-center justify-center bg-neutral-100/60 dark:bg-neutral-900/60">
+                                <div class="w-full h-px bg-red-500 rotate-45 transform"></div>
+                            </div>
+                        </button>
+                    </div>
+
+                    <p *ngIf="tallaSeleccionada"
+                        class="text-xs text-green-600 dark:text-green-400 mt-2 font-medium flex items-center gap-1">
+                        <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 16 16">
+                            <path
+                                d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
+                        </svg>
+                        Stock disponible: {{ tallaSeleccionada.stock }} u.
+                    </p>
+                </div>
             </div>
 
-            <!-- Acciones -->
-            <div class="mt-6">
-                <button type="button" class="w-full inline-flex items-center justify-center gap-2 rounded-xl px-5 py-3 font-semibold
-                 bg-cyan-400 dark:bg-cyan-300 text-neutral-900 hover:opacity-90 transition"
-                    aria-label="Agregar al carrito">
-                    <!-- icono carrito -->
-                    <svg class="size-5" viewBox="0 0 24 24" fill="currentColor">
-                        <path
-                            d="M7 18a2 2 0 100 4 2 2 0 000-4zm10 0a2 2 0 100 4 2 2 0 000-4zM3 2h2l.4 2M7 13h10l3.6-7.59A1 1 0 0019.7 4H6.1l-.5-2H3">
-                        </path>
-                    </svg>
-                    Agregar al carrito
-                </button>
+            <div class="mt-5 pt-4 md:pt-8 sticky bottom-0 bg-white dark:bg-neutral-900 md:static pb-2 md:pb-0">
+                <div class="mt-auto pt-8">
+                    <button (click)="addToCart()" [disabled]="!tallaSeleccionada || addingToCart" class="w-full inline-flex items-center justify-center gap-2 rounded-xl px-5 py-4 font-bold text-lg
+        bg-neutral-900 dark:bg-neutral-100 text-white dark:text-neutral-900 
+        hover:opacity-90 active:scale-[0.98] 
+        disabled:opacity-50 disabled:cursor-not-allowed disabled:active:scale-100 
+        transition-all shadow-xl shadow-neutral-900/10 dark:shadow-none">
+
+                        <svg *ngIf="addingToCart" class="animate-spin -ml-1 mr-2 h-5 w-5 text-current"
+                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4">
+                            </circle>
+                            <path class="opacity-75" fill="currentColor"
+                                d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z">
+                            </path>
+                        </svg>
+
+                        <svg *ngIf="!addingToCart" class="size-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+                        </svg>
+
+                        <span *ngIf="!addingToCart">
+                            {{ tallaSeleccionada ? 'Agregar al Carrito' : 'Selecciona una talla' }}
+                        </span>
+                        <span *ngIf="addingToCart">Agregando...</span>
+
+                    </button>
+                </div>
             </div>
+
         </div>
     </div>
 </div>
