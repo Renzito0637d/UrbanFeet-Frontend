@@ -26,7 +26,7 @@ export interface PedidoDetalleResponse {
     nombreProducto: string;
     marca: string;
     color: string;
-    talla: string;
+    tall: string;
 }
 
 export interface PedidoResponse {
@@ -35,7 +35,12 @@ export interface PedidoResponse {
     estado: string;
     fechaPedido: string;
 
-    direccionEnvio: DireccionEnvio;
+    direccionEnvio?: DireccionEnvio;
     detalles: PedidoDetalleResponse[];
     metodoPago: string;
+
+    nombreUsuario?: string;
+    apellidoUsuario?: string;
+    emailUsuario?: string;
+    telefonoUsuario?: string;
 }
