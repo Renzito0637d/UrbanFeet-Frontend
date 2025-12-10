@@ -4,6 +4,8 @@ import { RouterLink } from '@angular/router';
 import { CarritoService } from '../../services/carrito.service';
 import { toast } from 'ngx-sonner';
 import { Carrito, CarritoItemDetail } from '../../models/carrito.model';
+import { MatDialog } from '@angular/material/dialog';
+import { ProcederPagoComponent } from '../../components/proceder-pago/proceder-pago.component';
 
 @Component({
   selector: 'app-carrito',
@@ -14,6 +16,7 @@ import { Carrito, CarritoItemDetail } from '../../models/carrito.model';
 })
 export class CarritoComponent implements OnInit {
   private carritoService = inject(CarritoService);
+  private dialog = inject(MatDialog);
 
   carrito: Carrito | null = null;
 
@@ -148,5 +151,22 @@ export class CarritoComponent implements OnInit {
         // Si no coincide, intentamos usar el valor tal cual
         return { backgroundColor: colorName };
     }
+  }
+
+  openCheckout() {
+    if (!this.carrito || this.carrito.items.length === 0) return;
+
+    const ref = this.dialog.open(ProcederPagoComponent, {
+      width: '500px',
+      // Pasamos los items del carrito al modal
+      data: this.carrito.items
+    });
+
+    ref.afterClosed().subscribe(result => {
+      if (result === true) {
+        // Si el pago fue exitoso, recargamos el carrito (que debería estar vacío)
+        this.cargarCarrito();
+      }
+    });
   }
 }

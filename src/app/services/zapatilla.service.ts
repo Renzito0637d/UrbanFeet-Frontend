@@ -1,7 +1,8 @@
 import { Injectable, inject } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Zapatilla, ZapatillaRequest } from '../models/zapatilla.model';
+import { Page } from '../models/page.model';
 
 @Injectable({
   providedIn: 'root'
@@ -11,8 +12,21 @@ export class ZapatillaService {
 
   private baseUrl = '/zapatilla';
 
-  getAll(): Observable<Zapatilla[]> {
-    return this.http.get<Zapatilla[]>(this.baseUrl);
+  getPaginated(page: number, size: number): Observable<Page<Zapatilla>> {
+    let params = new HttpParams().set('page', page).set('size', size);
+    
+    // ¡OJO A LA RUTA! ¿Es /page o solo /? Revisa tu Controller
+    return this.http.get<Page<Zapatilla>>(`${this.baseUrl}/page`, { params }); 
+  }
+
+  getPaginatedPublic(page: number = 0, size: number = 12): Observable<Page<Zapatilla>> {
+    let params = new HttpParams()
+      .set('page', page.toString())
+      .set('size', size.toString())
+      .set('sortDir', 'desc'); // Opcional: Para que salgan los últimos agregados primero
+
+    // CAMBIO: Apuntamos al endpoint público filtrado
+    return this.http.get<Page<Zapatilla>>(`${this.baseUrl}/public/list`, { params });
   }
 
   getById(id: number): Observable<Zapatilla> {
