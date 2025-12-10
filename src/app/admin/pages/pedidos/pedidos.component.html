@@ -16,7 +16,7 @@
                         <span class="text-sm">{{ pedido.fechaPedido | date:'shortDate' }}</span>
                         <span class="hidden md:inline">•</span>
                         <span class="font-semibold">
-                            {{ calcularTotal(pedido) | currency:'PEN':'symbol' }}
+                            {{ calcularTotal(pedido) | currency:'S/ ':'symbol' }}
                         </span>
                     </div>
                     <div class="flex items-center gap-3">

@@ -68,7 +68,7 @@
             <div class="flex flex-col items-end">
               <span class="text-xs text-neutral-500">Total</span>
               <span class="font-bold text-lg text-cyan-600 dark:text-cyan-400">
-                {{ calcularTotal(pedido) | currency:'PEN':'symbol' }}
+                {{ calcularTotal(pedido) | currency:'S/ ':'symbol' }}
               </span>
             </div>
             <svg class="size-5 text-neutral-400 group-open:rotate-180 transition-transform duration-300"
@@ -159,7 +159,7 @@
                         <span>Talla: {{ item.tall }}</span>
                         <span class="text-neutral-300 dark:text-neutral-700">|</span>
                         <span class="font-medium text-neutral-700 dark:text-neutral-300">
-                          {{ item.precioTotal | currency:'PEN':'symbol' }}
+                          {{ item.precioTotal | currency:'S/ ':'symbol' }}
                         </span>
                       </div>
                     </div>
@@ -194,19 +194,29 @@
                   </ng-template>
                 </div>
 
-                <div class="flex gap-3 pt-2 border-t border-neutral-100 dark:border-neutral-800">
+                <div class="flex items-center gap-3 pt-2 border-t border-neutral-100 dark:border-neutral-800">
 
-                  <mat-icon class="text-neutral-400 !text-lg !w-5 !h-5">
-                    {{ pedido.metodoPago === 'TARJETA' ? 'credit_card' : 'smartphone' }}
-                  </mat-icon>
+                  <div class="shrink-0 flex items-center justify-center">
+
+                    <mat-icon *ngIf="pedido.metodoPago === 'TARJETA'" class="text-neutral-400 !text-lg !w-5 !h-5">
+                      credit_card
+                    </mat-icon>
+
+                    <img *ngIf="pedido.metodoPago === 'YAPE'" src="/img/yape-logo.webp" alt="Yape"
+                      class="w-7 h-7 object-contain dark:brightness-200">
+
+                    <img *ngIf="pedido.metodoPago === 'PLIN'" src="/img/plin-logo.webp" alt="Plin"
+                      class="w-6 h-6 object-contain rounded-md">
+                  </div>
 
                   <div>
-                    <p class="font-medium">Pago procesado</p>
+                    <p class="font-medium leading-none mb-1">Pago procesado</p>
 
                     <p class="text-xs text-neutral-500 capitalize">
                       {{ pedido.metodoPago === 'TARJETA' ? 'Tarjeta débito/crédito' : (pedido.metodoPago | titlecase) }}
                     </p>
                   </div>
+
                 </div>
 
               </div>
