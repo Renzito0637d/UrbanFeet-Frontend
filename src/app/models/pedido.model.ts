@@ -43,4 +43,12 @@ export interface PedidoResponse {
     apellidoUsuario?: string;
     emailUsuario?: string;
     telefonoUsuario?: string;
+
+    historial?: PedidoHistorial[];
+}
+
+export interface PedidoHistorial {
+    estado: string;
+    fecha: string; // O Date
+    usuario: string;
 }

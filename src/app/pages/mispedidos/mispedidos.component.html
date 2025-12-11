@@ -221,8 +221,54 @@
 
               </div>
             </div>
+
+            <div *ngIf="pedido.historial && pedido.historial.length > 0"
+              class="mt-2 pt-4 border-t border-dashed border-neutral-200 dark:border-neutral-800">
+
+              <h6 class="text-xs font-bold uppercase tracking-wider text-neutral-500 mb-6 flex items-center gap-2">
+                <span class="material-icons text-base">history</span>
+                Historial de Movimientos
+              </h6>
+
+              <div class="relative pl-3 ml-1">
+                <div class="absolute left-[19px] top-2 bottom-4 w-px bg-neutral-200 dark:bg-neutral-800"></div>
+
+                <div class="space-y-6">
+                  <div *ngFor="let h of pedido.historial; let i = index" class="relative group pl-6">
+
+                    <div class="absolute left-0 top-1.5 size-4 rounded-full border-2 transition-colors z-10" [ngClass]="{
+                        'bg-white dark:bg-neutral-900 border-cyan-500 ring-2 ring-cyan-100 dark:ring-cyan-900/40': i === 0,
+                        'bg-neutral-200 dark:bg-neutral-800 border-neutral-300 dark:border-neutral-700': i > 0
+                    }">
+                    </div>
+
+                    <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-1">
+                      <div>
+                        <p class="font-bold text-sm capitalize"
+                          [ngClass]="{'text-neutral-900 dark:text-neutral-100': i === 0, 'text-neutral-500 dark:text-neutral-500': i > 0}">
+                          {{ h.estado | titlecase }}
+                        </p>
+                        <p class="text-xs text-neutral-400 mt-0.5">
+                          <span *ngIf="h.estado === 'PENDIENTE'">Tu pedido ha sido recibido.</span>
+                          <span *ngIf="h.estado === 'PREPARANDO'">Estamos empaquetando tus zapatillas.</span>
+                          <span *ngIf="h.estado === 'ENVIADO'">Tu pedido está en camino a tu dirección.</span>
+                          <span *ngIf="h.estado === 'ENTREGADO'">Pedido entregado con éxito.</span>
+                          <span *ngIf="h.estado === 'CANCELADO'">Pedido cancelado.</span>
+                        </p>
+                      </div>
+
+                      <span
+                        class="text-[10px] font-medium text-neutral-700 dark:text-neutral-100 bg-neutral-50 dark:bg-neutral-800/50 px-2 py-1 rounded border border-neutral-100 dark:border-neutral-800 w-fit">
+                        {{ h.fecha | date:'dd MMM, h:mm a' }}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
             <div *ngIf="pedido.estado === 'PENDIENTE' || pedido.estado === 'PREPARANDO'"
-              class="mt-6 pt-4 border-t border-neutral-100 dark:border-neutral-800 flex justify-end">
+              class="mt-2 pt-4 border-t border-neutral-100 dark:border-neutral-800">
               <button (click)="cancelarPedido(pedido.id)"
                 class="inline-flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-bold text-red-100 border hover:text-red-400 bg-red-500 border-red-200 hover:bg-red-50 dark:text-red-100 dark:border-red-900/50 dark:hover:bg-red-900/20 transition-colors">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-4">

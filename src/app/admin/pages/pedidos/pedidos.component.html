@@ -262,6 +262,89 @@
                                 </div>
                             </div>
 
+                            <div class="mt-8 pt-6 border-t border-dashed border-neutral-200 dark:border-neutral-800">
+
+                                <h6
+                                    class="font-bold text-neutral-900 dark:text-neutral-100 mb-6 flex items-center gap-2 text-sm uppercase tracking-wide">
+                                    <span class="material-icons text-base text-cyan-500">history_edu</span>
+                                    Historial de Seguimiento
+                                </h6>
+
+                                <div class="relative pl-2 md:pl-4">
+
+                                    <div
+                                        class="absolute left-[25px] md:left-[35px] top-2 bottom-4 w-px bg-gradient-to-b from-neutral-200 via-neutral-200 to-transparent dark:from-neutral-700 dark:via-neutral-800">
+                                    </div>
+
+                                    <div class="space-y-6">
+                                        <div *ngFor="let h of pedido.historial; let i = index"
+                                            class="relative flex gap-4 group">
+
+                                            <div class="relative z-10 shrink-0">
+                                                <div class="flex items-center justify-center size-8 md:size-10 rounded-full border-2 transition-all duration-300"
+                                                    [ngClass]="{
+                            'bg-white dark:bg-neutral-900 border-cyan-500 shadow-[0_0_0_4px_rgba(6,182,212,0.1)]': i === 0,
+                            'bg-neutral-50 dark:bg-neutral-800 border-neutral-200 dark:border-neutral-700': i > 0
+                        }">
+
+                                                    <span class="material-icons text-[16px] md:text-[20px]" [ngClass]="{
+                                'text-cyan-600 dark:text-cyan-400': i === 0,
+                                'text-neutral-400': i > 0
+                            }">
+                                                        {{
+                                                        h.estado === 'ENTREGADO' ? 'check_circle' :
+                                                        h.estado === 'ENVIADO' ? 'local_shipping' :
+                                                        h.estado === 'CANCELADO' ? 'cancel' :
+                                                        h.estado === 'PENDIENTE' ? 'schedule' : 'history'
+                                                        }}
+                                                    </span>
+                                                </div>
+                                            </div>
+
+                                            <div class="flex-1 pt-1 md:pt-2">
+                                                <div
+                                                    class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-1">
+
+                                                    <div>
+                                                        <p class="font-bold text-sm md:text-base capitalize transition-colors"
+                                                            [ngClass]="{'text-neutral-900 dark:text-white': i === 0, 'text-neutral-500 dark:text-neutral-400': i > 0}">
+                                                            {{ h.estado | titlecase }}
+                                                        </p>
+                                                        <p
+                                                            class="text-xs text-neutral-400 dark:text-neutral-500 flex items-center gap-1 mt-0.5">
+                                                            <span class="material-icons text-[10px]">person</span>
+                                                            {{ h.usuario || 'Sistema' }}
+                                                        </p>
+                                                    </div>
+
+                                                    <div class="text-left sm:text-right">
+                                                        <span
+                                                            class="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-medium bg-neutral-100 dark:bg-neutral-800 text-neutral-500 dark:text-neutral-400 border border-neutral-200 dark:border-neutral-700">
+                                                            <span
+                                                                class="material-icons text-[10px]">calendar_today</span>
+                                                            {{ h.fecha | date:'dd MMM yyyy, h:mm a' }}
+                                                        </span>
+                                                    </div>
+
+                                                </div>
+
+                                                <p *ngIf="i === 0 && h.estado === 'ENTREGADO'"
+                                                    class="text-xs text-green-600 mt-2 font-medium animate-pulse">
+                                                    ¡El pedido ha sido completado exitosamente!
+                                                </p>
+                                            </div>
+
+                                        </div>
+
+                                        <div *ngIf="!pedido.historial || pedido.historial.length === 0"
+                                            class="pl-14 text-sm text-neutral-400 italic">
+                                            No hay movimientos registrados aún.
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
                         </ng-template>
 
                     </div>
