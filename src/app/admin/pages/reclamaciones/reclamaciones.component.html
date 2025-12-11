@@ -1,138 +1,152 @@
-<div class="p-8">
+<div
+  class="p-8 min-h-screen text-neutral-800 dark:text-neutral-200 transition-colors duration-300">
 
-  <!-- TÍTULO -->
-  <h1 class="text-4xl font-bold text-cyan-400 mb-10">
+  <h1 class="text-3xl md:text-4xl font-bold text-cyan-600 dark:text-cyan-400 mb-2">
     Panel de Reclamaciones
   </h1>
+  <p class="text-neutral-500 dark:text-neutral-400 mb-10">Gestiona las quejas y reclamos de los clientes.</p>
 
-  <!-- FILTROS -->
-  <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
 
-    <!-- FILTRO ESTADO -->
-    <div class="flex items-center gap-4 p-4 bg-neutral-900 border border-neutral-700 rounded-xl shadow-sm">
-      <div class="flex items-center justify-center w-10 h-10 rounded-lg bg-cyan-500/20">
-        <!-- Ícono Filtro -->
-        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-cyan-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+    <div
+      class="flex items-center gap-4 p-4 bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 rounded-xl shadow-sm">
+      <div class="flex items-center justify-center w-10 h-10 rounded-lg bg-cyan-50 dark:bg-cyan-500/10">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-cyan-600 dark:text-cyan-400" fill="none"
+          viewBox="0 0 24 24" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-            d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2l-7 7v6l-4-2v-4L3 6V4z" />
+            d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
         </svg>
       </div>
       <div class="flex-1">
-        <p class="text-neutral-400 text-sm">Filtrar por</p>
-        <p class="text-white font-medium">Estado</p>
-      </div>
+        <p class="text-neutral-500 text-xs uppercase font-bold">Filtrar por Estado</p>
 
-      <select
-        class="px-4 py-2 rounded-xl bg-neutral-800 text-white border border-neutral-600 focus:ring-2 focus:ring-cyan-500 transition"
-        [(ngModel)]="filtroEstado"
-        (change)="aplicarFiltro()"
-      >
-        <option value="Todos">Todos</option>
-        <option value="Pendiente">Pendiente</option>
-        <option value="En revisión">En revisión</option>
-        <option value="Aceptado">Aceptado</option>
-      </select>
+        <select
+          class="w-full mt-1 bg-transparent text-neutral-900 dark:text-white font-medium focus:outline-none cursor-pointer"
+          [(ngModel)]="filtroEstado" (change)="aplicarFiltro()">
+          <option value="TODOS" class="text-neutral-900 dark:text-neutral-200 bg-white dark:bg-neutral-900">TODOS
+          </option>
+          <option value="PENDIENTE" class="text-neutral-900 dark:text-neutral-200 bg-white dark:bg-neutral-900">
+            PENDIENTE</option>
+          <option value="EN_PROCESO" class="text-neutral-900 dark:text-neutral-200 bg-white dark:bg-neutral-900">EN
+            PROCESO</option>
+          <option value="ATENDIDO" class="text-neutral-900 dark:text-neutral-200 bg-white dark:bg-neutral-900">ATENDIDO
+          </option>
+        </select>
+      </div>
     </div>
 
-    <!-- FILTRO TIPO -->
-    <div class="flex items-center gap-4 p-4 bg-neutral-900 border border-neutral-700 rounded-xl shadow-sm">
-      <div class="flex items-center justify-center w-10 h-10 rounded-lg bg-purple-500/20">
-        <!-- Ícono Documento -->
-        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-purple-400" fill="none" viewBox="0 0 24 24"
-          stroke="currentColor">
+    <div
+      class="flex items-center gap-4 p-4 bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 rounded-xl shadow-sm">
+      <div class="flex items-center justify-center w-10 h-10 rounded-lg bg-purple-50 dark:bg-purple-500/10">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-purple-600 dark:text-purple-400" fill="none"
+          viewBox="0 0 24 24" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-            d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 
-             0 012-2h7l5 5v12a2 2 0 01-2 2z" />
+            d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z" />
         </svg>
       </div>
-
       <div class="flex-1">
-        <p class="text-neutral-400 text-sm">Filtrar por</p>
-        <p class="text-white font-medium">Tipo</p>
-      </div>
+        <p class="text-neutral-500 text-xs uppercase font-bold">Filtrar por Tipo</p>
 
-      <select
-        class="px-4 py-2 rounded-xl bg-neutral-800 text-white border border-neutral-600 focus:ring-2 focus:ring-purple-500 transition"
-        [(ngModel)]="filtroTipo"
-        (change)="aplicarFiltro()"
-      >
-        <option value="Todos">Todos</option>
-        <option value="Reclamo">Reclamo</option>
-        <option value="Queja">Queja</option>
-      </select>
+        <select
+          class="w-full mt-1 bg-transparent text-neutral-900 dark:text-white font-medium focus:outline-none cursor-pointer"
+          [(ngModel)]="filtroTipo" (change)="aplicarFiltro()">
+          <option value="TODOS" class="text-neutral-900 dark:text-neutral-200 bg-white dark:bg-neutral-900">TODOS
+          </option>
+          <option value="Reclamo" class="text-neutral-900 dark:text-neutral-200 bg-white dark:bg-neutral-900">Reclamo
+          </option>
+          <option value="Queja" class="text-neutral-900 dark:text-neutral-200 bg-white dark:bg-neutral-900">Queja
+          </option>
+        </select>
+      </div>
     </div>
   </div>
 
-  <!-- CONTADOR -->
-  <p class="text-neutral-400 mb-6">
-    Mostrando <span class="text-cyan-400">{{ reclamos.length }}</span> resultados
+  <p class="text-neutral-500 dark:text-neutral-400 mb-6 text-sm">
+    Mostrando <span class="text-cyan-600 dark:text-cyan-400 font-bold">{{ reclamos.length }}</span> resultados
   </p>
 
-  <!-- LISTA -->
-  <div class="grid grid-cols-1 xl:grid-cols-2 gap-8">
+  <div class="grid grid-cols-1 xl:grid-cols-2 gap-6">
 
-    <div
-      *ngFor="let r of reclamos"
-      class="p-6 rounded-2xl bg-neutral-900 border border-neutral-700 shadow hover:shadow-xl transition hover:-translate-y-1 cursor-pointer duration-300"
-    >
+    <div *ngFor="let r of reclamos"
+      class="p-6 rounded-2xl bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 shadow-sm hover:shadow-md hover:border-cyan-400/50 dark:hover:border-cyan-500/30 transition-all duration-300 flex flex-col">
 
-      <div class="flex justify-between items-center mb-4">
-        <h2 class="text-xl font-semibold text-cyan-300">
-          {{ r.tipo }} — #{{ r.id }}
-        </h2>
+      <div class="flex justify-between items-start mb-4">
+        <div>
+          <div class="flex items-center gap-2 mb-1">
+            <span class="text-xs font-bold px-2 py-0.5 rounded uppercase tracking-wider" [ngClass]="{
+                  'bg-orange-100 text-orange-700 dark:bg-orange-900/30 dark:text-orange-300': r.tipoMensaje === 'Queja',
+                  'bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-300': r.tipoMensaje !== 'Queja'
+               }">
+              {{ r.tipoMensaje }}
+            </span>
+            <span class="text-neutral-400 dark:text-neutral-500 text-xs font-mono">#{{ r.id }}</span>
+          </div>
+          <h2 class="text-lg font-bold text-neutral-900 dark:text-white leading-tight">{{ r.producto }}</h2>
+        </div>
 
-        <span
-          class="px-3 py-1 rounded-lg text-sm transition"
-          [ngClass]="{
-            'bg-yellow-500/20 text-yellow-300': r.estado === 'Pendiente',
-            'bg-blue-500/20 text-blue-300': r.estado === 'En revisión',
-            'bg-green-500/20 text-green-300': r.estado === 'Aceptado'
-          }"
-        >
+        <span class="px-3 py-1 rounded-lg text-xs font-bold uppercase tracking-wide" [ngClass]="{
+            'bg-yellow-50 text-yellow-700 dark:bg-yellow-500/10 dark:text-yellow-500': r.estado === 'PENDIENTE',
+            'bg-blue-50 text-blue-700 dark:bg-blue-500/10 dark:text-blue-400': r.estado === 'EN_PROCESO',
+            'bg-green-50 text-green-700 dark:bg-green-500/10 dark:text-green-400': r.estado === 'ATENDIDO'
+          }">
           {{ r.estado }}
         </span>
       </div>
 
-      <!-- Datos del usuario -->
-      <div class="space-y-1 text-sm text-neutral-300">
-        <p><strong>Nombre:</strong> {{ r.nombre }}</p>
-        <p><strong>Documento:</strong> {{ r.documento }}</p>
-        <p><strong>Domicilio:</strong> {{ r.domicilio }}</p>
-        <p><strong>Email:</strong> {{ r.email }}</p>
-        <p><strong>Teléfono:</strong> {{ r.telefono }}</p>
+      <div
+        class="bg-neutral-50 dark:bg-neutral-800/50 p-3 rounded-xl space-y-1 text-sm text-neutral-600 dark:text-neutral-300 mb-4 border border-neutral-100 dark:border-neutral-800">
+        <p class="flex justify-between"><span class="text-neutral-500">Cliente:</span> <span
+            class="font-medium text-neutral-900 dark:text-white">{{ r.nombreUsuario }}</span></p>
+        <p class="flex justify-between"><span class="text-neutral-500">DNI/CE:</span> <span>{{ r.documentoUsuario
+            }}</span></p>
+        <p class="flex justify-between"><span class="text-neutral-500">Email:</span> <span
+            class="text-cyan-600 dark:text-cyan-400">{{
+            r.emailUsuario }}</span></p>
+        <p class="flex justify-between"><span class="text-neutral-500">Teléfono:</span> <span>{{ r.telefonoUsuario
+            }}</span></p>
+        <p class="flex justify-between items-start"><span class="text-neutral-500 shrink-0">Dirección:</span> <span
+            class="text-right text-xs">{{ r.direccion }}</span></p>
       </div>
 
-      <hr class="my-4 border-neutral-700" />
+      <div class="space-y-3 text-sm text-neutral-600 dark:text-neutral-300 flex-1">
+        <div>
+          <p class="text-xs text-neutral-500 font-bold uppercase mb-1">Detalle:</p>
+          <p class="bg-neutral-100 dark:bg-neutral-800 p-3 rounded-lg italic text-neutral-700 dark:text-neutral-200">"{{
+            r.detalleReclamo }}"</p>
+        </div>
 
-      <!-- Datos del reclamo -->
-      <div class="space-y-1 text-sm text-neutral-300">
-        <p><strong>Producto:</strong> {{ r.producto }}</p>
-        <p><strong>Monto reclamado:</strong> S/ {{ r.monto }}</p>
-        <p><strong>Detalle:</strong> {{ r.detalle }}</p>
-        <p><strong>Pedido del cliente:</strong> {{ r.pedido }}</p>
-        <p><strong>Fecha:</strong> {{ r.fecha | date:'short' }}</p>
+        <div>
+          <p class="text-xs text-neutral-500 font-bold uppercase mb-1">Solución Pedida:</p>
+          <p class="text-neutral-700 dark:text-neutral-400">{{ r.solucionPropuesta }}</p>
+        </div>
+
+        <div class="flex justify-between items-center pt-2 border-t border-neutral-100 dark:border-neutral-800">
+          <span class="text-xs text-neutral-500">{{ r.fechaRegistro | date:'medium' }}</span>
+          <span class="font-bold text-neutral-900 dark:text-white">Monto: {{ r.montoReclamado | currency:'S/ ':'symbol'
+            }}</span>
+        </div>
       </div>
 
-      <!-- Acciones -->
-      <div class="flex gap-3 mt-6">
+      <div class="flex gap-3 mt-6 pt-4 border-t border-neutral-100 dark:border-neutral-800">
 
-        <!-- Cambiar estado -->
         <select
-          class="px-3 py-2 bg-neutral-800 border border-neutral-600 rounded-lg text-white hover:border-cyan-400 transition"
-          [(ngModel)]="r.estado"
-          (change)="cambiarEstado(r.id, r.estado)"
-        >
-          <option value="Pendiente">Pendiente</option>
-          <option value="En revisión">En revisión</option>
-          <option value="Aceptado">Aceptado</option>
+          class="flex-1 px-3 py-2 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 rounded-xl text-neutral-900 dark:text-white text-sm focus:ring-2 focus:ring-cyan-500 outline-none cursor-pointer transition-colors"
+          [(ngModel)]="r.estado" (change)="cambiarEstado(r.id, r.estado, r)">
+          <option value="PENDIENTE" class="text-neutral-900 dark:text-neutral-200 bg-white dark:bg-neutral-900">
+            PENDIENTE</option>
+          <option value="EN_PROCESO" class="text-neutral-900 dark:text-neutral-200 bg-white dark:bg-neutral-900">EN
+            PROCESO</option>
+          <option value="ATENDIDO" class="text-neutral-900 dark:text-neutral-200 bg-white dark:bg-neutral-900">ATENDIDO
+          </option>
         </select>
 
-        <!-- Eliminar -->
-        <button
-          (click)="eliminar(r.id)"
-          class="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition active:scale-95 duration-150"
-        >
-          Eliminar
+        <button (click)="eliminar(r.id)"
+          class="px-4 py-2 bg-red-50 text-red-600 border border-red-200 dark:bg-red-500/10 dark:text-red-500 dark:border-red-500/20 rounded-xl hover:bg-red-100 dark:hover:bg-red-500 dark:hover:text-white transition active:scale-95 duration-150 flex items-center justify-center"
+          title="Eliminar Registro">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+          </svg>
         </button>
 
       </div>
@@ -140,5 +154,4 @@
     </div>
 
   </div>
-
 </div>

@@ -25,4 +25,9 @@ export interface ReclamacionResponse {
     fechaRegistro: string;
     estado: string;
     direccion?: string;
+
+    nombreUsuario?: string;
+    documentoUsuario?: string;
+    emailUsuario?: string;
+    telefonoUsuario?: string;
 }
