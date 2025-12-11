@@ -1,7 +1,7 @@
 import { Injectable, inject } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Zapatilla, ZapatillaRequest } from '../models/zapatilla.model';
+import { Zapatilla, ZapatillaFilter, ZapatillaRequest } from '../models/zapatilla.model';
 import { Page } from '../models/page.model';
 
 @Injectable({
@@ -14,19 +14,27 @@ export class ZapatillaService {
 
   getPaginated(page: number, size: number): Observable<Page<Zapatilla>> {
     let params = new HttpParams().set('page', page).set('size', size);
-    
-    // ¡OJO A LA RUTA! ¿Es /page o solo /? Revisa tu Controller
-    return this.http.get<Page<Zapatilla>>(`${this.baseUrl}/page`, { params }); 
+    return this.http.get<Page<Zapatilla>>(`${this.baseUrl}/page`, { params });
   }
 
-  getPaginatedPublic(page: number = 0, size: number = 12): Observable<Page<Zapatilla>> {
+  getPaginatedPublic(page: number, size: number, filters?: ZapatillaFilter): Observable<any> {
     let params = new HttpParams()
-      .set('page', page.toString())
-      .set('size', size.toString())
-      .set('sortDir', 'desc'); // Opcional: Para que salgan los últimos agregados primero
+      .set('page', page)
+      .set('size', size);
 
-    // CAMBIO: Apuntamos al endpoint público filtrado
-    return this.http.get<Page<Zapatilla>>(`${this.baseUrl}/public/list`, { params });
+    if (filters) {
+      if (filters.marcas && filters.marcas.length > 0) {
+        // Para enviar array: marcas=Nike&marcas=Adidas
+        filters.marcas.forEach(m => params = params.append('marcas', m));
+      }
+      if (filters.genero) params = params.set('genero', filters.genero);
+      if (filters.tipo) params = params.set('tipo', filters.tipo);
+      if (filters.talla) params = params.set('talla', filters.talla);
+      if (filters.min) params = params.set('min', filters.min);
+      if (filters.max) params = params.set('max', filters.max);
+    }
+
+    return this.http.get<any>(`${this.baseUrl}/public/list`, { params });
   }
 
   getById(id: number): Observable<Zapatilla> {
@@ -44,5 +52,5 @@ export class ZapatillaService {
   delete(id: number): Observable<void> {
     return this.http.delete<void>(`${this.baseUrl}/${id}`);
   }
-  
+
 }

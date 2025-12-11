@@ -1,71 +1,110 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, inject, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
-import { ClientesComponent } from '../../../components/admin/usuarios/clientes/clientes.component';
-import { CommonModule } from '@angular/common';
-import { User } from '../../../models/user.model';
-import { UserService } from '../../../services/user.service';
+import { MatIconModule } from '@angular/material/icon';
+import { MatTooltipModule } from '@angular/material/tooltip';
 import { toast } from 'ngx-sonner';
+
+import { UserService } from '../../../services/user.service';
+import { User } from '../../../models/user.model';
+import { ClientesComponent } from '../../../components/admin/usuarios/clientes/clientes.component';
 import { UsuariosInternosComponent } from '../../../components/admin/usuarios/usuariosinternos/usuariosinternos.component';
 import { ChangePasswordComponent } from '../../../components/admin/usuarios/change-password/change-password.component';
-import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-usuarios',
   standalone: true,
-  imports: [CommonModule, MatButtonModule, MatDialogModule, MatIconModule],
+  imports: [CommonModule, MatButtonModule, MatDialogModule, MatIconModule, MatTooltipModule],
   templateUrl: './usuarios.component.html',
   styleUrl: './usuarios.component.css',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush // IMPORTANTE: Requiere uso correcto de cdr
 })
 export class UsuariosComponent implements OnInit {
 
+  // Servicios
+  private userService = inject(UserService);
+  private dialog = inject(MatDialog);
+  private cdr = inject(ChangeDetectorRef);
+
+  // --- ESTADO USUARIOS INTERNOS ---
   internalUsers: User[] = [];
   internalPage: number = 0;
   internalTotalPages: number = 0;
-  internalTotalElements: number = 0;
 
   // --- ESTADO CLIENTES ---
   clients: User[] = [];
   clientPage: number = 0;
   clientTotalPages: number = 0;
-  clientTotalElements: number = 0;
 
-  // Configuración general
-  pageSize: number = 5;
-
-  // Inyecciones
-  private readonly dialog = inject(MatDialog);
-
-  // 2. INYECTAR ChangeDetectorRef
-  constructor(
-    private userService: UserService,
-    private cdr: ChangeDetectorRef
-  ) { }
+  // Configuración
+  pageSize: number = 5; // Asegúrate de que coincida con tu backend si es fijo
 
   ngOnInit(): void {
     this.loadInternalUsers();
     this.loadClients();
   }
 
+  // ==========================================
+  // LÓGICA USUARIOS INTERNOS
+  // ==========================================
   loadInternalUsers() {
-    this.userService.getInternalUsers(this.internalPage, this.pageSize)
-      .subscribe({
-        next: (resp) => {
-          this.internalUsers = resp.content;
+    this.userService.getInternalUsers(this.internalPage, this.pageSize).subscribe({
+      next: (resp: any) => {
+        console.log('Respuesta Internos:', resp);
 
-          // CAMBIO AQUÍ: Accedemos a resp.page.XXX
-          this.internalTotalPages = resp.page.totalPages;
-          this.internalTotalElements = resp.page.totalElements;
+        this.internalUsers = resp.content || [];
 
-          this.cdr.markForCheck();
-        },
-        error: (err) => console.error('Error cargando internos', err)
-      });
+        // BUSQUEDA INTELIGENTE
+        const pageInfo = resp.page || resp;
+
+        // CORRECCIÓN 1: Asignar a la variable interna correcta
+        this.internalTotalPages = pageInfo.totalPages || 0;
+
+        // Si tienes una variable para totalElements (opcional), úsala aquí:
+        // this.internalTotalElements = pageInfo.totalElements || 0;
+
+        console.log('Total Páginas Internas:', this.internalTotalPages);
+        this.cdr.markForCheck();
+      },
+      error: (err) => {
+        console.error(err);
+        toast.error('Error cargando admins');
+      }
+    });
+  }
+
+  // ==========================================
+  // LÓGICA CLIENTES
+  // ==========================================
+  loadClients() {
+    this.userService.getClients(this.clientPage, this.pageSize).subscribe({
+      next: (resp: any) => {
+        console.log('Respuesta Clientes:', resp);
+
+        this.clients = resp.content || [];
+
+        const pageInfo = resp.page || resp;
+
+        // CORRECCIÓN 2: Asignar totalPages (No totalElements)
+        this.clientTotalPages = pageInfo.totalPages || 0;
+
+        // ELIMINADO: this.clientTotalPages = pageInfo.totalElements || 0; <--- ESTO CAUSABA EL ERROR VISUAL
+
+        console.log('Total Páginas Clientes:', this.clientTotalPages);
+        this.cdr.markForCheck();
+      },
+      error: (err) => {
+        console.error(err);
+        toast.error('Error cargando clientes');
+      }
+    });
   }
 
   changeInternalPage(delta: number) {
     const newPage = this.internalPage + delta;
+
+    // Validar límites antes de llamar al backend
     if (newPage >= 0 && newPage < this.internalTotalPages) {
       this.internalPage = newPage;
       this.loadInternalUsers();
@@ -75,99 +114,58 @@ export class UsuariosComponent implements OnInit {
   // ==========================================
   // LÓGICA CLIENTES
   // ==========================================
-  loadClients() {
-    this.userService.getClients(this.clientPage, this.pageSize)
-      .subscribe({
-        next: (resp) => {
-          this.clients = resp.content;
 
-          // CAMBIO AQUÍ: Accedemos a resp.page.XXX
-          this.clientTotalPages = resp.page.totalPages;
-          this.clientTotalElements = resp.page.totalElements;
-
-          this.cdr.markForCheck();
-        },
-        error: (err) => console.error('Error cargando clientes', err)
-      });
-  }
 
   changeClientPage(delta: number) {
     const newPage = this.clientPage + delta;
+
     if (newPage >= 0 && newPage < this.clientTotalPages) {
       this.clientPage = newPage;
       this.loadClients();
     }
   }
 
+  // ==========================================
+  // ELIMINAR Y UTILS
+  // ==========================================
   deleteUser(id: number | undefined, type: 'internal' | 'client') {
-    // Validación de seguridad por si el ID es undefined
-    if (id === undefined) return;
+    if (!id) return;
 
-    // Confirmación nativa (simple y efectiva)
-    if (confirm('¿Estás seguro de que deseas eliminar este usuario? Esta acción no se puede deshacer.')) {
-
+    if (confirm('¿Eliminar usuario definitivamente?')) {
       this.userService.deleteUser(id).subscribe({
         next: () => {
-          // Mostrar éxito
-          toast.success('Usuario eliminado correctamente');
-
-          // Recargar SOLO la lista correspondiente
-          if (type === 'internal') {
-            this.loadInternalUsers();
-          } else {
-            this.loadClients();
-          }
+          toast.success('Usuario eliminado');
+          // Recargar la lista correcta
+          if (type === 'internal') this.loadInternalUsers();
+          else this.loadClients();
         },
-        error: (err) => {
-          console.error(err);
-          // Mostrar error
-          toast.error('Ocurrió un error al eliminar el usuario');
-        }
+        error: () => toast.error('Error al eliminar')
       });
     }
   }
 
-  // ==========================================
-  // UTILS & MODALES
-  // ==========================================
-
   formatRole(role: string): string {
-    return role && role.replace ? role.replace('ROLE_', '') : role;
+    return role ? role.replace('ROLE_', '') : '';
   }
 
-  // --- MODALES (CREAR / EDITAR) ---
-
-  // Acepta un usuario opcional 'userToEdit'
-  openDialogClie(userToEdit?: User) {
-    const dialogRef = this.dialog.open(ClientesComponent, {
-      data: userToEdit // Si es undefined, el modal asumirá que es CREAR
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      if (result === true) {
-        this.loadClients(); // Recargar tabla al cerrar
-      }
+  // ==========================================
+  // MODALES
+  // ==========================================
+  openDialogFinales(user?: User) {
+    const ref = this.dialog.open(UsuariosInternosComponent, { data: user });
+    ref.afterClosed().subscribe(res => {
+      if (res) this.loadInternalUsers();
     });
   }
 
-  // Acepta un usuario opcional 'userToEdit'
-  openDialogFinales(userToEdit?: User) {
-    const dialogRef = this.dialog.open(UsuariosInternosComponent, {
-      data: userToEdit // Si es undefined, el modal asumirá que es CREAR
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      if (result === true) {
-        this.loadInternalUsers(); // Recargar tabla al cerrar
-      }
+  openDialogClie(user?: User) {
+    const ref = this.dialog.open(ClientesComponent, { data: user });
+    ref.afterClosed().subscribe(res => {
+      if (res) this.loadClients();
     });
   }
 
   openChangePassword(user: User) {
-    this.dialog.open(ChangePasswordComponent, {
-      width: '400px',
-      data: user
-    });
+    this.dialog.open(ChangePasswordComponent, { width: '400px', data: user });
   }
-
 }
