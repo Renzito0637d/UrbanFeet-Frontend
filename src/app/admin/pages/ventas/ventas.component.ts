@@ -3,17 +3,21 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { VentaService } from '../../../services/venta.service';
 import { Venta } from '../../../models/venta.model';
+import { MatIconModule } from '@angular/material/icon';
+import { ReportService } from '../../../services/report.service';
+import { toast } from 'ngx-sonner';
 
 @Component({
   selector: 'app-ventas',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, MatIconModule],
   templateUrl: './ventas.component.html',
   styleUrl: './ventas.component.css' // Asegúrate que el archivo exista o quítalo
 })
 export class VentasComponent implements OnInit {
   private ventaService = inject(VentaService);
   private cdr = inject(ChangeDetectorRef);
+  private reportService = inject(ReportService);
 
   ventas: Venta[] = [];
   ventasFiltradas: Venta[] = [];
@@ -71,5 +75,46 @@ export class VentasComponent implements OnInit {
       // Si es 'COMPLETADO', sumamos el monto
       return acc + venta.montoPagado;
     }, 0);
+  }
+
+  exportarPDF() {
+    toast.info('Generando reporte PDF...');
+
+    this.reportService.downloadSalesPdf().subscribe({
+      next: (blob: Blob) => {
+        // Crear enlace temporal para descarga
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        // Nombre del archivo con fecha actual
+        const fecha = new Date().toISOString().split('T')[0];
+        a.download = `Reporte_Ventas_${fecha}.pdf`;
+
+        a.click();
+
+        window.URL.revokeObjectURL(url); // Limpiar memoria
+        toast.success('Reporte descargado correctamente');
+      },
+      error: (err) => {
+        console.error('Error al exportar PDF:', err);
+        toast.error('No se pudo generar el reporte');
+      }
+    });
+  }
+
+  exportarExcel() {
+    toast.info('Generando Excel de Ventas...');
+    this.reportService.downloadSalesExcel().subscribe({
+      next: (blob) => {
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'Ventas_UrbanFeet.xlsx';
+        a.click();
+        window.URL.revokeObjectURL(url);
+        toast.success('Excel descargado');
+      },
+      error: () => toast.error('Error al exportar Excel')
+    });
   }
 }

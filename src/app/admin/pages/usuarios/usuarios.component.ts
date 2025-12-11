@@ -11,6 +11,7 @@ import { User } from '../../../models/user.model';
 import { ClientesComponent } from '../../../components/admin/usuarios/clientes/clientes.component';
 import { UsuariosInternosComponent } from '../../../components/admin/usuarios/usuariosinternos/usuariosinternos.component';
 import { ChangePasswordComponent } from '../../../components/admin/usuarios/change-password/change-password.component';
+import { ReportService } from '../../../services/report.service';
 
 @Component({
   selector: 'app-usuarios',
@@ -26,6 +27,7 @@ export class UsuariosComponent implements OnInit {
   private userService = inject(UserService);
   private dialog = inject(MatDialog);
   private cdr = inject(ChangeDetectorRef);
+  private reportService = inject(ReportService);
 
   // --- ESTADO USUARIOS INTERNOS ---
   internalUsers: User[] = [];
@@ -167,5 +169,39 @@ export class UsuariosComponent implements OnInit {
 
   openChangePassword(user: User) {
     this.dialog.open(ChangePasswordComponent, { width: '400px', data: user });
+  }
+
+  exportarPDF() {
+    this.reportService.downloadUsersPdf().subscribe({
+      next: (blob: Blob) => {
+        // Crear un link temporal en el navegador para forzar la descarga
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'Reporte_Usuarios.pdf'; // Nombre del archivo
+        a.click();
+        window.URL.revokeObjectURL(url); // Limpiar memoria
+      },
+      error: (err) => {
+        console.error('Error descargando PDF', err);
+        toast.error('Error al generar el reporte');
+      }
+    });
+  }
+
+  exportarExcel() {
+    toast.info('Generando Excel...');
+    this.reportService.downloadUsersExcel().subscribe({
+      next: (blob) => {
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'Usuarios_UrbanFeet.xlsx';
+        a.click();
+        window.URL.revokeObjectURL(url);
+        toast.success('Excel descargado');
+      },
+      error: () => toast.error('Error al exportar Excel')
+    });
   }
 }
