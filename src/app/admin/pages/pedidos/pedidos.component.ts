@@ -34,6 +34,8 @@ export class PedidosComponent implements OnInit {
   cargarPedidos() {
     this.pedidoService.getAllAdmin().subscribe({
       next: (data) => {
+
+        console.log(data);
         // Ordenamos por ID descendente (más nuevos primero)
         this.pedidos = data.sort((a, b) => b.id - a.id);
 
@@ -63,13 +65,47 @@ export class PedidosComponent implements OnInit {
   guardarEdicion() {
     if (!this.editBuffer) return;
 
-    if (this.isRepartidor && !this.isAdmin) { return; }
+    // --- CASO 1: REPARTIDOR (Solo Estado) ---
+    if (this.isRepartidor && !this.isAdmin) {
 
+      this.pedidoService.updateStatus(this.editBuffer.id, this.editBuffer.estado).subscribe({
+        next: () => {
+          const index = this.pedidos.findIndex(p => p.id === this.editBuffer.id);
+
+          if (index !== -1) {
+            // 1. Actualizamos el estado visualmente
+            this.pedidos[index].estado = this.editBuffer.estado;
+
+            // 2. TRUCO: Agregamos una entrada "ficticia" al historial localmente
+            // Esto hace que el timeline se actualice al instante sin recargar la página
+            if (!this.pedidos[index].historial) {
+              this.pedidos[index].historial = [];
+            }
+
+            this.pedidos[index].historial!.unshift({
+              estado: this.editBuffer.estado,
+              fecha: new Date().toISOString(), // Fecha actual
+              usuario: 'Tú (Ahora)' // Opcional: mostrar algo genérico
+            });
+          }
+
+          this.cerrarEdicion();
+          toast.success('Estado actualizado correctamente');
+        },
+        error: (err) => {
+          console.error(err);
+          toast.error('No se pudo actualizar el estado');
+        }
+      });
+      return;
+    }
+
+    // --- CASO 2: ADMIN (Edición Completa) ---
     const dto = {
       direccionId: this.editBuffer.direccionEnvio?.id || 1,
       metodoPago: this.editBuffer.metodoPago,
       estado: this.editBuffer.estado,
-
+      // Mapeamos los detalles tal cual
       detalles: this.editBuffer.detalles.map((d: any) => ({
         zapatillaVariacionId: d.zapatillaVariacionId,
         cantidad: d.cantidad,
@@ -78,25 +114,22 @@ export class PedidosComponent implements OnInit {
     };
 
     this.pedidoService.updatePedido(this.editBuffer.id, dto).subscribe({
-      next: (pedidoActualizado) => { // El backend nos devuelve el pedido nuevo
+      next: (pedidoActualizado) => {
 
-        // 1. ACTUALIZACIÓN LOCAL (Sin recargar toda la lista)
-        // Buscamos el pedido en nuestro array 'pedidos'
         const index = this.pedidos.findIndex(p => p.id === pedidoActualizado.id);
 
         if (index !== -1) {
-          // Actualizamos sus propiedades directamente.
-          // Al usar Object.assign, mantenemos la referencia y el acordeón NO SE CIERRA.
+          // USAMOS Object.assign PARA MANTENER EL ACORDEÓN ABIERTO
+          // Esto copia todas las propiedades nuevas (incluido el nuevo historial) al objeto existente
           Object.assign(this.pedidos[index], pedidoActualizado);
+
+          // Opcional: Si el historial no se refresca, forzamos la referencia del array
+          if (pedidoActualizado.historial) {
+            this.pedidos[index].historial = [...pedidoActualizado.historial];
+          }
         }
 
-        // 2. CERRAR MODO EDICIÓN
-        this.editingId = null;
-        this.editBuffer = null;
-
-        // 3. FORZAR LA VISTA (Para que desaparezcan los inputs y aparezca el texto)
-        this.cdr.detectChanges(); // O this.cdr.markForCheck();
-
+        this.cerrarEdicion();
         toast.success('Pedido actualizado correctamente');
       },
       error: (err) => {
@@ -104,6 +137,13 @@ export class PedidosComponent implements OnInit {
         toast.error('No se pudo actualizar el pedido');
       }
     });
+  }
+
+  // Método helper para limpiar y refrescar vista
+  cerrarEdicion() {
+    this.editingId = null;
+    this.editBuffer = null;
+    this.cdr.detectChanges(); // Fuerza a Angular a repintar la vista inmediatamente
   }
 
   eliminarPedido(id: number) {

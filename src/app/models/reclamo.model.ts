@@ -1,17 +1,28 @@
-export interface Reclamo {
-  id: number;
-  nombre: string;
-  documento: string;
-  domicilio: string;
-  email: string;
-  telefono: string;
+export interface DatosUsuarioReclamo {
+    nombre: string;
+    documento: string;
+    domicilio: string;
+    correo: string;
+    telefono: string;
+}
 
-  producto: string;
-  monto: number;
-  tipo: 'Reclamo' | 'Queja';
-  detalle: string;
-  pedido: string;
+export interface ReclamacionRequest {
+    producto: string;
+    montoReclamado: number;
+    tipoMensaje: string;
+    detalleReclamo: string;
+    solucionPropuesta: string;
+    direccion: string;
+}
 
-  fecha: Date;
-  estado: 'Pendiente' | 'En revisión' | 'Aceptado';
+export interface ReclamacionResponse {
+    id: number;
+    producto: string;
+    montoReclamado: number;
+    tipoMensaje: string;
+    detalleReclamo: string;
+    solucionPropuesta: string;
+    fechaRegistro: string;
+    estado: string;
+    direccion?: string;
 }
