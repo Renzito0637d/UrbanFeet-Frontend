@@ -21,4 +21,16 @@ export class ReclamoService {
   obtenerMisReclamos(): Observable<ReclamacionResponse[]> {
     return this.http.get<ReclamacionResponse[]>(`${this.baseUrl}/mis-reclamos`);
   }
+  obtenerTodos(): Observable<ReclamacionResponse[]> {
+    return this.http.get<ReclamacionResponse[]>(this.baseUrl);
+  }
+
+  // Actualizar reclamo (usaremos esto para cambiar el estado)
+  actualizar(id: number, data: any): Observable<ReclamacionResponse> {
+    return this.http.put<ReclamacionResponse>(`${this.baseUrl}/${id}`, data);
+  }
+
+  eliminar(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.baseUrl}/${id}`);
+  }
 }
