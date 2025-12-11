@@ -26,3 +26,12 @@ export interface ZapatillaRequest {
   genero: string;
   tipo: string;
 }
+
+export interface ZapatillaFilter {
+  marcas?: string[];
+  genero?: string;
+  tipo?: string;
+  talla?: string | null; // <--- Agrega | null
+  min?: number | null;   // <--- Agrega | null
+  max?: number | null;
+}

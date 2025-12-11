@@ -30,25 +30,12 @@
               class="rounded-2xl bg-white dark:bg-neutral-900 ring-1 ring-neutral-300/50 dark:ring-neutral-800 p-5 shadow-sm">
               <label class="block text-sm font-bold mb-3 uppercase tracking-wider text-neutral-500">Marcas</label>
               <div class="grid grid-cols-2 gap-3">
-                <label class="cursor-pointer flex items-center gap-2 group">
-                  <input type="checkbox"
-                    class="size-4 rounded border-gray-300 text-cyan-500 focus:ring-cyan-400 transition" />
-                  <span class="group-hover:text-cyan-600 transition">Nike</span>
-                </label>
-                <label class="cursor-pointer flex items-center gap-2 group">
-                  <input type="checkbox"
-                    class="size-4 rounded border-gray-300 text-cyan-500 focus:ring-cyan-400 transition" />
-                  <span class="group-hover:text-cyan-600 transition">Adidas</span>
-                </label>
-                <label class="cursor-pointer flex items-center gap-2 group">
-                  <input type="checkbox"
-                    class="size-4 rounded border-gray-300 text-cyan-500 focus:ring-cyan-400 transition" />
-                  <span class="group-hover:text-cyan-600 transition">Puma</span>
-                </label>
-                <label class="cursor-pointer flex items-center gap-2 group">
-                  <input type="checkbox"
-                    class="size-4 rounded border-gray-300 text-cyan-500 focus:ring-cyan-400 transition" />
-                  <span class="group-hover:text-cyan-600 transition">Reebok</span>
+                <label *ngFor="let m of marcasList" class="cursor-pointer flex items-center gap-2 group">
+                  <input type="checkbox" 
+                         [checked]="filtros.marcas?.includes(m)"
+                         (change)="toggleMarca(m, $event)"
+                         class="size-4 rounded border-gray-300 text-cyan-500 focus:ring-cyan-400 transition" />
+                  <span class="group-hover:text-cyan-600 transition">{{ m }}</span>
                 </label>
               </div>
             </div>
@@ -58,15 +45,15 @@
               <label class="block text-sm font-bold mb-3 uppercase tracking-wider text-neutral-500">Género</label>
               <div class="flex flex-col gap-2">
                 <label class="inline-flex items-center gap-2 cursor-pointer">
-                  <input type="radio" name="genero" class="size-4 text-cyan-500 focus:ring-cyan-400" checked />
+                  <input type="radio" name="genero" value="" [(ngModel)]="filtros.genero" class="size-4 text-cyan-500 focus:ring-cyan-400" />
                   <span>Todos</span>
                 </label>
                 <label class="inline-flex items-center gap-2 cursor-pointer">
-                  <input type="radio" name="genero" class="size-4 text-cyan-500 focus:ring-cyan-400" />
+                  <input type="radio" name="genero" value="Hombre" [(ngModel)]="filtros.genero" class="size-4 text-cyan-500 focus:ring-cyan-400" />
                   <span>Hombre</span>
                 </label>
                 <label class="inline-flex items-center gap-2 cursor-pointer">
-                  <input type="radio" name="genero" class="size-4 text-cyan-500 focus:ring-cyan-400" />
+                  <input type="radio" name="genero" value="Mujer" [(ngModel)]="filtros.genero" class="size-4 text-cyan-500 focus:ring-cyan-400" />
                   <span>Mujer</span>
                 </label>
               </div>
@@ -76,91 +63,48 @@
               class="rounded-2xl bg-white dark:bg-neutral-900 ring-1 ring-neutral-300/50 dark:ring-neutral-800 p-5 shadow-sm">
               <label class="block text-sm font-bold mb-3 uppercase tracking-wider text-neutral-500">Tipo</label>
               <div class="flex flex-wrap gap-2">
-                <button
-                  class="px-3 py-1.5 rounded-lg bg-neutral-100 dark:bg-neutral-800 text-sm font-medium hover:bg-cyan-100 dark:hover:bg-cyan-900/30 hover:text-cyan-700 dark:hover:text-cyan-300 transition">Running</button>
-                <button
-                  class="px-3 py-1.5 rounded-lg bg-neutral-100 dark:bg-neutral-800 text-sm font-medium hover:bg-cyan-100 dark:hover:bg-cyan-900/30 hover:text-cyan-700 dark:hover:text-cyan-300 transition">Fútbol</button>
-                <button
-                  class="px-3 py-1.5 rounded-lg bg-neutral-100 dark:bg-neutral-800 text-sm font-medium hover:bg-cyan-100 dark:hover:bg-cyan-900/30 hover:text-cyan-700 dark:hover:text-cyan-300 transition">Casual</button>
+                <button *ngFor="let t of ['Deportiva', 'Formal', 'Casual','Outdoor','Fútbol','Running','Training']"
+                  (click)="seleccionarTipo(t)"
+                  class="px-3 py-1.5 rounded-lg text-sm font-medium transition border"
+                  [ngClass]="filtros.tipo === t 
+                    ? 'bg-cyan-500 text-white border-cyan-500' 
+                    : 'bg-neutral-100 dark:bg-neutral-800 border-transparent hover:bg-cyan-100 dark:hover:bg-cyan-900/30 hover:text-cyan-700 dark:hover:text-cyan-300'">
+                  {{ t }}
+                </button>
               </div>
             </div>
 
             <div class="rounded-2xl bg-white dark:bg-neutral-900 ring-1 ring-neutral-300/50 dark:ring-neutral-800 p-5">
-
               <label class="block text-sm font-semibold mb-3">Tallas (PE)</label>
-
               <div class="grid grid-cols-6 gap-2">
-
-                <button
-                  class="text-sm rounded-lg px-2 py-1 bg-neutral-100 dark:bg-neutral-800 hover:ring-2 ring-cyan-400/60 dark:ring-cyan-300/60">38</button>
-
-                <button
-                  class="text-sm rounded-lg px-2 py-1 bg-neutral-100 dark:bg-neutral-800 hover:ring-2 ring-cyan-400/60 dark:ring-cyan-300/60">39</button>
-
-                <button
-                  class="text-sm rounded-lg px-2 py-1 bg-neutral-100 dark:bg-neutral-800 hover:ring-2 ring-cyan-400/60 dark:ring-cyan-300/60">40</button>
-
-                <button
-                  class="text-sm rounded-lg px-2 py-1 bg-neutral-100 dark:bg-neutral-800 hover:ring-2 ring-cyan-400/60 dark:ring-cyan-300/60">41</button>
-
-                <button
-                  class="text-sm rounded-lg px-2 py-1 bg-neutral-100 dark:bg-neutral-800 hover:ring-2 ring-cyan-400/60 dark:ring-cyan-300/60">42</button>
-
-                <button
-                  class="text-sm rounded-lg px-2 py-1 bg-neutral-100 dark:bg-neutral-800 hover:ring-2 ring-cyan-400/60 dark:ring-cyan-300/60">43</button>
-
+                <button *ngFor="let t of tallasList"
+                  (click)="seleccionarTalla(t)"
+                  class="text-sm rounded-lg px-2 py-1 transition border"
+                  [ngClass]="filtros.talla === t 
+                    ? 'bg-cyan-500 text-white border-cyan-500' 
+                    : 'bg-neutral-100 dark:bg-neutral-800 border-transparent hover:ring-2 ring-cyan-400/60 dark:ring-cyan-300/60'">
+                  {{ t }}
+                </button>
               </div>
-
             </div>
 
-            <!-- Colores -->
-
             <div class="rounded-2xl bg-white dark:bg-neutral-900 ring-1 ring-neutral-300/50 dark:ring-neutral-800 p-5">
-
-              <label class="block text-sm font-semibold mb-3">Colores</label>
-
-              <div class="flex flex-wrap gap-2">
-
-                <span class="size-6 rounded-full ring-1 ring-neutral-300 dark:ring-neutral-700 bg-black"></span>
-
-                <span class="size-6 rounded-full ring-1 ring-neutral-300 dark:ring-neutral-700 bg-white"></span>
-
-                <span class="size-6 rounded-full ring-1 ring-neutral-300 dark:ring-neutral-700 bg-red-500"></span>
-
-                <span class="size-6 rounded-full ring-1 ring-neutral-300 dark:ring-neutral-700 bg-blue-500"></span>
-
-                <span class="size-6 rounded-full ring-1 ring-neutral-300 dark:ring-neutral-700 bg-green-500"></span>
-
-                <span class="size-6 rounded-full ring-1 ring-neutral-300 dark:ring-neutral-700 bg-green-400"></span>
-
-              </div>
-
-            </div>
-
-            <!-- Precio -->
-
-            <div class="rounded-2xl bg-white dark:bg-neutral-900 ring-1 ring-neutral-300/50 dark:ring-neutral-800 p-5">
-
               <label class="block text-sm font-semibold mb-3">Precio (S/)</label>
-
               <div class="flex items-center gap-3">
-
-                <input type="number" placeholder="Mín"
-                  class="w-1/2 rounded-lg bg-white dark:bg-neutral-900 border border-neutral-300 dark:border-neutral-700 px-3 py-2 text-sm" />
-
-                <input type="number" placeholder="Máx"
-                  class="w-1/2 rounded-lg bg-white dark:bg-neutral-900 border border-neutral-300 dark:border-neutral-700 px-3 py-2 text-sm" />
-
+                <input type="number" [(ngModel)]="filtros.min" placeholder="Mín"
+                  class="w-1/2 rounded-lg bg-white dark:bg-neutral-900 border border-neutral-300 dark:border-neutral-700 px-3 py-2 text-sm focus:ring-2 focus:ring-cyan-400 outline-none" />
+                
+                <input type="number" [(ngModel)]="filtros.max" placeholder="Máx"
+                  class="w-1/2 rounded-lg bg-white dark:bg-neutral-900 border border-neutral-300 dark:border-neutral-700 px-3 py-2 text-sm focus:ring-2 focus:ring-cyan-400 outline-none" />
               </div>
-
             </div>
 
             <div class="flex gap-3 pt-2">
-              <button
+              <button (click)="aplicarFiltros()"
                 class="flex-1 rounded-xl bg-cyan-400 dark:bg-cyan-300 text-neutral-900 font-bold px-4 py-3 hover:opacity-90 shadow-lg shadow-cyan-500/20 active:scale-95 transition">
                 Aplicar
               </button>
-              <button
+              <button (click)="limpiarFiltros()"
                 class="flex-1 rounded-xl border border-neutral-300 dark:border-neutral-700 px-4 py-3 text-center font-semibold hover:bg-neutral-100 dark:hover:bg-neutral-800 active:scale-95 transition">
                 Limpiar
               </button>
