@@ -14,11 +14,8 @@ export class ZapatillaService {
 
   getPaginated(page: number, size: number): Observable<Page<Zapatilla>> {
     let params = new HttpParams().set('page', page).set('size', size);
-    
-    // ¡OJO A LA RUTA! ¿Es /page o solo /? Revisa tu Controller
-    return this.http.get<Page<Zapatilla>>(`${this.baseUrl}/page`, { params }); 
+    return this.http.get<Page<Zapatilla>>(`${this.baseUrl}/public/list`, { params });
   }
-
   getPaginatedPublic(page: number = 0, size: number = 12): Observable<Page<Zapatilla>> {
     let params = new HttpParams()
       .set('page', page.toString())
@@ -44,5 +41,5 @@ export class ZapatillaService {
   delete(id: number): Observable<void> {
     return this.http.delete<void>(`${this.baseUrl}/${id}`);
   }
-  
+
 }

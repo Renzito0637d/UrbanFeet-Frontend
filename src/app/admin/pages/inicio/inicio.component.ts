@@ -1,116 +1,219 @@
+import { Component, inject, OnInit, ChangeDetectorRef } from '@angular/core'; // 1. Importar ChangeDetectorRef
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router'; // 2. Importar RouterModule (para routerLink)
+import { forkJoin } from 'rxjs';
+
+import { PedidoService } from '../../../services/pedido.service';
+import { ZapatillaService } from '../../../services/zapatilla.service';
+import { UserService } from '../../../services/user.service';
+import { PedidoResponse } from '../../../models/pedido.model';
 
 type RangeKey = '7d' | '30d' | 'ytd';
+
 @Component({
   selector: 'app-inicio',
-  imports: [CommonModule],
+  standalone: true,
+  imports: [CommonModule, FormsModule, RouterModule],
   templateUrl: './inicio.component.html',
   styleUrl: './inicio.component.css'
 })
 export class InicioComponent implements OnInit {
 
-  // Datos base (conectar al api despues, spring)
+  private pedidoService = inject(PedidoService);
+  private zapatillaService = inject(ZapatillaService);
+  private userService = inject(UserService);
+  private cdr = inject(ChangeDetectorRef); 
+
+  allPedidos: PedidoResponse[] = [];
+
+  totalVentas = 0;
+  totalPedidos = 0;
+  totalUsuarios = 0;
+  totalProductos = 0;
+
+  pedidosRecientes: PedidoResponse[] = [];
+  topProductos: { name: string, quantity: number, percentage: number }[] = [];
+
   labels: (string | number)[] = [];
   data: number[] = [];
+  currentRange: RangeKey = '7d';
 
-  // Paleta (claro/oscuro)
-  palette = {
-    line: '#06b6d4',
-    area: 'rgba(6,182,212,0.25)',
-    grid: '#e5e7eb',
-    ticks: '#404040',
-  };
-
-  // Escena SVG (coordenadas internas)
-  readonly W = 100;         // ancho viewBox
-  readonly H = 60;          // alto viewBox
-  readonly chart = {        // área útil del gráfico
-    left: 8,
-    right: 98,
-    top: 6,
-    bottom: 52
-  };
-
-  // Render output
-  linePath = '';
-  areaPath = '';
+  palette = { line: '#06b6d4', area: 'rgba(6,182,212,0.25)', grid: '#e5e7eb', ticks: '#404040' };
+  readonly W = 100; readonly H = 60;
+  readonly chart = { left: 8, right: 98, top: 6, bottom: 52 };
+  linePath = ''; areaPath = '';
   points: { x: number, y: number }[] = [];
   gridYs: number[] = [];
   xLabelsLimited: { x: number, label: string | number }[] = [];
 
   ngOnInit(): void {
     this.updateThemePalette();
-    this.setRange('7d'); // primer render
+    this.cargarDashboard();
   }
 
-  // Cambia rango (simula fetch)
+  cargarDashboard() {
+    forkJoin({
+      pedidos: this.pedidoService.getAllAdmin(),
+      productosPage: this.zapatillaService.getPaginated(0, 1),
+      clientesPage: this.userService.getClients(0, 1)
+    }).subscribe({
+      next: (res: any) => { 
+
+        this.allPedidos = res.pedidos || [];
+        this.totalPedidos = this.allPedidos.length;
+
+        const prodData = res.productosPage;
+
+        this.totalProductos = prodData.page?.totalElements || prodData.totalElements || 0;
+
+        const userData = res.clientesPage;
+
+        this.totalUsuarios = userData.page?.totalElements || userData.totalElements || 0;
+
+        this.totalVentas = this.calcularVentasTotales(this.allPedidos);
+
+        this.procesarPedidosRecientes();
+        this.procesarTopProductos();
+        this.setRange('7d');
+
+        // 5. ¡IMPORTANTE! Forzar actualización de vista
+        this.cdr.markForCheck();
+      },
+      error: (err) => console.error('Error cargando dashboard', err)
+    });
+  }
+
+  // --- LÓGICA DE PROCESAMIENTO ---
+
+  calcularVentasTotales(pedidos: any[]): number {
+    return pedidos
+      .filter(p => p.estado !== 'CANCELADO')
+      .reduce((acc, p) => {
+        // Validación extra por si detalles es null
+        if (!p.detalles) return acc;
+        const totalPedido = p.detalles.reduce((sum: number, d: any) => sum + d.precioTotal, 0);
+        return acc + totalPedido;
+      }, 0);
+  }
+
+  procesarPedidosRecientes() {
+    this.pedidosRecientes = [...this.allPedidos]
+      .sort((a, b) => b.id - a.id)
+      .slice(0, 5);
+  }
+
+  procesarTopProductos() {
+    const conteo: Record<string, number> = {};
+
+    this.allPedidos.forEach(p => {
+      if (p.estado !== 'CANCELADO' && p.detalles) {
+        p.detalles.forEach((d: any) => {
+          // Intentamos obtener el nombre de varias formas por seguridad
+          const nombre = d.nombreProducto || d.producto || 'Producto';
+          conteo[nombre] = (conteo[nombre] || 0) + d.cantidad;
+        });
+      }
+    });
+
+    const sorted = Object.entries(conteo)
+      .map(([name, quantity]) => ({ name, quantity, percentage: 0 }))
+      .sort((a, b) => b.quantity - a.quantity)
+      .slice(0, 5);
+
+    const maxQty = sorted[0]?.quantity || 1;
+    sorted.forEach(item => item.percentage = (item.quantity / maxQty) * 100);
+
+    this.topProductos = sorted;
+  }
+
+  calcularTotalPedido(pedido: any): number {
+    return pedido.detalles ? pedido.detalles.reduce((acc: number, item: any) => acc + item.precioTotal, 0) : 0;
+  }
+
+  // --- GRÁFICO ---
+
+  onRangeChange(event: any) {
+    this.setRange(event.target.value);
+  }
+
   setRange(range: RangeKey) {
-    if (range === '7d') {
-      this.labels = ['L', 'M', 'X', 'J', 'V', 'S', 'D'];
-      this.data = [320, 410, 380, 512, 460, 540, 600];
-    } else if (range === '30d') {
-      this.labels = Array.from({ length: 30 }, (_, i) => i + 1);
-      this.data = Array.from({ length: 30 }, () => 300 + Math.round(Math.random() * 400));
-    } else { // ytd
-      this.labels = ['E', 'F', 'M', 'A', 'M', 'J', 'J', 'A', 'S', 'O', 'N', 'D'];
-      this.data = [4, 5, 6, 8, 6, 9, 10, 9, 8, 11, 12, 13].map(v => v * 300);
+    this.currentRange = range;
+    const hoy = new Date();
+    const mapaVentas: Record<string, number> = {};
+
+    let diasAtras = 7;
+    if (range === '30d') diasAtras = 30;
+    // if (range === 'ytd') ...
+
+    const fechaLimite = new Date();
+    fechaLimite.setDate(hoy.getDate() - diasAtras);
+    // Ajustar a medianoche para comparación correcta
+    fechaLimite.setHours(0, 0, 0, 0);
+
+    const pedidosFiltrados = this.allPedidos.filter(p => {
+      if (p.estado === 'CANCELADO') return false;
+      const fechaP = new Date(p.fechaPedido);
+      return fechaP >= fechaLimite;
+    });
+
+    // Ordenar cronológicamente para el gráfico
+    pedidosFiltrados.sort((a, b) => new Date(a.fechaPedido).getTime() - new Date(b.fechaPedido).getTime());
+
+    pedidosFiltrados.forEach(p => {
+      // Formato DD/MM
+      const fecha = new Date(p.fechaPedido).toLocaleDateString('es-PE', { day: '2-digit', month: '2-digit' });
+      const total = this.calcularTotalPedido(p);
+      mapaVentas[fecha] = (mapaVentas[fecha] || 0) + total;
+    });
+
+    this.labels = Object.keys(mapaVentas);
+    this.data = Object.values(mapaVentas);
+
+    if (this.data.length === 0) {
+      this.labels = ['Sin datos'];
+      this.data = [0];
     }
 
-    this.updateThemePalette(); // por si el usuario cambió el tema
+    this.updateThemePalette();
     this.computeChart();
   }
 
-  // Si usas <html class="dark">, detectamos y ajustamos colores
   private updateThemePalette() {
-    const isDark =
-      document.documentElement.classList.contains('dark') ||
-      document.body.classList.contains('dark');
-
-    this.palette = isDark ? {
-      line: '#67e8f9',                         // cyan-300
-      area: 'rgba(103,232,249,0.25)',
-      grid: '#3f3f46',                         // neutral-700
-      ticks: '#d4d4d8',                        // neutral-300
-    } : {
-      line: '#06b6d4',                         // cyan-500
-      area: 'rgba(6,182,212,0.25)',
-      grid: '#e5e7eb',                         // neutral-200
-      ticks: '#404040',                        // neutral-700
-    };
+    // Verificamos si estamos en navegador para evitar errores de SSR
+    if (typeof document !== 'undefined') {
+      const isDark = document.documentElement.classList.contains('dark');
+      this.palette = isDark ? {
+        line: '#67e8f9', area: 'rgba(103,232,249,0.25)', grid: '#3f3f46', ticks: '#d4d4d8',
+      } : {
+        line: '#06b6d4', area: 'rgba(6,182,212,0.25)', grid: '#e5e7eb', ticks: '#404040',
+      };
+    }
   }
 
   private computeChart() {
     const { left, right, top, bottom } = this.chart;
     const innerW = right - left;
     const innerH = bottom - top;
-
-    // escalas
-    const maxY = Math.max(...this.data) || 1;
-    const minY = Math.min(...this.data) || 0;
-    // margen superior/inferior
-    const pad = (maxY - minY) * 0.1 || 10;
+    const maxY = Math.max(...this.data) || 100;
+    const minY = 0;
+    const pad = (maxY - minY) * 0.1;
     const yMax = maxY + pad;
-    const yMin = Math.max(0, minY - pad);
+    const yMin = 0;
 
     const n = this.data.length;
     const stepX = n > 1 ? innerW / (n - 1) : 0;
+    const x = (i: number) => n > 1 ? left + i * stepX : (left + right) / 2;
 
-    const x = (i: number) => left + i * stepX;
     const y = (val: number) => {
       const t = (val - yMin) / (yMax - yMin || 1);
       return bottom - t * innerH;
     };
 
-    // puntos
     this.points = this.data.map((v, i) => ({ x: x(i), y: y(v) }));
 
-    // path línea
-    this.linePath = this.points.reduce((d, p, i) => {
-      return d + (i === 0 ? `M ${p.x},${p.y}` : ` L ${p.x},${p.y}`);
-    }, '');
+    this.linePath = this.points.reduce((d, p, i) => d + (i === 0 ? `M ${p.x},${p.y}` : ` L ${p.x},${p.y}`), '');
 
-    // path área (cierra hacia el eje X)
     if (this.points.length) {
       const first = this.points[0];
       const last = this.points[this.points.length - 1];
@@ -119,11 +222,9 @@ export class InicioComponent implements OnInit {
       this.areaPath = '';
     }
 
-    // grid Y (3 líneas equiespaciadas dentro del área útil)
     this.gridYs = [top + innerH * 0.25, top + innerH * 0.5, top + innerH * 0.75];
 
-    // labels X: limitar a ~10 para evitar saturación
-    const maxLabels = 10;
+    const maxLabels = 7;
     const stride = Math.ceil(n / maxLabels) || 1;
     this.xLabelsLimited = this.labels.map((lab, i) => ({ x: x(i), label: lab }))
       .filter((_, i) => i % stride === 0);

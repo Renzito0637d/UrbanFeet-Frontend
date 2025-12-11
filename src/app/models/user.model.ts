@@ -34,8 +34,14 @@ export interface PageInfo {
 }
 
 export interface PageResponse<T> {
-  content: T[];
-  page: PageInfo; // Ahora la info está aquí dentro
+  content: T[];          // La lista de usuarios
+  totalPages: number;    // Total de páginas
+  totalElements: number; // <--- AGREGA ESTA LÍNEA (Es la que te falta)
+  last: boolean;
+  size: number;
+  number: number;        // Página actual
+  first?: boolean;
+  empty?: boolean;
 }
 
 // Interfaz para el Request de creación (RegisterRequest)
