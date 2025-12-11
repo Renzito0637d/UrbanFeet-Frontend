@@ -11,6 +11,7 @@ import { Direccion } from '../../models/direccion.model';
 import { PedidoDetalleRequest, PedidoRequest } from '../../models/pedido.model';
 import { MatIconModule } from '@angular/material/icon';
 import { RouterLink } from '@angular/router';
+import { forkJoin } from 'rxjs';
 
 
 
@@ -122,13 +123,31 @@ export class ProcederPagoComponent implements OnInit {
       next: (resp) => {
         toast.success(`Pedido #${resp.id} creado con éxito!`);
 
-        // 3. LIMPIEZA carrito
-        this.itemsCarrito.forEach(item => {
-          this.carritoService.deleteItem(item.id).subscribe();
-        });
+        // 3. LIMPIEZA SINCRONIZADA
+        // Creamos un array de observables (peticiones pendientes)
+        const deleteRequests = this.itemsCarrito.map(item => 
+            this.carritoService.deleteItem(item.id)
+        );
 
-        this.procesandoPago = false;
-        this.dialogRef.close(true);
+        if (deleteRequests.length > 0) {
+            // forkJoin espera a que TODAS las peticiones terminen
+            forkJoin(deleteRequests).subscribe({
+                next: () => {
+                    // Ahora sí, ya está vacío en BD
+                    this.procesandoPago = false;
+                    this.dialogRef.close(true);
+                },
+                error: (err) => {
+                    console.error("Error vaciando carrito", err);
+                    // Cerramos igual, porque el pedido sí se creó
+                    this.procesandoPago = false;
+                    this.dialogRef.close(true); 
+                }
+            });
+        } else {
+            this.procesandoPago = false;
+            this.dialogRef.close(true);
+        }
       },
       error: (err) => {
         console.error(err);
