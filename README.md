@@ -5,7 +5,7 @@
 
 **Do you want to read it in English?** Click >>[here](https://github.com/Renzito0637d/UrbanFeet-Frontend/blob/main/README.EN.md)<<
 
-Aplicación web realizada con **Angular**. Este repositorio contiene el código fuente del frontend desarrollado como parte del curso "Proyecto Web Integrador" en la *UTP*. El sistema simula la gestión digital para la empresa ficticia **Urban Feet**.
+Aplicación web realizada con **Angular**. Este repositorio contiene el código fuente del frontend desarrollado como parte del curso "Proyecto Web Integrador" en la **UTP**. El sistema simula la gestión digital para la empresa ficticia **Urban Feet**.
 
 ### 🛠️ Arquitectura Full Stack
 Este proyecto funciona en conjunto con una API REST desarrollada por separado.
