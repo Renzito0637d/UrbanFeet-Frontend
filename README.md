@@ -1,11 +1,11 @@
 # UrbanFeet-Frontend
 
-![Angular](https://img.shields.io/badge/angular-%23DD0031.svg?style=for-the-badge&logo=angular&logoColor=white) ![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white) ![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white) ![TailwindCSS](https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white) 
+![Angular](https://img.shields.io/badge/angular-%23DD0031.svg?style=for-the-badge&logo=angular&logoColor=white) ![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white) ![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white) ![TailwindCSS](https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white)
 ---
 
 **Do you want to read it in English?** Click >>[here](https://github.com/Renzito0637d/UrbanFeet-Frontend/blob/main/README.EN.md)<<
 
-Aplicación web realizada con **Angular**. Este repositorio contiene el código fuente del frontend desarrollado como parte del curso "Proyecto Web Integrador" en la <span style="color: red;">U</span>T<span style="color: red;">P</span>. El sistema simula la gestión digital para la empresa ficticia **Urban Feet**.
+Aplicación web realizada con **Angular**. Este repositorio contiene el código fuente del frontend desarrollado como parte del curso "Proyecto Web Integrador" en la *UTP*. El sistema simula la gestión digital para la empresa ficticia **Urban Feet**.
 
 ### 🛠️ Arquitectura Full Stack
 Este proyecto funciona en conjunto con una API REST desarrollada por separado.
