@@ -67,7 +67,7 @@
 
                         <div class="flex justify-between items-center mb-3">
                             <span class="text-sm text-neutral-500">Precio Unit.</span>
-                            <span class="font-semibold">{{ item.precioUnitario | currency:'PEN  ':'symbol' }}</span>
+                            <span class="font-semibold">{{ item.precioUnitario | currency:'S/  ':'symbol' }}</span>
                         </div>
 
                         <div
@@ -116,7 +116,7 @@
                             <div class="text-right">
                                 <p class="text-xs text-neutral-500">Subtotal</p>
                                 <p class="text-lg font-bold text-cyan-600 dark:text-cyan-400">
-                                    {{ item.cantidad * item.precioUnitario | currency:'PEN ':'symbol' }}
+                                    {{ item.cantidad * item.precioUnitario | currency:'S/ ':'symbol' }}
                                 </p>
                             </div>
                         </div>
@@ -134,12 +134,12 @@
             <div class="space-y-2 text-sm">
                 <div class="flex justify-between">
                     <span class="text-neutral-600 dark:text-neutral-400">Subtotal</span>
-                    <span class="font-semibold">{{ subtotal | currency:'PEN ':'symbol' }}</span>
+                    <span class="font-semibold">{{ subtotal | currency:'S/ ':'symbol' }}</span>
                 </div>
                 <div class="flex justify-between">
                     <span class="text-neutral-600 dark:text-neutral-400">Envío</span>
                     <span class="font-semibold" [class.text-green-500]="envio === 0">
-                        {{ envio === 0 ? 'Gratis' : (envio | currency:'PEN ':'symbol') }}
+                        {{ envio === 0 ? 'Gratis' : (envio | currency:'S/ ':'symbol') }}
                     </span>
                 </div>
             </div>
@@ -148,7 +148,7 @@
                 class="flex justify-between items-center mt-6 pt-4 border-t border-neutral-100 dark:border-neutral-800">
                 <span class="text-lg font-bold">Total</span>
                 <span class="text-2xl font-bold text-cyan-600 dark:text-cyan-300">
-                    {{ total | currency:'PEN ':'symbol' }}
+                    {{ total | currency:'S/ ':'symbol' }}
                 </span>
             </div>
 
